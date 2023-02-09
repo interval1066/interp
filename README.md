@@ -11,4 +11,4 @@ The help file reader method needs work right now. Changing it from a line reader
 
 Also should change all integer, longs, chars, and so on to fixed size numbers out of stdint.h.
 
-I'm a litle impressed with myself that within 10 days of comitting this code over 35 people cloned it. Must be a need for something like this.
+I'm a little impressed with myself that within 10 days of comitting this code over 35 people cloned it. Must be a need for something like this.
