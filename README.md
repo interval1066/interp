@@ -7,7 +7,7 @@ Commands are arbitraty; there's no such thing as a "bert" device, was the first 
 
 I'm developing it using qt creator so some qt ide meta files are included, will probably work for most. You'll also need to add libconfig to your development machine with your distro's package manager; HOWEVER, just typing "make" should result in a debug version of the project. If you want to make a release version just type "make optim". QT Creator should do the same thing, including producing a stripped exectable image.
 
-Porting this to ARM shouldn't be a huge clime either. If there is a problem doing this I'd appreciate a note.
+Porting this to ARM shouldn't be a huge climb either. If there is a problem doing this I'd appreciate a note.
 
 
 The help file reader method needs work right now. Changing it from a line reader to a characer reader. Also still to do is add an error handler. All (90%) of the methods return an error code, the intention is to have the error code interpreted by a top-level (presentation, or "UI" level) module.
