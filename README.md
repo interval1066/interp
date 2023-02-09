@@ -11,7 +11,7 @@ Porting this to ARM shouldn't be a huge climb either. If there is a problem doin
 
 The help file reader method needs work right now. Changing it from a line reader to a characer reader. Also still to do is add an error handler. All (90%) of the methods return an error code, the intention is to have the error code interpreted by a top-level (presentation, or "UI" level) module.
 
-Also should change all integer, longs, chars, and so on to fixed sized numbers out of stdint.h. The Huffman module is included so that one can encrypt the Message of the Day file, and any other file if one wanted, and it does work. Right now I'm concentrated on getting the main fucntionality working. Will add encrypting any text file later.
+Also should change all integer, longs, chars, and so on to fixed sized numbers out of stdint.h. The Huffman module is included so that one can encrypt the Message of the Day file, and any other file if one wanted, and it does work. Right now I'm concentrated on getting the main fucntionality working. Will add encrypting any text file later. Also; input needs scrubbing. Haven't had time to have the code check for bad or nefarious input.
 
 I'm a little impressed with myself that within 10 days of comitting this code over 35 people cloned it. Must be a need for something like this.
 
