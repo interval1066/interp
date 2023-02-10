@@ -9,7 +9,7 @@ I'm developing it using qt creator so some qt ide meta files are included, will 
 
 Porting this to ARM shouldn't be a huge climb either. If there is a problem doing this I'd appreciate a note. It also compiles into very small code as is, under 35K. Obviously adding more comprehensive commands is going to increase the size, but probably not by much. I would add really comprehensive commands that require heavy computing power to the framework as shared libs or static libs. Not that will keep the size small, but will make it more manageable. Never the less, the framework can be kept to a really managable size using logical architectural choices, in my opinion. Give me your thoughts!
 
-The help file reader method needs work right now. Changing it from a line reader to a characer reader. Also still to do is add an error handler. All (90%) of the methods return an error code, the intention is to have the error code interpreted by a top-level (presentation, or "UI" level) module.
+The help file reader method needs work right now. Changing it from a line reader to a character reader. Also still to do is add an error handler. All (90%) of the methods return an error code, the intention is to have the error code interpreted by a top-level (presentation, or "UI" level) module.
 
 Also should change all integer, longs, chars, and so on to fixed sized numbers out of stdint.h. The Huffman module is included so that one can encrypt the Message of the Day file, and any other file if one wanted, and it does work. Right now I'm concentrated on getting the main functionality working. Will add encrypting any text file later. Also; input needs scrubbing. Haven't had time to have the code check for bad or nefarious input.
 
