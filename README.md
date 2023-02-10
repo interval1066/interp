@@ -15,7 +15,7 @@ Also should change all integer, longs, chars, and so on to fixed sized numbers o
 
 I'm a little impressed with myself that within 10 days of comitting this code over 35 people cloned it. Must be a need for something like this.
 
-In my install I'm putting all the meta files (.hlp, .ini, .motd) in the user's home directory as dot files. I'll try to make this more flexible, but this will involve creating a more involved install procedure and that may mean writing a more comprehensive make file, or a bash script, not sure what and not really worried about it until I get near the end of development. Also; this is like SUPER beta code, a script to add new commands is probably a good idea, but not eppening anytime soon.
+In my install I'm putting all the meta files (.hlp, .ini, .motd) in the user's home directory as dot files. I'll try to make this more flexible, but this will involve creating a more involved install procedure and that may mean writing a more comprehensive make file, or a bash script, not sure what and not really worried about it until I get near the end of development. Also; this is like SUPER beta code, a script to add new commands is probably a good idea, but not happening anytime soon.
 
 That makefile is pretty generic; if you stick to separating header files in "include" and imple files into "src" it should work for any project pretty much. I use it in all my non-important projects. Hope you find this project useful.
 
