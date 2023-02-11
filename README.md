@@ -19,4 +19,4 @@ In my install I'm putting all the meta files (.hlp, .ini, .motd) in the user's h
 
 That makefile is pretty generic; if you stick to separating header files in "include" and imple files into "src" it should work for any project pretty much. I use it in all my non-important projects. Hope you find this project useful.
 
-Any and all comments would really be appreciated, send to interval1066@gmail.com, and thanks.
+Was hoping to get some collaboration or help on this, would appreciate it. Any and all comments would really be appreciated, send to interval1066@gmail.com, and thanks.
