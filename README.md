@@ -13,6 +13,9 @@ The help file reader method needs work right now. Changing it from a line reader
 
 Also should change all integer, longs, chars, and so on to fixed sized numbers out of stdint.h. The Huffman module is included so that one can encrypt the Message of the Day file, and any other file if one wanted, and it does work. Right now I'm concentrated on getting the main functionality working. Will add encrypting any text file later. Also; input needs scrubbing. Haven't had time to have the code check for bad or nefarious input.
 
+ALSO- clang complains about a lot of unsafe memset usage, the problem with this is a number of ARM compilers may not know about
+the safe apis. Thinking of way to fix this, may implement later.
+
 I'm a little impressed with myself that within 10 days of comitting this code over 35 people cloned it. Must be a need for something like this.
 
 In my install I'm putting all the meta files (.hlp, .ini, .motd) in the user's home directory as dot files. I'll try to make this more flexible, but this will involve creating a more involved install procedure and that may mean writing a more comprehensive make file, or a bash script, not sure what and not really worried about it until I get near the end of development. Also; this is like SUPER beta code, a script to add new commands is probably a good idea, but not happening anytime soon.
