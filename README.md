@@ -14,7 +14,8 @@ The help file reader method needs work right now. Changing it from a line reader
 Also should change all integer, longs, chars, and so on to fixed sized numbers out of stdint.h. The Huffman module is included so that one can encrypt the Message of the Day file, and any other file if one wanted, and it does work. Right now I'm concentrated on getting the main functionality working. Will add encrypting any text file later. Also; input needs scrubbing. Haven't had time to have the code check for bad or nefarious input.
 
 ALSO- clang complains about a lot of unsafe memset usage, the problem with this is a number of ARM compilers may not know about
-the safe apis. Thinking of way to fix this, may implement later.
+the safe apis. Thinking of way to fix this, may implement later. Need to convert commands to lower case, currently the parser doesn't do this, probably
+next thing on the nock list.
 
 I'm a little impressed with myself that within 10 days of comitting this code over 35 people cloned it. Must be a need for something like this.
 
