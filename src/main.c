@@ -47,7 +47,8 @@ sig_handler(int sign)
  *
  * @param		n the command index
  * @param		full_cmd the command with params
- * @return		boolean success/failure flag
+ * @return		boolean success/failure flag, also signals when to
+ *              bail.
  */
 static bool
 run_cmd(int nCmd, char* full_cmd)
