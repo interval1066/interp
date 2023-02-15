@@ -31,6 +31,12 @@ extern char* strlwr(char*);
  * Alternate command line interpreter prototype.
  */
 
+/**
+ * Anticipate all signals
+ *
+ * no signals we need to handle as far aws we
+ * know right now. May change in the future.
+ */
 void
 sig_handler(int sign)
 {
