@@ -34,7 +34,7 @@ extern char* strlwr(char*);
 /**
  * Anticipate all signals
  *
- * no signals we need to handle as far aws we
+ * no signals we need to handle as far as we
  * know right now. May change in the future.
  */
 void
