@@ -54,7 +54,8 @@ app(char* opts)
 	return CMD_OK;
 }
 
-int arp(char* opts)
+int
+arp(char* opts)
 {
 	printf("arp called with %s\n", opts);
 	return CMD_OK;
