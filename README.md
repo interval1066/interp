@@ -17,6 +17,10 @@ ALSO- clang complains about a lot of unsafe memset usage, the problem with this 
 the safe apis. Thinking of way to fix this, may implement later. Need to convert commands to lower case, currently the parser doesn't do this, probably
 next thing on the nock list.
 
+Damn thing still needs a lot of work; help system is spotty, not sure why. Some commands aren't working the way they should;
+might have been a little hasty when I wrote that the command parser is 100%, might not be... use of globals is very distasteful
+to me, deffo needs work.
+
 I'm a little impressed with myself that within 10 days of comitting this code over 35 people cloned it. Must be a need for something like this.
 
 In my install I'm putting all the meta files (.hlp, .ini, .motd) in the user's home directory as dot files. I'll try to make this more flexible, but this will involve creating a more involved install procedure and that may mean writing a more comprehensive make file, or a bash script, not sure what and not really worried about it until I get near the end of development. Also; this is like SUPER beta code, a script to add new commands is probably a good idea, but not happening anytime soon.
