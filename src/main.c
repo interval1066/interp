@@ -165,7 +165,7 @@ main(__attribute__((unused))int argc, __attribute__((unused))char** argv)
 
 	while(bDo) {
 		char* cmd_string = NULL;
-		// will eventually be a configurable prompt.
+		
         printf("%s ", main_prompt);
 
 		getline(&cmd_string, &len, stdin);
