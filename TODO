@@ -1,4 +1,5 @@
 - [ ] Fix help file reader
 - [ ] Improved install "thing", whetver that is
 - [ ] Debug interpreter, seems to be some issues
+- [ ] Setting the prommpt to the time or date output doesn't work, will need to surround command with escape characters I'm sure.
 
