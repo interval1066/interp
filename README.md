@@ -25,6 +25,6 @@ I'm a little impressed with myself that within 10 days of comitting this code ov
 
 In my install I'm putting all the meta files (.hlp, .ini, .motd) in the user's home directory as dot files. I'll try to make this more flexible, but this will involve creating a more involved install procedure and that may mean writing a more comprehensive make file, or a bash script, not sure what and not really worried about it until I get near the end of development. Also; this is like SUPER beta code, a script to add new commands is probably a good idea, but not happening anytime soon.
 
-That makefile is pretty generic; if you stick to separating header files in "include" and imple files into "src" it should work for any project pretty much. I use it in all my non-important projects. Hope you find this project useful.
+That makefile is pretty generic; if you stick to separating header files in "include" and impl files into "src" it should work for any project pretty much. I use it in all my non-important projects. Hope you find this project useful.
 
 Was hoping to get some collaboration or help on this, would appreciate it. Any and all comments would really be appreciated, send to interval1066@gmail.com, and thanks.
