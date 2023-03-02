@@ -26,13 +26,15 @@ find_help_section(char* section)
         return CMD_FILENF;
     printf("\n");
 
-    while(fgets(buffer, MAXBUF, fp) && strcmp(buffer, "%%@---") != 0) {
-        const char* p = strstr(buffer, section);
-        if(p) {
-            printf("%s", buffer);
-            memset(buffer, '\0', sizeof(buffer));
-            /*if(strstr(buffer, "%%@---") != NULL)
-                printf("\n");*/
+    while(buffer[0] != '0') {
+        while(fgets(buffer, MAXBUF, fp) && strcmp(buffer, "%%@---") != 0) {
+            //const char* p = strstr(buffer, section);
+            while(fscanf(fp, "%s", section) == 1) {
+                if(strstr(buffer, section) != 0) {
+                    puts(buffer);
+                    memset(buffer, '\0', sizeof(buffer));
+                }
+            }
         }
     }
 

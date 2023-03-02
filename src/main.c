@@ -67,13 +67,15 @@ run_cmd(int nCmd, char* full_cmd)
     }
 
 	// If help is invoked with '?'
-    if(nCmd == MAXCMDS) nCmd = 8;
+	if(nCmd == MAXCMDS) nCmd = 8;
 	if((nCmd == 8) && (strlen(full_cmd) < 5)) {
-        while(strchr(*(commands + n++), '?') == NULL)
-            printf("- %s\n", *(commands + n));
+		printf("\n");
 
-        printf("\n");
-    }
+		while(strchr(*(commands + n++), '?') == NULL)
+			printf("- %s\n", *(commands + n));
+
+			printf("\n");
+	}
 
     int nStatus = CMD_ERR, (**p)(char*);
     p = table;
@@ -92,8 +94,8 @@ run_cmd(int nCmd, char* full_cmd)
  * @param		char**	inp The string to process
  * @param		int		size The number of command elements
  * @return		boolean	returns the status of the run_cmd
- *				function, which is only false if we
- *				process a quit command.
+ *					function, which is only false if we
+ *					process a quit command.
  */
 static bool
 proc_cmds(char** inp, int size)

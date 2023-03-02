@@ -85,19 +85,18 @@ bert(char* opts)
 int
 help(char* opts)
 {
-    char** keywd;
-    int size;
-    int retcode = CMD_ERR;
+	char** keywd;
+	int size;
+	int retcode = CMD_ERR;
 
-    remove_first(opts, "help ");
-    remove_first(opts, "? ");
+	remove_first(opts, "help ");
+	remove_first(opts, "? ");
 
-    for(int n = 0; n < MAXCMDS; n++) {
-        keywd = split(opts, ' ', &size);
-        if(strcmp(keywd[0], *(commands + n)) == 0) {
+	for(int n = 0; n < MAXCMDS; n++) {
+		keywd = split(opts, ' ', &size);
+		if(strcmp(keywd[0], *(commands + n)) == 0) {
 
-            //printf("Details on %s\n", keywd[0]);
-            find_help_section(keywd[0]);
+			find_help_section(keywd[0]);
             memset(opts, '\0', 1);
             return CMD_OK;
         }
@@ -164,7 +163,8 @@ date(void)
     return CMD_OK;
 }
 
-int get_time(char* opts)
+int
+get_time(char* opts)
 {
     sprintf(opts, "%s\n", __TIME__);
     return CMD_OK;
