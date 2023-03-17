@@ -26,7 +26,7 @@ find_help_section(char* section)
         return CMD_FILENF;
     printf("\n");
 
-    while(buffer[0] != '0') {
+    /*while(buffer[0] != '0') {
         while(fgets(buffer, MAXBUF, fp) && strcmp(buffer, "%%@---") != 0) {
             //const char* p = strstr(buffer, section);
             while(fscanf(fp, "%s", section) == 1) {
@@ -36,7 +36,8 @@ find_help_section(char* section)
                 }
             }
         }
-    }
+    }*/
+	printf("Here\n");
 
     printf("\n");
     printf("Commands can be partially entered with any number of characters. For example, entering \"acc\" will be enough to list all the access lists.\n");

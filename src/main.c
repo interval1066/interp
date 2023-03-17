@@ -74,7 +74,7 @@ run_cmd(int nCmd, char* full_cmd)
 		while(strchr(*(commands + n++), '?') == NULL)
 			printf("- %s\n", *(commands + n));
 
-			printf("\n");
+		printf("\n");
 	}
 
     int nStatus = CMD_ERR, (**p)(char*);
