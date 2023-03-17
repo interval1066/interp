@@ -8,7 +8,7 @@ extern void get_userdir(char*);
  *
  * The interpreter expects to find the help file
  * in the user directory along with all the other
- * acillary files. This is usually the users $HOME
+ * ancillary files. This is usually the users $HOME
  * directory, and they are all dot files.
  *
  */
