@@ -25,7 +25,8 @@ find_cfgfile(const char* file_name, char* path_found, bool bUseDot)
 		return CMD_ARGS;
 
 	char search_this_path[MAXSIZE];
-	char* sp = &search_this_path[0];
+    char* sp = &search_this_path[0];
+    strcpy(sp, "/etc");
 	// Search /etc first for a plain,
 	// un-decorated (no dot prefix)
     // file_name
@@ -222,6 +223,13 @@ set_value(const char* key, const char* value)
 
     config_destroy(&cfg);
     return CMD_OK;
+}
+
+bool
+file_exists (char* filename)
+{
+  struct stat buffer;
+  return (stat (filename, &buffer) == 0);
 }
 
 /*int

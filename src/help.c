@@ -15,7 +15,7 @@ extern void get_userdir(char*);
 int
 find_help_section(char* section)
 {
-    char buffer[MAXBUF], cfg_path[MAXBUF];
+    char cfg_path[MAXBUF];
     memset(cfg_path, '\0', sizeof(cfg_path));
     get_userdir(cfg_path);
 

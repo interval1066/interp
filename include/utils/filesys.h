@@ -36,6 +36,7 @@ int read_motd(const char*);
 const char* get_value(const char*);
 
 int set_value(const char*, const char*);
+bool file_exists(char*);
 //int write_config(config_t*, char*);
 
 #ifdef __cplusplus

@@ -57,7 +57,7 @@ void make_tree(List_t*, int*);
 
 void find_code(node_t*, char*, char codes[256][40]);
 void compress(char*, FILE*, char codes[256][40], int, info*, int*, int num);
-unsigned char convert_string_char(char string[9]);
+unsigned char convert_string_char(char string[8]);
 
 int find_no_of_chars(int*);
 void strre(char*, int);
