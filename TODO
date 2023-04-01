@@ -2,4 +2,4 @@
 - [ ] Improved install "thing", whetver that is
 - [ ] Debug interpreter, seems to be some issues
 - [ ] Setting the prommpt to the time or date output doesn't work, will need to surround command with escape characters I'm sure.
-
+- [ ] Need to check for the existence of motd, hlp, and so on or the app falls over when it assume they are availalbe and they aren't.
