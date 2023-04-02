@@ -87,8 +87,8 @@ find_cfgfile(const char* file_name, char* path_found, bool bUseDot)
  * @brief			create_cfgfile create a new ini file
  *
  * @details			copies the passed parameter to a buffer to
- *						protect against file names larger than 256
- *						chars.
+ *                 	protect against file names larger than 256
+ *                  chars.
  *
  * @param			const char* the full path of the new file
  * @return			integer status code
@@ -196,7 +196,7 @@ get_value(const char* key)
 }
 
 int
-set_value(const char* key, const char* value)
+set_value(const char* key, char* value)
 {
     config_setting_t *setting;
     char cfg_path[MAXBUF];

@@ -15,7 +15,7 @@ extern void get_userdir(char*);
 int
 find_help_section(char* section)
 {
-    char cfg_path[MAXBUF];
+    char buffer[MAXBUF], cfg_path[MAXBUF];
     memset(cfg_path, '\0', sizeof(cfg_path));
     get_userdir(cfg_path);
 
@@ -26,18 +26,18 @@ find_help_section(char* section)
         return CMD_FILENF;
     printf("\n");
 
-    /*while(buffer[0] != '0') {
+    while(sizeof(buffer) < 1) {
         while(fgets(buffer, MAXBUF, fp) && strcmp(buffer, "%%@---") != 0) {
-            //const char* p = strstr(buffer, section);
-            while(fscanf(fp, "%s", section) == 1) {
-                if(strstr(buffer, section) != 0) {
-                    puts(buffer);
+            printf("%s", buffer);
+            /*while(fscanf(fp, "%s", section) == 1) {
+                if(strstr(p, section) == 0) {
+                    puts(p);
                     memset(buffer, '\0', sizeof(buffer));
                 }
-            }
+            }*/
         }
-    }*/
-	printf("Here\n");
+    }
+    //printf("Here\n");
 
     printf("\n");
     printf("Commands can be partially entered with any number of characters. For example, entering \"acc\" will be enough to list all the access lists.\n");

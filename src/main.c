@@ -147,9 +147,12 @@ main(__attribute__((unused))int argc, __attribute__((unused))char** argv)
     char main_prompt[16], tmp[16];
     memset(main_prompt, '\0', sizeof(main_prompt));
     memset(tmp, '\0', sizeof(tmp));
-    //strcpy(tmp, get_value("prompt"));
 
-    /*if(strlen(tmp) == 0) strcpy(main_prompt, ">"); */
+    strcpy(tmp, get_value("prompt"));
+    int len2 = strlen(tmp);
+    tmp[len2 - 1] = '\0';
+
+    if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
 	char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
 	signal(SIGINT, sig_handler);
 
@@ -161,14 +164,13 @@ main(__attribute__((unused))int argc, __attribute__((unused))char** argv)
 	strcpy(banner_path, cfg_path);
 	strcat(banner_path, "/.motd");
 
-    //mid(tmp, 0, strlen(tmp) - 1, main_prompt, strlen(main_prompt));
+    strcpy(main_prompt, tmp);
     if(file_exists(banner_path)) read_motd(banner_path);
 	printf("\n");
 
 	while(bDo) {
-		char* cmd_string = NULL;
-		
-        printf("> ");
+        char* cmd_string = NULL;
+        printf("%s", main_prompt);
 
 		getline(&cmd_string, &len, stdin);
 		char** splitresult = split(cmd_string, ' ', &size);
