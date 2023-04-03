@@ -64,8 +64,7 @@ run_cmd(int nCmd, char* full_cmd)
     if(nCmd == CMD_ERR) {
         printf("Command error.\n");
 		return true;
-    }
-
+	}
 	// If help is invoked with '?'
 	if(nCmd == MAXCMDS) nCmd = 8;
 	if((nCmd == 8) && (strlen(full_cmd) < 5)) {
@@ -83,9 +82,9 @@ run_cmd(int nCmd, char* full_cmd)
     // command found, execute it.
     nStatus = (*p[nCmd])((char*)strstrip(full_cmd));
     // if its the 'special' quit command bail.
-    if(nStatus == CMD_QUIT) return false;
+	 if(nStatus == CMD_QUIT) return false;
 
-    return true;
+	 return true;
 }
 
 /**
@@ -138,15 +137,15 @@ main(__attribute__((unused))int argc, __attribute__((unused))char** argv)
 	bool bDo = true;
 	size_t len = 0;
 
-    char main_prompt[16], tmp[16];
-    memset(main_prompt, '\0', sizeof(main_prompt));
-    memset(tmp, '\0', sizeof(tmp));
+	char main_prompt[16], tmp[16];
+	memset(main_prompt, '\0', sizeof(main_prompt));
+	memset(tmp, '\0', sizeof(tmp));
 
-    strcpy(tmp, get_value("prompt"));
-    int len2 = strlen(tmp);
-    tmp[len2 - 1] = '\0';
+	strcpy(tmp, get_value("prompt"));
+	int len2 = strlen(tmp);
+	tmp[len2 - 1] = '\0';
 
-    if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
+	if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
 	char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
 	signal(SIGINT, sig_handler);
 
@@ -155,17 +154,17 @@ main(__attribute__((unused))int argc, __attribute__((unused))char** argv)
 	memset(prompt_buf, 0, sizeof(prompt_buf));
 
 	get_userdir(cfg_path);
-    strcpy(banner_path, cfg_path);
+	strcpy(banner_path, cfg_path);
 	strcat(banner_path, "/.motd");
-    strcat(cfg_path, "/.interp.ini");
+	strcat(cfg_path, "/.interp.ini");
 
-    strcpy(main_prompt, tmp);
-    if(file_exists(banner_path)) read_motd(banner_path);
+	strcpy(main_prompt, tmp);
+	if(file_exists(banner_path)) read_motd(banner_path);
 	printf("\n");
 
 	while(bDo) {
-        char* cmd_string = NULL;
-        printf("%s", main_prompt);
+		char* cmd_string = NULL;
+		printf("%s", main_prompt);
 
 		getline(&cmd_string, &len, stdin);
 		char** splitresult = split(cmd_string, ' ', &size);

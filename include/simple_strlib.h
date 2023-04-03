@@ -19,6 +19,7 @@
 #include <support.h>
 #include <stdint.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 /**
  * @brief		strlwr
@@ -195,3 +196,14 @@ right(char* string, int size)
 
     return(string - size - 2);
 }
+
+static char*
+replace_char(char* str, char find, char replace){
+    char *current_pos = strchr(str,find);
+    while (current_pos) {
+        *current_pos = replace;
+        current_pos = strchr(current_pos,find);
+    }
+    return str;
+}
+

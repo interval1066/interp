@@ -15,33 +15,27 @@ extern void get_userdir(char*);
 int
 find_help_section(char* section)
 {
-    char buffer[MAXBUF], cfg_path[MAXBUF];
-    memset(cfg_path, '\0', sizeof(cfg_path));
-    get_userdir(cfg_path);
+	if(!section)
+		return CMD_ARGS;
 
-    strcat(cfg_path, "/.interp.hlp");
-    FILE* fp = fopen(cfg_path, "r");
+	char cfg_path[MAXBUF], chunk[MAXBUF];
+	memset(cfg_path, 0, sizeof(cfg_path));
+	get_userdir(cfg_path);
 
-    if (fp == NULL)
-        return CMD_FILENF;
-    printf("\n");
+	strcat(cfg_path, "/.interp.hlp");
+	FILE *fp = fopen(cfg_path, "r");
 
-    while(sizeof(buffer) < 1) {
-        while(fgets(buffer, MAXBUF, fp) && strcmp(buffer, "%%@---") != 0) {
-            printf("%s", buffer);
-            /*while(fscanf(fp, "%s", section) == 1) {
-                if(strstr(p, section) == 0) {
-                    puts(p);
-                    memset(buffer, '\0', sizeof(buffer));
-                }
-            }*/
-        }
-    }
-    //printf("Here\n");
+	if(!fp) printf("Couldn't open help file");
+	while(fgets(chunk, sizeof(chunk), fp) != NULL) {
+		int n = strncmp(section, chunk, strlen(section));
+		if(n == 0) {
+			replace_char(chunk, '|', '\n');
+			fputs(chunk, stdout);
+		}
+	}
+	printf("\n");
 
-    printf("\n");
-    printf("Commands can be partially entered with any number of characters. For example, entering \"acc\" will be enough to list all the access lists.\n");
-    fclose(fp);
+	fclose(fp);
 
-    return CMD_OK;
+	return CMD_OK;
 }
