@@ -127,12 +127,6 @@ proc_cmds(char** inp, int size)
     return run_cmd(CMD_ERR, NULL);
 }
 
-/*static int
-init(void)
-{
-    return CMD_OK;
-}*/
-
 /**
  * main.c, pretty self explanitory I hope.
  * Will be changed to take command line options eventually.
@@ -161,8 +155,9 @@ main(__attribute__((unused))int argc, __attribute__((unused))char** argv)
 	memset(prompt_buf, 0, sizeof(prompt_buf));
 
 	get_userdir(cfg_path);
-	strcpy(banner_path, cfg_path);
+    strcpy(banner_path, cfg_path);
 	strcat(banner_path, "/.motd");
+    strcat(cfg_path, "/.interp.ini");
 
     strcpy(main_prompt, tmp);
     if(file_exists(banner_path)) read_motd(banner_path);

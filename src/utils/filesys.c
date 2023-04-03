@@ -6,12 +6,12 @@
  * @brief			find_cfgfile search for ini in a few predefined locations
  *
  * @details			make three attempts to locate the cfg file requested
- *						using three different strategies (/etc, $HOME, and
- *						the home for the current user using the passwd
- *						ddatabase), errors out with an integer code if
- *						finally unsuccessful. If the bUseDot is set the
- *						search will make the file name a dot file during
- *						search in the user directories
+ *					using three different strategies (/etc, $HOME, and
+ *					the home for the current user using the passwd
+ *					ddatabase), errors out with an integer code if
+ *					finally unsuccessful. If the bUseDot is set the
+ *					search will make the file name a dot file during
+ *					search in the user directories
  *
  * @param			const string file_name: name of cfg file to search for
  * @param			string path_found: result of successful search
@@ -180,6 +180,8 @@ get_value(const char* key)
     memset(cfg_path, 0, sizeof(cfg_path));
     get_userdir(cfg_path);
     strcat(cfg_path, "/.interp.ini");
+    if(!file_exists(cfg_path))
+        create_cfgfile(cfg_path);
 
     config_t cfg;
     config_init(&cfg);
@@ -226,7 +228,7 @@ set_value(const char* key, char* value)
 }
 
 bool
-file_exists (char* filename)
+file_exists(char* filename)
 {
   struct stat buffer;
   return (stat (filename, &buffer) == 0);
