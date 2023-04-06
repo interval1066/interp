@@ -2,8 +2,9 @@ aaa|===||aaa <param>||Development test command.
 access-lists|============||access-lists||List all access lists.
 elist|====||elist <list> <no>||Edit the specified list or list all the available lists.
 amp|===||amp <no>|Edit the properties of the specified amplifier.
+arp|===||arp|List the arp table.
 app|===||app <property>||Edit interpreter properites.
-badl|====||badl <list>||Mark a list as being bad. Will be deleted AFTER the next processing cycle.
+badl|====||badl <list entry>||Mark a list as being bad. Will be deleted AFTER the next processing cycle.
 batch|=====||batch <list>||Execute a batch list.
 bert|====||bert <no> (on/off)||Check the status or activate/deactivate the specified BERT device.
 help|====||help <topic>||Get command list or detail on the specified topic.
@@ -11,5 +12,6 @@ motd|====||motd <message>||Set the message of the day for the interpreter. The m
 prompt|=====||prompt <new prompt>||Set a new prompt for the interpreter. The prompt will be avilable when the interpreter is re-started. The new prompt must be quote surrounded.
 quit|====||quit||Exit the application.
 date|====||date||Output the current date.
+list|====||list <new list/(all)>||Create a new batch list, or list all existing lists.
 time|====||time||Output the current time.
 

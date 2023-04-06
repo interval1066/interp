@@ -65,14 +65,8 @@ int
 badl(char* opts)
 {
 	int n = 0;
-	char line[100], * token = "";
+	char line[100];
 	FILE* fp = fopen("./lists", "r");
-
-
-	/*while((token != NULL) &&  (strlen(token ) {
-		token = strtok(opts, " ");
-		printf("%s\n", token);
-	}*/
 
 	if(!fp) {
 		printf("No lists have been created yet\n");
@@ -195,4 +189,20 @@ time(char* opts)
     get_time(timeout);
     printf("%s\n", timeout);
     return CMD_OK;
+}
+int
+list(char* opts)
+{
+	char buf[16] = { 0 };
+	strncpy(buf, right(opts, strlen(opts) - 6), strlen(opts) - 2);
+
+	if(strlen(buf) == 2)
+		return CMD_ARGS;
+
+	if(strstr(buf, "all") != NULL) {
+		badl(NULL);
+		return CMD_OK;
+	}
+	printf("Creating a new list named %s\n", buf);
+	return CMD_OK;
 }

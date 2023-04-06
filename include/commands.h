@@ -6,7 +6,7 @@
  */
 const char* commands[] = { "aaa", "access-lists", "amplifiers", "app", "arp",
                            "badl", "batch", "bert", "help", "motd", "prompt",
-                           "quit", "date", "time", "?" };
+									"quit", "date", "list", "time", "?" };
 
 /**
  * Command funtion prototypes can go here.
@@ -24,11 +24,12 @@ int motd(char*);
 int prompt(char*);
 int quit(char*);
 int date(char*);
+int list(char*);
 int time(char*);
 
 /**
  * Then must be entered into this table
  */
 int (*table[])() = {
-    aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, time
+	 aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time
 };

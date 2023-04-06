@@ -7,7 +7,7 @@
  * Internal objects ONLY
  */
 #define MAXMOTD 512
-#define MAXCMDS 14
+#define MAXCMDS 15
 #define MAXBUF 256
 
 #ifndef SIZEARRAY

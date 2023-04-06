@@ -24,5 +24,6 @@ static const char* commands[] = {   "aaa",
                                     "prompt",
                                     "quit",
                                     "date",
+												"lists",
                                     "time",
                                     "?" };
