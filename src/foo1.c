@@ -64,7 +64,25 @@ arp(char* opts)
 int
 badl(char* opts)
 {
-	printf("badl called with %s\n", opts);
+	int n = 0;
+	char line[100], * token = "";
+	FILE* fp = fopen("./lists", "r");
+
+
+	/*while((token != NULL) &&  (strlen(token ) {
+		token = strtok(opts, " ");
+		printf("%s\n", token);
+	}*/
+
+	if(!fp) {
+		printf("No lists have been created yet\n");
+		return CMD_FILEEXST;
+	}
+
+	while(fgets(line, sizeof(line), fp))
+		if(strlen(line) > 1) printf("%d - %s", ++n, line);
+
+	fclose(fp);
 	return CMD_OK;
 }
 
@@ -160,7 +178,7 @@ date(void)
     memset(dateout, '\0', sizeof(dateout));
     get_date(dateout);
     printf("%s\n", dateout);
-    return CMD_OK;
+	 return "";
 }
 
 int

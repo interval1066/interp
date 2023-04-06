@@ -118,7 +118,7 @@ split(char* s, char delimiter, int* size)
 
 /**
  * @breif		Remove the substring matched. Operates
- *				in-place.
+ *					in-place.
  *
  * @param		the string to operate on
  * @param		the character sequence to remove
