@@ -66,7 +66,7 @@ badl(char* opts)
 {
 	int n = 0;
 	char line[100];
-	FILE* fp = fopen("./lists", "r");
+	FILE* fp = fopen("./list.dev", "r");
 
 	if(!fp) {
 		printf("No lists have been created yet\n");
@@ -90,7 +90,7 @@ batch(char* opts)
 int
 bert(char* opts)
 {
-    printf("bert called with %s\n", opts);
+	printf("bert called with %s\n", opts);
 	return CMD_OK;
 }
 
@@ -193,16 +193,31 @@ time(char* opts)
 int
 list(char* opts)
 {
-	char buf[16] = { 0 };
+	char buf[16] = { 0 }, dev[16] = { 0 };
 	strncpy(buf, right(opts, strlen(opts) - 6), strlen(opts) - 2);
 
 	if(strlen(buf) == 2)
 		return CMD_ARGS;
 
-	if(strstr(buf, "all") != NULL) {
+	printf("%s\n", buf);
+	if(strcmp(buf, "all") == 0) {
 		badl(NULL);
 		return CMD_OK;
 	}
-	printf("Creating a new list named %s\n", buf);
+
+	printf("Adding new device %s to list.\n", buf);
+	FILE* f = fopen("./list.dev", "w");
+	if(f == NULL)
+		return CMD_IOERR;
+
+	do {
+		scanf("%s", dev);
+		if(strcmp(dev, ".") != 0)
+			fwrite(&dev, strlen(dev), 1, f);
+		fprintf(f, "\n");
+	} while(strlen(dev) > 1);
+
+	fclose(f);
+
 	return CMD_OK;
 }
