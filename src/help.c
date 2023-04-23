@@ -25,7 +25,9 @@ find_help_section(char* section)
 	strcat(cfg_path, "/.interp.hlp");
 	FILE *fp = fopen(cfg_path, "r");
 
-	if(!fp) printf("Couldn't open help file");
+	if(!fp) printf("Couldn't open help file")
+		return CMD_FILEEXST;
+	
 	while(fgets(chunk, sizeof(chunk), fp) != NULL) {
 		int n = strncmp(section, chunk, strlen(section));
 		if(n == 0) {
