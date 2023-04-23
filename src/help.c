@@ -36,7 +36,6 @@ find_help_section(char* section)
 		}
 	}
 	printf("\n");
-
 	fclose(fp);
 
 	return CMD_OK;
