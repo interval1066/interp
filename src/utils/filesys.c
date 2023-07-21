@@ -106,8 +106,7 @@ create_cfgfile(const char* file_path)
 
     config_init(&cfg);
     config_set_options(&cfg,
-                       (CONFIG_OPTION_FSYNC
-                        | CONFIG_OPTION_SEMICOLON_SEPARATORS
+                       (CONFIG_OPTION_SEMICOLON_SEPARATORS
                         | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
                         | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
 
@@ -185,8 +184,7 @@ get_value(const char* key)
 
     config_t cfg;
     config_init(&cfg);
-    config_set_options(&cfg, (CONFIG_OPTION_FSYNC
-        | CONFIG_OPTION_SEMICOLON_SEPARATORS
+    config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
         | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
         | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
 
@@ -209,8 +207,7 @@ set_value(const char* key, char* value)
     config_t cfg;
 
     config_init(&cfg);
-    config_set_options(&cfg, (CONFIG_OPTION_FSYNC
-        | CONFIG_OPTION_SEMICOLON_SEPARATORS
+    config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
         | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
         | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
 

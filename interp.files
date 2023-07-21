@@ -1,6 +1,7 @@
 include/commands.h
 include/foo1.h
 include/help.h
+include/threadpool.h
 include/simple_strlib.h
 include/support.h
 include/utils/filesys.h
@@ -10,6 +11,7 @@ interp.libs
 src/foo1.c
 src/help.c
 src/main.c
+src/threadpool.c
 src/utils/filesys.c
 src/utils/huff.c
 src/utils/minIni.c
