@@ -183,7 +183,7 @@ get_time(char* opts)
 }
 
 int
-time(char* opts)
+time2(char* opts)
 {
     memset(timeout, '\0', sizeof(timeout));
     get_time(timeout);

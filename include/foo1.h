@@ -10,6 +10,7 @@
 #include <support.h>
 #include <simple_strlib.h>
 #include <help.h>
+#include <threadpool.h>
 
 static const char* commands[] = {   "aaa",
                                     "access-lists",
