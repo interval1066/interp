@@ -28,7 +28,7 @@ OPTOUT				= $(@:%.optim=%.$(CEXT))
 
 # rules for debug build and optimized build
 %.debug: %.$(CEXT)
-	$(CC) $(CFLAGS) $(CMNFLAGS) -ggdb -D_DEBUG -DDEBUG -o $(OBJDEBOUT) $(DEBOUT)
+	$(CC) $(CFLAGS) $(CMNFLAGS) -ggdb -O0 -D_DEBUG -DDEBUG -o $(OBJDEBOUT) $(DEBOUT)
 	rm -f $(@.debug=%.debug)
 	touch -f $@
 

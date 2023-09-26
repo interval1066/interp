@@ -9,8 +9,8 @@
 #include <commands.h>
 #include <simple_strlib.h>
 #include <support.h>
-#include <huff.h>
-#include <filesys.h>
+#include <utils/huff.h>
+#include <utils/filesys.h>
 #include <errno.h>
 #include <signal.h>
 #include <unistd.h>

@@ -1,7 +1,9 @@
-#include <foo1.h>
+#include <help.h>
+#include <utils/filesys.h>
 
 char dateout[16];
 char timeout[20];
+extern const char* commands;
 
 /**
  * Command objects. Normally these would go into separate translation units.
@@ -106,7 +108,7 @@ help(char* opts)
 
 	for(int n = 0; n < MAXCMDS; n++) {
 		keywd = split(opts, ' ', &size);
-		if(strcmp(keywd[0], *(commands + n)) == 0) {
+        if(strcmp(keywd[0], commands + n) == 0) {
 
 			find_help_section(keywd[0]);
             memset(opts, '\0', 1);
