@@ -2,6 +2,7 @@ TEMPLATE = app
 CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
+TARGET = interp
 
 QMAKE_CFLAGS += -Wall -std=c17 -Wno-unused-parameter
 QMAKE_CFLAGS += -Wno-unused-function -Wno-unused-result
@@ -28,3 +29,7 @@ HEADERS += \
     ../include/threadpool.h \
     ../include/utils/filesys.h \
     ../include/utils/huff.h
+
+CONFIG(release, debug|release) {
+    QMAKE_POST_LINK=$(STRIP) $(TARGET)
+}
