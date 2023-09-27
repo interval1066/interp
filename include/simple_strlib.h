@@ -20,6 +20,7 @@
 #include <stdint.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <sys/param.h>
 
 /**
  * @brief		strlwr
