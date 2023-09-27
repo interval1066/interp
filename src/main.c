@@ -95,8 +95,8 @@ run_cmd(int nCmd, char* full_cmd)
  * @param		char**	inp The string to process
  * @param		int		size The number of command elements
  * @return		boolean	returns the status of the run_cmd
- *					function, which is only false if we
- *					process a quit command.
+ *				function, which is only false if we
+ *				process a quit command.
  */
 static bool
 proc_cmds(char** inp, int size)
@@ -158,10 +158,11 @@ main(int argc, char** argv)
 	get_userdir(cfg_path);
 	strcpy(banner_path, cfg_path);
 	strcat(banner_path, "/.motd");
-	strcat(cfg_path, "/.interp.ini");
 
+	strcat(cfg_path, "/.interp.ini");
 	strcpy(main_prompt, tmp);
 	if(file_exists(banner_path)) read_motd(banner_path);
+
 	printf("\n");
 
 	while(bDo) {
