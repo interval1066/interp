@@ -31,3 +31,5 @@ Was hoping to get some collaboration or help on this, would appreciate it. Any a
 
 UPDATE: Got the help system working. Added more funtionality to the badl and list commands, still not completed yet.
 I'm just winging this thing as I go along. Adding stuff as it hits me. There's literally no purpose to this thing, just showcasing my interpreter code.
+
+Have a need for this on Windows, so started a port. On-going...
