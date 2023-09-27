@@ -44,6 +44,7 @@
 
 # Misc meta fles
 *.user
+.vs/
 
 # Kernel Module Compile Results
 *.mod*

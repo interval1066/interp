@@ -3,25 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interp", "interp\interp.vcxproj", "{8BF84208-506F-49D2-B39B-4726A266C6E4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{771FE01B-6400-489F-B431-D7802EE2073A}"
+	ProjectSection(SolutionItems) = preProject
+		..\include\commands.h = ..\include\commands.h
+		..\src\foo1.c = ..\src\foo1.c
+		..\include\foo1.h = ..\include\foo1.h
+		..\src\help.c = ..\src\help.c
+		..\include\help.h = ..\include\help.h
+		interp.vcxproj = interp.vcxproj
+		interp.vcxproj.filters = interp.vcxproj.filters
+		interp.vcxproj.user = interp.vcxproj.user
+		..\src\main.c = ..\src\main.c
+		..\include\simple_strlib.h = ..\include\simple_strlib.h
+		..\include\support.h = ..\include\support.h
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8BF84208-506F-49D2-B39B-4726A266C6E4}.Debug|x64.ActiveCfg = Debug|x64
-		{8BF84208-506F-49D2-B39B-4726A266C6E4}.Debug|x64.Build.0 = Debug|x64
-		{8BF84208-506F-49D2-B39B-4726A266C6E4}.Debug|x86.ActiveCfg = Debug|Win32
-		{8BF84208-506F-49D2-B39B-4726A266C6E4}.Debug|x86.Build.0 = Debug|Win32
-		{8BF84208-506F-49D2-B39B-4726A266C6E4}.Release|x64.ActiveCfg = Release|x64
-		{8BF84208-506F-49D2-B39B-4726A266C6E4}.Release|x64.Build.0 = Release|x64
-		{8BF84208-506F-49D2-B39B-4726A266C6E4}.Release|x86.ActiveCfg = Release|Win32
-		{8BF84208-506F-49D2-B39B-4726A266C6E4}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
