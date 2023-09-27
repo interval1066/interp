@@ -1,4 +1,4 @@
-#include <help.h>
+#include "help.h"
 
 extern int strhav(const char*, const char*);
 extern void get_userdir(char*);
