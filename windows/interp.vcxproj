@@ -18,6 +18,21 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\foo1.c" />
+    <ClCompile Include="..\src\help.c" />
+    <ClCompile Include="..\src\main.c" />
+    <ClCompile Include="..\src\utils\huff.c" />
+    <ClCompile Include="src\wiunistd.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\commands.h" />
+    <ClInclude Include="..\include\foo1.h" />
+    <ClInclude Include="..\include\help.h" />
+    <ClInclude Include="..\include\simple_strlib.h" />
+    <ClInclude Include="..\include\support.h" />
+    <ClInclude Include="..\include\utils\huff.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -132,22 +147,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\src\foo1.c" />
-    <ClCompile Include="..\..\src\help.c" />
-    <ClCompile Include="..\..\src\main.c" />
-    <ClCompile Include="..\..\src\utils\filesys.c" />
-    <ClCompile Include="..\..\src\utils\huff.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\commands.h" />
-    <ClInclude Include="..\..\include\foo1.h" />
-    <ClInclude Include="..\..\include\help.h" />
-    <ClInclude Include="..\..\include\simple_strlib.h" />
-    <ClInclude Include="..\..\include\support.h" />
-    <ClInclude Include="..\..\include\utils\filesys.h" />
-    <ClInclude Include="..\..\include\utils\huff.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

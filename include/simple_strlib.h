@@ -20,7 +20,9 @@
 #include <stdint.h>
 #include <ctype.h>
 #include <stdlib.h>
+#ifndef _WIN32
 #include <sys/param.h>
+#endif
 
 /**
  * @brief		strlwr

@@ -15,42 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\foo1.c">
+    <ClCompile Include="..\src\foo1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\help.c">
+    <ClCompile Include="..\src\help.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\main.c">
+    <ClCompile Include="..\src\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\utils\filesys.c">
+    <ClCompile Include="..\src\utils\huff.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\utils\huff.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\wiunistd.c">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\commands.h">
+    <ClInclude Include="..\include\commands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\foo1.h">
+    <ClInclude Include="..\include\foo1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\help.h">
+    <ClInclude Include="..\include\help.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\simple_strlib.h">
+    <ClInclude Include="..\include\simple_strlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\support.h">
+    <ClInclude Include="..\include\support.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\utils\filesys.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\utils\huff.h">
+    <ClInclude Include="..\include\utils\huff.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
