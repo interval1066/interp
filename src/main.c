@@ -1,20 +1,22 @@
-#if (__STDC_VERSION__ >= 201112L)
-#define _GNU_SOURCE
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
-#include <commands.h>
+#include "commands.h"
 #include <simple_strlib.h>
 #include <support.h>
 #include <utils/huff.h>
 #include <utils/filesys.h>
 #include <errno.h>
 #include <signal.h>
+#ifdef _MSC_VER
+#include <io.h>
+#else
 #include <unistd.h>
 #include <libconfig.h>
+#endif
+
 
 extern const char* strstrip(char*);
 extern char* strlwr(char*);
@@ -131,7 +133,7 @@ proc_cmds(char** inp, int size)
  * Will be changed to take command line options eventually.
  */
 int
-main(__attribute__((unused))int argc, __attribute__((unused))char** argv)
+main(int argc, char** argv)
 {
 	int size;
 	bool bDo = true;
@@ -174,7 +176,3 @@ main(__attribute__((unused))int argc, __attribute__((unused))char** argv)
 	}
 	return EXIT_SUCCESS;
 }
-
-#else
-#error "Only ISO/IEC 9899:2011 or greater supported"
-#endif
