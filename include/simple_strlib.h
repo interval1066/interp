@@ -33,7 +33,8 @@
  * @param		s The string to convert
  * @return		pointer to the modified string
  */
-inline char*
+
+/*char*
 strlwr(char* s)
 {
   char* p = (char*)s;
@@ -43,7 +44,7 @@ strlwr(char* s)
       p++;
   }
   return s;
-}
+}*/
 
 /**
  * @brief		countc
@@ -181,7 +182,7 @@ find_ch_index(const char* string, char ch)
  * @param		char pointer to destination string buffer
  * @param		length of destination string buffer
  */
-static inline void
+void
 mid(const char* src, size_t start, size_t length, char* dst, size_t dstlen)
 {
     size_t len = MIN(dstlen - 1, length);
