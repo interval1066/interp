@@ -16,13 +16,13 @@
  */
 
 #include <string.h>
-#include <support.h>
 #include <stdint.h>
 #include <ctype.h>
 #include <stdlib.h>
 #ifndef _WIN32
 #include <sys/param.h>
 #endif
+#include "support.h"
 
 /**
  * @brief		strlwr
@@ -130,7 +130,7 @@ static inline void
 remove_first(char* str, const char* str_remove)
 {
     int i, j;
-    int len, remove_len;
+    size_t len, remove_len;
     int found = 0;
 
     len = strlen(str);
@@ -186,10 +186,10 @@ mid(const char* src, size_t start, size_t length, char* dst, size_t dstlen)
 {
     size_t len = MIN(dstlen - 1, length);
 
-        strncpy(dst, src + start, len);
-        // zero terminate because strncpy() didn't ?
-        if(len < length)
-                dst[dstlen - 1] = 0;
+    strncpy(dst, src + start, len);
+    // zero terminate because strncpy() didn't ?
+    if(len < length)
+        dst[dstlen - 1] = 0;
 }
 
 static char*

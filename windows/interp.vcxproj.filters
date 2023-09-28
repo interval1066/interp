@@ -27,9 +27,6 @@
     <ClCompile Include="..\src\utils\huff.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\wiunistd.c">
-      <Filter>Header Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\commands.h">
@@ -48,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\utils\huff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\winunistd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

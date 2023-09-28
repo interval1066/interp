@@ -23,7 +23,6 @@
     <ClCompile Include="..\src\help.c" />
     <ClCompile Include="..\src\main.c" />
     <ClCompile Include="..\src\utils\huff.c" />
-    <ClCompile Include="src\wiunistd.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\commands.h" />
@@ -32,6 +31,7 @@
     <ClInclude Include="..\include\simple_strlib.h" />
     <ClInclude Include="..\include\support.h" />
     <ClInclude Include="..\include\utils\huff.h" />
+    <ClInclude Include="src\winunistd.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -125,6 +125,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\inter\source\repos\interp\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

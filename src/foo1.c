@@ -196,7 +196,7 @@ int
 list(char* opts)
 {
 	char buf[16] = { 0 }, dev[16] = { 0 };
-	strncpy(buf, right(opts, strlen(opts) - 6), strlen(opts) - 2);
+	strncpy(buf, right(opts, (int)strlen(opts) - 6), strlen(opts) - 2);
 
 	if(strlen(buf) == 2)
 		return CMD_ARGS;

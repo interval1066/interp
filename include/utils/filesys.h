@@ -1,9 +1,13 @@
 #pragma once
 
 #include <sys/types.h>
-#include <pwd.h>
 #include <stdlib.h>
+#ifndef _MSC_VER
+#include <pwd.h>
 #include <unistd.h>
+#else
+#include "../windows/src/winunistd.h"
+#endif
 #include <support.h>
 #include <stdbool.h>
 #include <stdio.h>
