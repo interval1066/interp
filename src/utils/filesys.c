@@ -1,6 +1,6 @@
 #include <utils/filesys.h>
-#include <libconfig.h>
 #include <sys/stat.h>
+#include <libconfig.h>
 
 /**
  * @brief			find_cfgfile search for ini in a few predefined locations

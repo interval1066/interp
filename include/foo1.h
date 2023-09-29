@@ -5,12 +5,13 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <filesys.h>
-#include <huff.h>
-#include <support.h>
-#include <simple_strlib.h>
-#include <help.h>
-#include <threadpool.h>
+#ifndef _WIN32
+#include "filesys.h"
+#endif
+#include "utils/huff.h"
+#include "support.h"
+#include "simple_strlib.h"
+#include "help.h"
 
 const char* commands[] = {  "aaa",
                             "access-lists",

@@ -6,7 +6,7 @@
  */
 const char* commands[] = { "aaa", "access-lists", "amplifiers", "app", "arp",
                            "badl", "batch", "bert", "help", "motd", "prompt",
-                                    "quit", "date", "list", "time2", "?" };
+                           "quit", "date", "list", "time2", "?" };
 
 /**
  * Command funtion prototypes can go here.
