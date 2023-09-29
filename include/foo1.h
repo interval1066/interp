@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #ifndef _WIN32
-#include "filesys.h"
+#include "utils/filesys.h"
 #endif
 #include "utils/huff.h"
 #include "support.h"
