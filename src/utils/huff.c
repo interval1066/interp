@@ -2,7 +2,6 @@
 
 #include <utils/huff.h>
 #include <string.h>
-#include "support.h"
 
 /**
  * @file    huff.c
@@ -30,12 +29,11 @@
  * @param			const char*		file_name2: path of output file
  * @param			char* 			buf: string containing text to encode
  */
-/*int
+void
 encode(const char* file_name2, char* buf)
 {
-	size_t num;
-	FILE* en = NULL;
-	int freq[256] = { 0 };
+	FILE* en;
+	int freq[256] = {0};
 	info header[256];
 
 	char codes[256][40];
@@ -43,29 +41,24 @@ encode(const char* file_name2, char* buf)
 	strcpy(code, "");
 
 	List_t mylist_en;
-	size_t no_of_chars;
+	int num, no_of_chars;
 	en = fopen(file_name2, "w");
 
-	if (en) {
+	if(en) {
 		find_freq(buf, freq);
 		no_of_chars = strlen(buf);
 
-		if (no_of_chars > 0) {
+		if(no_of_chars > 0) {
 			make_tree(&mylist_en, freq);
-			(int)num = create_header(freq, (int)no_of_chars, header);
+			num = create_header(freq, no_of_chars, header);
 
 			find_code(mylist_en.head, code, codes);
-			compress(buf, en, codes, no_of_chars, header, freq, (int)num);
+			compress(buf, en, codes, no_of_chars, header, freq, num);
 		}
 	}
-	else
-		return CMD_FILEEXST;
-
 	fclose(en);
-
-	return CMD_OK;
 }
-*/
+
 /**
  * @brief			decode: decode a buffer of huffman encoded text
  *
@@ -104,9 +97,8 @@ decode(const char* file_name1)
 		node_t* ptr = root;
 		while(fread(ptrr, sizeof(code_generated), 1, en) == 1)
 			ptr = decode_char(stdout, ptr, ptrr->c, 1, root, &count, no_of_chars);
-
-		fclose(en);
 	}
+	fclose(en);
 }
 
 node_t*
@@ -149,23 +141,19 @@ disp_list(const List_t* ptr)
 	printf("\n");
 }
 
-int
+void
 make_node(List_t* ptr, int n, char c)
 {
-	node_t* temp = NULL;
+	node_t* temp;
 	temp = (node_t*)malloc(sizeof(node_t));
-	if (temp) {
-		temp->freq = n;
+	temp->freq = n;
 
-		temp->c = c;
-		temp->link = 0;
-		temp->rlink = 0;
+	temp->c = c;
+	temp->link = 0;
+	temp->rlink = 0;
 
-		temp->llink = 0;
-		insert_in_list(ptr, temp);
-	}
-	else
-		return -1;
+	temp->llink = 0;
+	insert_in_list(ptr, temp);
 }
 
 void

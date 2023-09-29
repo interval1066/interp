@@ -20,6 +20,7 @@
 #endif
 
 extern const char* strstrip(char*);
+extern char* strlwr(char*);
 
 /**
  * @file    main.c
@@ -144,7 +145,7 @@ main(int argc, char** argv)
 	memset(tmp, '\0', sizeof(tmp));
 
 	strcpy(tmp, get_value("prompt"));
-	size_t len2 = strlen(tmp);
+	int len2 = strlen(tmp);
 	tmp[len2 - 1] = '\0';
 
 	if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
