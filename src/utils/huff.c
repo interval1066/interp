@@ -41,7 +41,7 @@ encode(const char* file_name2, char* buf)
 	strcpy(code, "");
 
 	List_t mylist_en;
-	int num, no_of_chars;
+	size_t num, no_of_chars;
 	en = fopen(file_name2, "w");
 
 	if(en) {
@@ -50,10 +50,10 @@ encode(const char* file_name2, char* buf)
 
 		if(no_of_chars > 0) {
 			make_tree(&mylist_en, freq);
-			num = create_header(freq, no_of_chars, header);
+			num = create_header(freq, (int)no_of_chars, header);
 
 			find_code(mylist_en.head, code, codes);
-			compress(buf, en, codes, no_of_chars, header, freq, num);
+			compress(buf, en, codes, (int)no_of_chars, header, freq, (int)num);
 		}
 	}
 	fclose(en);
@@ -291,7 +291,7 @@ compress(char* fp, FILE* en, char codes[256][40],
 
 			if(i == 8) {
 				string_rev[i] = '\0';
-				strre(string_rev, strlen(string_rev));
+				strre(string_rev, (int)strlen(string_rev));
 
 				c = convert_string_char(string_rev);
 				strcpy(string_rev, "");
@@ -307,7 +307,7 @@ compress(char* fp, FILE* en, char codes[256][40],
 					if(i == 8) {
 						string_rev[i] = '\0';
 
-						strre(string_rev, strlen(string_rev));
+						strre(string_rev, (int)strlen(string_rev));
 						c = convert_string_char(string_rev);
 						strcpy(string_rev, "");
 
@@ -316,7 +316,7 @@ compress(char* fp, FILE* en, char codes[256][40],
 					}
 				}
 				string_rev[i] = '\0';
-				strre(string_rev,strlen(string_rev));
+				strre(string_rev, (int)strlen(string_rev));
 				c = convert_string_char(string_rev);
 
 				strcpy(string_rev, "");
