@@ -44,6 +44,7 @@
 
 # Misc meta fles
 *.user
+*.debug
 .vs/
 x64/
 
