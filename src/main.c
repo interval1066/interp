@@ -1,4 +1,7 @@
+#define _POSIX_C_SOURCE 200809L
+
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
@@ -11,15 +14,13 @@
 #include <signal.h>
 #ifdef _MSC_VER
 #include <io.h>
-#include "winstring_ext.h"
 #else
 #include <unistd.h>
 #include <libconfig.h>
-#include <stdio.h>
 #endif
 
 extern const char* strstrip(char*);
-//extern char* strlwr(char*);
+extern char* strlwr(char*);
 
 /**
  * @file    main.c
@@ -143,9 +144,8 @@ main(int argc, char** argv)
 	memset(main_prompt, '\0', sizeof(main_prompt));
 	memset(tmp, '\0', sizeof(tmp));
 
-#ifndef _MSC_VER
 	strcpy(tmp, get_value("prompt"));
-	size_t len2 = strlen(tmp);
+	int len2 = strlen(tmp);
 	tmp[len2 - 1] = '\0';
 
 	if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
@@ -158,14 +158,13 @@ main(int argc, char** argv)
 
 	get_userdir(cfg_path);
 	strcpy(banner_path, cfg_path);
-
 	strcat(banner_path, "/.motd");
+
 	strcat(cfg_path, "/.interp.ini");
 	strcpy(main_prompt, tmp);
-
 	if(file_exists(banner_path)) read_motd(banner_path);
+
 	printf("\n");
-#endif
 
 	while(bDo) {
 		char* cmd_string = NULL;

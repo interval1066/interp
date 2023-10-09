@@ -121,6 +121,7 @@ help(char* opts)
     return retcode;
 }
 
+#ifndef _MSC_VER
 int
 motd(char* string)
 {
@@ -144,14 +145,19 @@ motd(char* string)
 	return CMD_OK;
 }
 
+#endif
+
 int
 prompt(char* opts)
 {
     if(strlen(opts) > 24) return CMD_ARGS;
     char buf[16] = { 0 };
-    strncpy(buf, right(opts, strlen(opts) - 9), strlen(opts) - 2);
+    strncpy(buf,
+		right(opts, (int)strlen(opts) - 9),
+		strlen(opts) - 2);
 
-    set_value("prompt", buf);
+	set_value("prompt", buf);
+
     return CMD_OK;
 }
 
@@ -197,7 +203,6 @@ list(char* opts)
 {
 	char buf[16] = { 0 }, dev[16] = { 0 };
 	strncpy(buf, right(opts, (int)strlen(opts) - 6), strlen(opts) - 2);
-
 	if(strlen(buf) == 2)
 		return CMD_ARGS;
 

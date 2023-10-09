@@ -19,19 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\foo1.c" />
     <ClCompile Include="..\src\help.c" />
     <ClCompile Include="..\src\main.c" />
     <ClCompile Include="..\src\utils\huff.c" />
+    <ClCompile Include="src\winfilesys.c" />
+    <ClCompile Include="src\winfoo1.c" />
+    <ClCompile Include="src\winstring_ext.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\commands.h" />
-    <ClInclude Include="..\include\foo1.h" />
     <ClInclude Include="..\include\help.h" />
     <ClInclude Include="..\include\simple_strlib.h" />
     <ClInclude Include="..\include\support.h" />
     <ClInclude Include="..\include\utils\huff.h" />
-    <ClInclude Include="src\winunistd.h" />
+    <ClInclude Include="include\winunistd.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -124,8 +125,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\inter\source\repos\interp\include</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>C:\Users\inter\source\repos\interp\include;C:\Users\inter\source\repos\interp\windows\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996;4113;28251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

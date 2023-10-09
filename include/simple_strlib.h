@@ -25,27 +25,6 @@
 #include "support.h"
 
 /**
- * @brief		strlwr
- *
- * @details		My own version of strlwr, becuase clib
- * 				doesn't appear to have one.
- *
- * @param		s The string to convert
- * @return		pointer to the modified string
- */
-inline char*
-strlwr(char* s)
-{
-  char* p = (char*)s;
-
-  while(*p) {
-     *p = tolower((uint8_t)*p);
-      p++;
-  }
-  return s;
-}
-
-/**
  * @brief		countc
  *
  *	@details	Count the number of occurrences of c in s

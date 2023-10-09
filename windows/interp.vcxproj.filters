@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\foo1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\help.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -27,12 +24,18 @@
     <ClCompile Include="..\src\utils\huff.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\winstring_ext.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\winfoo1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\winfilesys.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\commands.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\foo1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\help.h">
@@ -47,7 +50,7 @@
     <ClInclude Include="..\include\utils\huff.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\winunistd.h">
+    <ClInclude Include="include\winunistd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

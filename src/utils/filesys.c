@@ -1,6 +1,8 @@
 #include <utils/filesys.h>
 #include <sys/stat.h>
+#ifndef _MSC_VER
 #include <libconfig.h>
+#endif
 
 /**
  * @brief			find_cfgfile search for ini in a few predefined locations
