@@ -136,7 +136,7 @@ motd(char* string)
 	memset(cfg_path, 0, sizeof(cfg_path));
 	get_userdir(cfg_path);
  
-   strcpy(mot_path, cfg_path);
+    strcpy(mot_path, cfg_path);
 	remove_first(mot_path, ".interp.ini");
 
 	strcat(mot_path, "/.motd");
