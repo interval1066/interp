@@ -38,9 +38,6 @@
     <ClInclude Include="..\include\commands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\help.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\simple_strlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -51,6 +48,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\winunistd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\help.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\winfilesys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

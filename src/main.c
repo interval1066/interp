@@ -1,8 +1,9 @@
 #define _POSIX_C_SOURCE 200809L
 
 #include <stdlib.h>
-#include <stdio.h>
+//#include <stdio.h>
 #include <string.h>
+#include <stddef.h>
 #include <stdbool.h>
 #include <ctype.h>
 #include "commands.h"
@@ -14,13 +15,18 @@
 #include <signal.h>
 #ifdef _MSC_VER
 #include <io.h>
+#include <winunistd.h>
 #else
 #include <unistd.h>
 #include <libconfig.h>
 #endif
 
+
 extern const char* strstrip(char*);
 extern char* strlwr(char*);
+#ifdef _MSC_VER
+extern size_t getline(char**, size_t*, FILE*);
+#endif
 
 /**
  * @file    main.c

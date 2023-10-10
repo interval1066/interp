@@ -44,6 +44,7 @@
                             */
 
 #define ssize_t int
+#define size_t  ssize_t
 
 #define STDIN_FILENO 0
 #define STDOUT_FILENO 1

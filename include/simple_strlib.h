@@ -1,4 +1,7 @@
 #pragma once
+#ifdef _MSVC_VER
+#include <winunistd.h>
+#endif
 
 /**
  * @file			simple_strlib.h
@@ -183,7 +186,8 @@ find_ch_index(const char* string, char ch)
 static inline void
 mid(const char* src, size_t start, size_t length, char* dst, size_t dstlen)
 {
-    size_t len = MIN(dstlen - 1, length);
+    //size_t len = MIN(dstlen - 1, length);
+	size_t len = MIN(dstlen, length);
 
     strncpy(dst, src + start, len);
     // zero terminate because strncpy() didn't ?

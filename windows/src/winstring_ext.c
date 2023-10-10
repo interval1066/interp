@@ -1,9 +1,10 @@
-#include "winstring_ext.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 size_t
 getline(char** lineptr, size_t* n, FILE* stream)
     {
-        char *bufptr = NULL, *p = bufptr;
+        char* bufptr = NULL, * p = bufptr;
         size_t size;
         int c;
     
@@ -34,19 +35,19 @@ getline(char** lineptr, size_t* n, FILE* stream)
         p = bufptr;
         while (c != EOF) {
             if ((size_t)(p - bufptr) > (size - 1)) {
+
                 size = size + 128;
                 bufptr = realloc(bufptr, size);
+
                 if (bufptr == NULL)
-                {
                     return -1;
-                }
+
                 p = bufptr + (size - 128);
             }
             *p++ = c;
             if (c == '\n')
-            {
                 break;
-            }
+
             c = fgetc(stream);
         }
     
