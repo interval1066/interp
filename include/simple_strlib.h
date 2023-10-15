@@ -22,7 +22,7 @@
 #include <stdint.h>
 #include <ctype.h>
 #include <stdlib.h>
-#ifndef _MSC_VER
+#ifndef _WIN32
 #include <sys/param.h>
 #endif
 #include "support.h"
@@ -36,9 +36,7 @@
  * @param		s The string to convert
  * @return		pointer to the modified string
  */
-#ifndef _MSC_VER
-
-char*
+inline char*
 strlwr(char* s)
 {
     char* p = (char*)s;
@@ -49,8 +47,6 @@ strlwr(char* s)
     }
     return s;
 }
-
-#endif
 
 /**
  * @brief		countc

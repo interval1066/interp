@@ -11,6 +11,7 @@
 #include "utils/huff.h"
 #include "support.h"
 #include "simple_strlib.h"
+#include "help.h"
 
 const char* commands[] = {  "aaa",
                             "access-lists",
