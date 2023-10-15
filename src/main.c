@@ -23,8 +23,8 @@
 
 
 extern const char* strstrip(char*);
-extern char* strlwr(char*);
 #ifdef _MSC_VER
+extern char* strlwr(char*);
 extern size_t getline(char**, size_t*, FILE*);
 #endif
 
@@ -151,7 +151,7 @@ main(int argc, char** argv)
 	memset(tmp, '\0', sizeof(tmp));
 
 	strcpy(tmp, get_value("prompt"));
-	int len2 = strlen(tmp);
+	size_t len2 = strlen(tmp);
 	tmp[len2 - 1] = '\0';
 
 	if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
@@ -170,7 +170,7 @@ main(int argc, char** argv)
 	strcpy(main_prompt, tmp);
 	if(file_exists(banner_path)) read_motd(banner_path);
 
-	printf("\n");
+	printf("HERE!!!!!!!!!!!\n");
 
 	while(bDo) {
 		char* cmd_string = NULL;
