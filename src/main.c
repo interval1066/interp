@@ -23,8 +23,8 @@
 
 
 extern const char* strstrip(char*);
-#ifdef _MSC_VER
 extern char* strlwr(char*);
+#ifdef _MSC_VER
 extern size_t getline(char**, size_t*, FILE*);
 #endif
 
