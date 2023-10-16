@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <windows.h>
 
 int find_cfgfile(const char*, char*, bool);
 int create_cfgfile(const char*);

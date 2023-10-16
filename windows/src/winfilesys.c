@@ -27,7 +27,7 @@ int read_motd(const char* path)
 }
 const char* get_value(const char* key)
 {
-	return NULL;
+	return "> ";
 }
 
 int set_value(const char* key, char* value)

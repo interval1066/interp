@@ -33,6 +33,9 @@
     <ClCompile Include="src\winfilesys.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\registry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\commands.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\winfilesys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\registry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

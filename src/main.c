@@ -152,7 +152,9 @@ main(int argc, char** argv)
 
 	strcpy(tmp, get_value("prompt"));
 	size_t len2 = strlen(tmp);
+#ifdef _MSC_VER
 	tmp[len2 - 1] = '\0';
+#endif
 
 	if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
 	char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
@@ -169,8 +171,6 @@ main(int argc, char** argv)
 	strcat(cfg_path, "/.interp.ini");
 	strcpy(main_prompt, tmp);
 	if(file_exists(banner_path)) read_motd(banner_path);
-
-	printf("HERE!!!!!!!!!!!\n");
 
 	while(bDo) {
 		char* cmd_string = NULL;
