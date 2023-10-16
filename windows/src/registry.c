@@ -54,7 +54,7 @@ ReadWindowsRegistryInt(const char *pKey, int uDefValue)
 void __fastcall
 WriteWindowsRegistryString(const char *pKey, const char *pString)
 {
-  size_t v2;
+  DWORD v2;
   const char* lpValueName;
   const char* Str;
 
@@ -78,7 +78,7 @@ WriteWindowsRegistryString(const char *pKey, const char *pString)
       if(!RegCreateKeyExA(phkResult, "Might and Magic VII", 0, "", 0, 0xF003Fu, 0, &v8, &dwDisposition)) {
 
         if(!RegCreateKeyExA(v8, "1.0", 0, "", 0, 0xF003Fu, 0, &v9, &dwDisposition)) {
-          v2 = strlen(Str);
+          v2 = (DWORD)strlen(Str);
           RegSetValueExA(v9, lpValueName, 0, 1u, (const BYTE *)Str, v2 + 1);
 
           RegCloseKey(v9);

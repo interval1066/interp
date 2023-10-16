@@ -152,9 +152,9 @@ main(int argc, char** argv)
 
 	strcpy(tmp, get_value("prompt"));
 	size_t len2 = strlen(tmp);
-#ifdef _MSC_VER
+//#ifdef _MSC_VER
 	tmp[len2 - 1] = '\0';
-#endif
+//#endif
 
 	if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
 	char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
