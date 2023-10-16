@@ -1,7 +1,6 @@
 #define _POSIX_C_SOURCE 200809L
 
 #include <stdlib.h>
-//#include <stdio.h>
 #include <string.h>
 #include <stddef.h>
 #include <stdbool.h>
@@ -152,9 +151,9 @@ main(int argc, char** argv)
 
 	strcpy(tmp, get_value("prompt"));
 	size_t len2 = strlen(tmp);
-//#ifdef _MSC_VER
+#ifndef _MSC_VER
 	tmp[len2 - 1] = '\0';
-//#endif
+#endif
 
 	if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
 	char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
