@@ -22,7 +22,9 @@
 
 
 extern const char* strstrip(char*);
+#ifndef _MSC_VER
 extern char* strlwr(char*);
+#endif
 #ifdef _MSC_VER
 extern size_t getline(char**, size_t*, FILE*);
 #endif
@@ -143,14 +145,14 @@ main(int argc, char** argv)
 {
 	int size;
 	bool bDo = true;
-	size_t len = 0;
+	size_t len, len2;
 
 	char main_prompt[16], tmp[16];
 	memset(main_prompt, '\0', sizeof(main_prompt));
 	memset(tmp, '\0', sizeof(tmp));
 
 	strcpy(tmp, get_value("prompt"));
-	size_t len2 = strlen(tmp);
+	len2 = (int)strlen(tmp);
 #ifndef _MSC_VER
 	tmp[len2 - 1] = '\0';
 #endif

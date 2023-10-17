@@ -27,7 +27,10 @@ int read_motd(const char* path)
 }
 const char* get_value(const char* key)
 {
-	return "> ";
+    int uBufLen = 0;
+    char* pOutString = NULL;
+    const char* szPrompt = "> ";
+    return "> ";
 }
 
 int set_value(const char* key, char* value)
