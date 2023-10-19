@@ -15,6 +15,7 @@
 #ifdef _MSC_VER
 #include <io.h>
 #include <winunistd.h>
+#include <winfilesys.h>
 #else
 #include <unistd.h>
 #include <libconfig.h>
@@ -57,9 +58,9 @@ sig_handler(int sign)
  * @brief		command runner
  *
  * @details		Runs a command function by invoking
- *					it as an entry on a jump table along with any
+ *				it as an entry on a jump table along with any
  * 				parameters required. Both run_cmd and proc_cmds
- *					should be moved to a more common module.
+ *				should be moved to a more common module.
  *
  * @param		n the command index
  * @param		full_cmd the command with params
@@ -92,9 +93,11 @@ run_cmd(int nCmd, char* full_cmd)
     // command found, execute it.
     nStatus = (*p[nCmd])((char*)strstrip(full_cmd));
     // if its the 'special' quit command bail.
-	 if(nStatus == CMD_QUIT) return false;
+	
+	if (nStatus == CMD_QUIT)
+		return false;
 
-	 return true;
+	return true;
 }
 
 /**
@@ -119,7 +122,7 @@ proc_cmds(char** inp, int size)
     for(n = 0; n <= MAXCMDS; n++) {
         if(strncmp(inp[0],
             *(commands + n),
-            strlen(strstrip(strlwr(inp[0])))) == 0) {
+            strlen(strstrip(_strlwr(inp[0])))) == 0) {
             bFound = true;
         }
         if(bFound) {
@@ -151,13 +154,11 @@ main(int argc, char** argv)
 	memset(main_prompt, '\0', sizeof(main_prompt));
 	memset(tmp, '\0', sizeof(tmp));
 
-	strcpy(tmp, get_value("prompt"));
+	strcpy(tmp, get_keyvalue("prompt", "> "));
 	len2 = (int)strlen(tmp);
 #ifndef _MSC_VER
 	tmp[len2 - 1] = '\0';
 #endif
-
-	//if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
 	char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
 	signal(SIGINT, sig_handler);
 
@@ -173,15 +174,14 @@ main(int argc, char** argv)
 	strcpy(main_prompt, tmp);
 	if(file_exists(banner_path)) read_motd(banner_path);
 
-	while(bDo) {
+	do {
 		char* cmd_string = NULL;
 		printf("%s", main_prompt);
+		getline(&cmd_string, &(int)len, stdin);
 
-		getline(&cmd_string, &len, stdin);
 		char** splitresult = split(cmd_string, ' ', &size);
 		bDo = proc_cmds(splitresult, size);
+	} while (bDo);
 
-		free(splitresult);
-	}
 	return EXIT_SUCCESS;
 }
