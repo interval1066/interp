@@ -4,17 +4,9 @@
 #include <stdbool.h>
 #include <windows.h>
 
-#define SURROGATE_LOW_BITS 0x7FF
-#define MAX_SURROGATE     0xDFFF
-#define MAX_FOUR_BYTE   0x10FFFF
-#define ONE_BYTE_BITS          7
-#define TWO_BYTE_BITS         11
-#define TWO_BYTE_PREFIX     0xC0
-#define THREE_BYTE_BITS       16
-#define THREE_BYTE_PREFIX   0xE0
-#define FOUR_BYTE_PREFIX    0xF0
-#define CONTINUATION_BYTE   0x80
-#define CONTINUATION_MASK   0x3F
+LPCSTR sk = "SOFTWARE\\Spooge\\blah\\poop\\prompt";
+PHKEY hk;
+char str_data[36];
 
 int find_cfgfile(const char*, char*, bool);
 int create_cfgfile(const char*);

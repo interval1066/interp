@@ -157,7 +157,7 @@ main(int argc, char** argv)
 	tmp[len2 - 1] = '\0';
 #endif
 
-	if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
+	//if(strlen(tmp) > 1) strcpy(main_prompt, "> ");
 	char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
 	signal(SIGINT, sig_handler);
 

@@ -25,12 +25,17 @@ int read_motd(const char* path)
 {
 	return 0;
 }
-const char* get_value(const char* key)
+const char* get_value(const char* pkey)
 {
-    int uBufLen = 0;
-    char* pOutString = NULL;
-    const char* szPrompt = "> ";
-    return "> ";
+	strset(str_data, 0);
+	const DWORD dwFlags = RRF_RT_REG_EXPAND_SZ | RRF_NOEXPAND;
+	DWORD size = 0;
+
+	LSTATUS status = RegGetValueA(HKEY_CURRENT_USER, sk, str_data, dwFlags, NULL, NULL, &size);
+	if (status != ERROR_SUCCESS)
+		strcpy(str_data, "> ");
+
+	return str_data;
 }
 
 int set_value(const char* key, char* value)

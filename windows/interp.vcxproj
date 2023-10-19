@@ -22,7 +22,6 @@
     <ClCompile Include="..\src\help.c" />
     <ClCompile Include="..\src\main.c" />
     <ClCompile Include="..\src\utils\huff.c" />
-    <ClCompile Include="src\registry.c" />
     <ClCompile Include="src\winfilesys.c" />
     <ClCompile Include="src\winfoo1.c" />
     <ClCompile Include="src\winstring_ext.c" />
@@ -33,7 +32,6 @@
     <ClInclude Include="..\include\simple_strlib.h" />
     <ClInclude Include="..\include\support.h" />
     <ClInclude Include="..\include\utils\huff.h" />
-    <ClInclude Include="include\registry.h" />
     <ClInclude Include="include\winfilesys.h" />
     <ClInclude Include="include\winunistd.h" />
   </ItemGroup>
