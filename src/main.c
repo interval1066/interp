@@ -14,8 +14,8 @@
 #include "utils/filesys.h"
 #ifdef _MSC_VER
 #include <io.h>
-#include <winunistd.h>
-#include <winfilesys.h>
+#include "winunistd.h"
+#include "winfilesys.h"
 #define STRLWR _strlwr
 #else
 #include <unistd.h>
@@ -169,6 +169,7 @@ main(int argc, char** argv)
 	memset(prompt_buf, 0, sizeof(prompt_buf));
 
 	get_userdir(cfg_path);
+
 	strcpy(banner_path, cfg_path);
 	strcat(banner_path, "/.motd");
 

@@ -3,18 +3,24 @@
 int 
 find_cfgfile(const char* file_name, char* path_found, bool bUseDot)
 {
-	return 0;
+	return CMD_NOOP;
 }
 
 int
 create_cfgfile(const char* file_path)
 {
-	return 0;
+	return CMD_NOOP;
 }
 
 void
 get_userdir(char* path)
 {
+	wchar_t wpath[MAXBUF] = { 0 };
+
+	if (FAILED(SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, wpath)))
+		path = NULL;
+	else
+		wcstombs(path, wpath, MAXBUF);
 }
 
 int

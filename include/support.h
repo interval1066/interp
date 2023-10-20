@@ -24,6 +24,7 @@
 
 typedef enum
 {
+    CMD_NOOP            = -10,
     CMD_INITNF          = -9,
     CMD_HELPERR         = -8,
     CMD_QUOTES          = -7,
