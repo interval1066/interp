@@ -6,7 +6,7 @@
 #include <Shlobj.h>
 #include "support.h"
 
-static LPCSTR sk = "SOFTWARE\\Spooge\\blah\\poop\\prompt";
+static LPCSTR sk = "SOFTWARE\\Spooge\\blah\\poop";
 PHKEY hk;
 char str_data[36];
 

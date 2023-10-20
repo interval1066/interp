@@ -157,6 +157,8 @@ main(int argc, char** argv)
 	memset(tmp, '\0', sizeof(tmp));
 
 	strcpy(tmp, get_keyvalue("prompt", "> "));
+	//set_keyvalue("poo", "pon");
+
 	len2 = (int)strlen(tmp);
 #ifndef _MSC_VER
 	tmp[len2 - 1] = '\0';

@@ -51,9 +51,20 @@ get_keyvalue(const char* pkey, const char* pdef)
 }
 
 int
-set_keyvalue(const char* key, const char* value)
+set_keyvalue(const char* pkey, const char* value)
 {
-	return 0;
+	HKEY hkey;
+	char keypath[MAXBUF] = { 0 };
+
+	snprintf(keypath, strlen(sk) + 
+		strlen((char*)&pkey), "%s", sk);
+
+	if (RegCreateKeyA(HKEY_CURRENT_USER, keypath, &hkey)
+		!= ERROR_SUCCESS) CMD_ERR;
+	RegSetValueA(hkey, (LPCSTR)&pkey, REG_SZ, value, (DWORD)strlen(value) + 1);
+	RegCloseKey(hkey);
+
+	return CMD_OK;
 }
 
 bool
