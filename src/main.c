@@ -169,7 +169,6 @@ main(int argc, char** argv)
 	memset(prompt_buf, 0, sizeof(prompt_buf));
 
 	get_userdir(cfg_path);
-
 	strcpy(banner_path, cfg_path);
 	strcat(banner_path, "/.motd");
 

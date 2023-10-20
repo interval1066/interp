@@ -15,7 +15,7 @@ create_cfgfile(const char* file_path)
 void
 get_userdir(char* path)
 {
-	wchar_t wpath[MAXBUF] = { 0 };
+	wchar_t wpath[MAXBUF * 2] = { 0 };
 
 	if (FAILED(SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, wpath)))
 		path = NULL;
@@ -34,6 +34,7 @@ read_motd(const char* path)
 {
 	return 0;
 }
+
 const char*
 get_keyvalue(const char* pkey, const char* pdef)
 {
