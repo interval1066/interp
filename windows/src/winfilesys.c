@@ -12,20 +12,24 @@ create_cfgfile(const char* file_path)
 	return 0;
 }
 
-void get_userdir(char* path)
+void
+get_userdir(char* path)
 {
 }
 
-int write_motd(char* path, const char* motd)
+int
+write_motd(const char* path, const char* motd)
 {
 	return 0;
 }
 
-int read_motd(const char* path)
+int
+read_motd(const char* path)
 {
 	return 0;
 }
-const char* get_keyvalue(const char* pkey, const char* pdef)
+const char*
+get_keyvalue(const char* pkey, const char* pdef)
 {
 	_strset(str_data, 0);
 	const DWORD dwFlags = RRF_RT_REG_EXPAND_SZ | RRF_NOEXPAND;
@@ -39,12 +43,14 @@ const char* get_keyvalue(const char* pkey, const char* pdef)
 	return str_data;
 }
 
-int set_value(const char* key, char* value)
+int
+set_keyvalue(const char* key, const char* value)
 {
 	return 0;
 }
 
-bool file_exists(char* path)
+bool
+file_exists(char* path)
 {
 	return false;
 }

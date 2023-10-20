@@ -173,7 +173,7 @@ read_motd(const char* path)
 }
 
 const char*
-get_value(const char* key)
+get_keyvalue(const char* key, const char* def)
 {
     config_setting_t *setting;
     char cfg_path[MAXBUF];
@@ -198,7 +198,7 @@ get_value(const char* key)
 }
 
 int
-set_value(const char* key, char* value)
+set_keyvalue(const char* key, const char* value)
 {
     config_setting_t *setting;
     char cfg_path[MAXBUF];

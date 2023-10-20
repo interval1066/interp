@@ -5,20 +5,22 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <ctype.h>
-#include "commands.h"
-#include <simple_strlib.h>
-#include <support.h>
-#include <utils/huff.h>
-#include <utils/filesys.h>
 #include <errno.h>
 #include <signal.h>
+#include "commands.h"
+#include "simple_strlib.h"
+#include "support.h"
+#include "utils/huff.h"
+#include "utils/filesys.h"
 #ifdef _MSC_VER
 #include <io.h>
 #include <winunistd.h>
 #include <winfilesys.h>
+#define STRLWR _strlwr
 #else
 #include <unistd.h>
 #include <libconfig.h>
+#define STRLWR strlwr
 #endif
 
 
@@ -122,7 +124,7 @@ proc_cmds(char** inp, int size)
     for(n = 0; n <= MAXCMDS; n++) {
         if(strncmp(inp[0],
             *(commands + n),
-            strlen(strstrip(_strlwr(inp[0])))) == 0) {
+            strlen(strstrip(STRLWR(inp[0])))) == 0) {
             bFound = true;
         }
         if(bFound) {
@@ -177,7 +179,8 @@ main(int argc, char** argv)
 	do {
 		char* cmd_string = NULL;
 		printf("%s", main_prompt);
-		getline(&cmd_string, &(int)len, stdin);
+        //getline(&cmd_string, &(int)len, stdin);
+        getline(&cmd_string, &len, stdin);
 
 		char** splitresult = split(cmd_string, ' ', &size);
 		bDo = proc_cmds(splitresult, size);

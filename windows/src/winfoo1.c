@@ -154,7 +154,7 @@ prompt(char* opts)
 		right(opts, (int)strlen(opts) - 9),
 		strlen(opts) - 2);
 
-	set_value("prompt", buf);
+	set_keyvalue("prompt", buf);
 
     return CMD_OK;
 }

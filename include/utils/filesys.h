@@ -36,9 +36,9 @@ void get_userdir(char*);
 
 int write_motd(char*, const char*);
 int read_motd(const char*);
-const char* get_value(const char*);
+const char* get_keyvalue(const char*, const char*);
 
-int set_value(const char*, char*);
+int set_keyvalue(const char*, const char*);
 bool file_exists(char*);
 //int write_config(config_t*, char*);
 
