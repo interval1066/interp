@@ -17,20 +17,15 @@
 #include "winunistd.h"
 #include "winfilesys.h"
 #define STRLWR _strlwr
+extern size_t getline(char**, size_t*, FILE*);
 #else
 #include <unistd.h>
 #include <libconfig.h>
 #define STRLWR strlwr
-#endif
-
-
-extern const char* strstrip(char*);
-#ifndef _MSC_VER
+//
 extern char* strlwr(char*);
 #endif
-#ifdef _MSC_VER
-extern size_t getline(char**, size_t*, FILE*);
-#endif
+extern const char* strstrip(char*);
 
 /**
  * @file    main.c
@@ -157,8 +152,6 @@ main(int argc, char** argv)
 	memset(tmp, '\0', sizeof(tmp));
 
 	strcpy(tmp, get_keyvalue("prompt", "> "));
-	//set_keyvalue("poo", "pon");
-
 	len2 = (int)strlen(tmp);
 #ifndef _MSC_VER
 	tmp[len2 - 1] = '\0';
@@ -172,11 +165,16 @@ main(int argc, char** argv)
 
 	get_userdir(cfg_path);
 	strcpy(banner_path, cfg_path);
-	strcat(banner_path, "/.motd");
 
+#ifndef _MSC_VER
+	strcat(banner_path, "/.motd");
 	strcat(cfg_path, "/.interp.ini");
+#else
+	strcat(banner_path, "\\.motd");
+#endif
 	strcpy(main_prompt, tmp);
-	if(file_exists(banner_path)) read_motd(banner_path);
+	if (access(banner_path, 0) == 0)
+		read_motd(banner_path);
 
 	do {
 		char* cmd_string = NULL;

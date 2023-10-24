@@ -165,8 +165,9 @@ read_motd(const char* path)
     stream = fopen(path, "r");
 
     if ((result = fgets(line, MAXMOTD, stream)) != NULL)
-       printf("%s", result);
-
+        printf("%s\n", result);
+    else
+        return CMD_FILEEXST;
     fclose(stream);
 
     return CMD_OK;

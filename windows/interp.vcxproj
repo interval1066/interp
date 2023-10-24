@@ -126,7 +126,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\inter\OneDrive\Desktop\interp\windows\include;C:\Users\inter\OneDrive\Desktop\interp\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\inter\OneDrive\Desktop\interp\include;C:\Users\inter\OneDrive\Desktop\interp\windows\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4113;28251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -142,7 +142,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\inter\OneDrive\Desktop\interp\windows\include;C:\Users\inter\OneDrive\Desktop\interp\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\inter\OneDrive\Desktop\interp\include;C:\Users\inter\OneDrive\Desktop\interp\windows\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

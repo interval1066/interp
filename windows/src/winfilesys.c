@@ -32,7 +32,19 @@ write_motd(const char* path, const char* motd)
 int
 read_motd(const char* path)
 {
-	return 0;
+	FILE* stream;
+	char line[MAXMOTD], * result = 0;
+	memset(line, '\0;', sizeof(line));
+
+	stream = fopen(path, "r");
+
+	if ((result = fgets(line, MAXMOTD, stream)) != NULL)
+		printf("%s\n", result);
+	else
+		return CMD_FILEEXST;
+	fclose(stream);
+
+	return CMD_OK;
 }
 
 const char*
@@ -65,10 +77,4 @@ set_keyvalue(const char* pkey, const char* value)
 	RegCloseKey(hkey);
 
 	return CMD_OK;
-}
-
-bool
-file_exists(char* path)
-{
-	return false;
 }

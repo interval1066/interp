@@ -17,5 +17,3 @@ void get_userdir(char*);
 int read_motd(const char*);
 const char* get_keyvalue(const char*, const char*);
 int set_keyvalue(const char*, const char*);
-
-bool file_exists(char*);
