@@ -26,7 +26,20 @@ get_userdir(char* path)
 int
 write_motd(const char* path, const char* motd)
 {
-	return 0;
+	char newm[MAXMOTD];
+	memset(newm, '\0', MAXMOTD);
+
+	FILE* fp = fopen(path, "w");
+	if (fp == NULL)
+		return CMD_IOERR;
+
+	mid(motd, 6, find_ch_index(motd, '"'), newm, strlen(motd));
+	remove_first(newm, "\"");
+	fprintf(fp, "%s", newm);
+
+	fclose(fp);
+
+	return CMD_OK;
 }
 
 int
@@ -48,33 +61,66 @@ read_motd(const char* path)
 }
 
 const char*
-get_keyvalue(const char* pkey, const char* pdef)
+get_keyvalue(const char* key, const char* def)
 {
-	_strset(str_data, 0);
-	const DWORD dwFlags = RRF_RT_REG_EXPAND_SZ | RRF_NOEXPAND;
-	DWORD size = 0;
+	config_setting_t* setting;
+	char cfg_path[MAXBUF];
 
-	LSTATUS status = RegGetValueA(HKEY_CURRENT_USER, sk,
-		str_data, dwFlags, NULL, NULL, &size);
-	if (status != ERROR_SUCCESS)
-		strcpy(str_data, pdef);
+	memset(cfg_path, 0, sizeof(cfg_path));
+	get_userdir(cfg_path);
+	strcat(cfg_path, "\\.interp.ini");
+	if (!file_exists(cfg_path))
+		create_cfgfile(cfg_path);
 
-	return str_data;
+	config_t cfg;
+	config_init(&cfg);
+	config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
+		| CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
+		| CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
+
+	config_read_file(&cfg, cfg_path);
+	setting = config_lookup(&cfg, key);
+	const char* value = config_setting_get_string(setting);
+
+	return value;
 }
 
 int
 set_keyvalue(const char* pkey, const char* value)
 {
-	HKEY hkey;
-	char keypath[MAXBUF] = { 0 };
+	config_setting_t* setting;
+	char cfg_path[MAXBUF];
+	memset(cfg_path, 0, sizeof(cfg_path));
 
-	snprintf(keypath, strlen(sk) + 
-		strlen((char*)&pkey), "%s", sk);
+	get_userdir(cfg_path);
+	strcat(cfg_path, "\\.interp.ini");
+	config_t cfg;
 
-	if (RegCreateKeyA(HKEY_CURRENT_USER, keypath, &hkey)
-		!= ERROR_SUCCESS) CMD_ERR;
-	RegSetValueA(hkey, (LPCSTR)&pkey, REG_SZ, value, (DWORD)strlen(value) + 1);
-	RegCloseKey(hkey);
+	config_init(&cfg);
+	config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
+		| CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
+		| CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
 
+	config_read_file(&cfg, cfg_path);
+	setting = config_lookup(&cfg, pkey);
+	config_setting_set_string(setting, value);
+
+	if (!config_write_file(&cfg, cfg_path)) {
+		config_destroy(&cfg);
+		return CMD_IOERR;
+	}
+
+	config_destroy(&cfg);
 	return CMD_OK;
+}
+
+bool
+file_exists(const char* filename)
+{
+	bool bExist = false;
+
+	if(access(filename, F_OK) == 0)
+		bExist = true;
+
+	return bExist;
 }
