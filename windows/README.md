@@ -13,5 +13,7 @@ interval1066@gmail.com.
 	modify the project macro "$(InterpExtra)" to point into any directory
 	on your build system that contains the header and lib files.
 
+3) Start developing your own shell.
+
 Refer to the libconfig license for how you can distribute with your interp-based
 Windows application, I don't think its very restrictive.
