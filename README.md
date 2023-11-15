@@ -29,6 +29,8 @@ That makefile is pretty generic; if you stick to separating header files in "inc
 
 Was hoping to get some collaboration or help on this, would appreciate it. Any and all comments would really be appreciated, send to interval1066@gmail.com, and thanks.
 
+Requires libconfig  1.7.3, distributed as a linux source tree here: http://hyperrealm.github.io/libconfig/. There are a couple of visual studio project files as well.
+
 UPDATE: Got the help system working. Added more funtionality to the badl and list commands, still not completed yet.
 I'm just winging this thing as I go along. Adding stuff as it hits me. There's literally no purpose to this thing, just showcasing my interpreter code.
 
