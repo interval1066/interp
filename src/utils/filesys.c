@@ -10,7 +10,7 @@
  * @details			make three attempts to locate the cfg file requested
  *					using three different strategies (/etc, $HOME, and
  *					the home for the current user using the passwd
- *					ddatabase), errors out with an integer code if
+ *					database), errors out with an integer code if
  *					finally unsuccessful. If the bUseDot is set the
  *					search will make the file name a dot file during
  *					search in the user directories
