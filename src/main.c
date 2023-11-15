@@ -165,7 +165,6 @@ main(int argc, char** argv)
 
 	get_userdir(cfg_path);
 	strcpy(banner_path, cfg_path);
-
 #ifndef _MSC_VER
 	strcat(banner_path, "/.motd");
 	strcat(cfg_path, "/.interp.ini");
