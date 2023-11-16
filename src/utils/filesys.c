@@ -1,8 +1,4 @@
-#include <utils/filesys.h>
-#include <sys/stat.h>
-#ifndef _MSC_VER
-#include <libconfig.h>
-#endif
+#include "utils/filesys.h"
 
 /**
  * @brief			find_cfgfile search for ini in a few predefined locations
@@ -20,6 +16,7 @@
  * @param			boolean make it a dot file flag
  * @return			integer status code, path_found is NULLed if unsuccessful
  */
+#ifndef _MSC_VER
 int
 find_cfgfile(const char* file_name, char* path_found, bool bUseDot)
 {
@@ -84,6 +81,7 @@ find_cfgfile(const char* file_name, char* path_found, bool bUseDot)
 
 	return CMD_FILENF;
 }
+#endif
 
 /**
  * @brief			create_cfgfile create a new ini file
@@ -102,11 +100,16 @@ create_cfgfile(const char* file_path)
     memset(cfg_path, 0, sizeof(cfg_path));
     get_userdir(cfg_path);
 
+#ifndef _MSC_VER
     strcat(cfg_path, "/.interp.ini");
+#else
+    strcat(cfg_path, "\\.interp.ini");
+#endif
+
     config_t cfg;
     config_setting_t *root, *setting;
-
     config_init(&cfg);
+
     config_set_options(&cfg,
                        (CONFIG_OPTION_SEMICOLON_SEPARATORS
                         | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
@@ -129,6 +132,7 @@ create_cfgfile(const char* file_path)
     return CMD_OK;
 }
 
+#ifndef _MSC_VER
 void
 get_userdir(char* path)
 {
@@ -136,6 +140,18 @@ get_userdir(char* path)
 	struct passwd* pw = getpwuid(uid);
 	strcpy(path, pw->pw_dir);
 }
+#else
+void
+get_userdir(char* path)
+{
+    wchar_t wpath[MAXBUF * 2] = { 0 };
+
+    if (FAILED(SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, wpath)))
+        path = NULL;
+    else
+        wcstombs(path, wpath, MAXBUF);
+}
+#endif
 
 int
 write_motd(char* path, const char* motd)
@@ -178,10 +194,15 @@ get_keyvalue(const char* key, const char* def)
 {
     config_setting_t *setting;
     char cfg_path[MAXBUF];
-
     memset(cfg_path, 0, sizeof(cfg_path));
+
     get_userdir(cfg_path);
+#ifndef _MSC_VER
     strcat(cfg_path, "/.interp.ini");
+#else
+    strcat(cfg_path, "\\.interp.ini");
+#endif
+
     if(!file_exists(cfg_path))
         create_cfgfile(cfg_path);
 
@@ -206,7 +227,11 @@ set_keyvalue(const char* key, const char* value)
     memset(cfg_path, 0, sizeof(cfg_path));
 
     get_userdir(cfg_path);
+#ifndef _MSC_VER
     strcat(cfg_path, "/.interp.ini");
+#else
+    strcat(cfg_path, "\\.interp.ini");
+#endif
     config_t cfg;
 
     config_init(&cfg);
@@ -228,7 +253,7 @@ set_keyvalue(const char* key, const char* value)
 }
 
 bool
-file_exists(char* filename)
+file_exists(const char* filename)
 {
   struct stat buffer;
   return (stat (filename, &buffer) == 0);

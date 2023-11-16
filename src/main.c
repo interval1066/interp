@@ -15,7 +15,6 @@
 #ifdef _MSC_VER
 #include <io.h>
 #include "winunistd.h"
-#include "winfilesys.h"
 #define STRLWR _strlwr
 extern size_t getline(char**, size_t*, FILE*);
 #else

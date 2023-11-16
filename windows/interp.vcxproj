@@ -21,8 +21,8 @@
   <ItemGroup>
     <ClCompile Include="..\src\help.c" />
     <ClCompile Include="..\src\main.c" />
+    <ClCompile Include="..\src\utils\filesys.c" />
     <ClCompile Include="..\src\utils\huff.c" />
-    <ClCompile Include="src\winfilesys.c" />
     <ClCompile Include="src\winfoo1.c" />
     <ClCompile Include="src\winstring_ext.c" />
   </ItemGroup>
@@ -31,8 +31,8 @@
     <ClInclude Include="..\include\help.h" />
     <ClInclude Include="..\include\simple_strlib.h" />
     <ClInclude Include="..\include\support.h" />
+    <ClInclude Include="..\include\utils\filesys.h" />
     <ClInclude Include="..\include\utils\huff.h" />
-    <ClInclude Include="include\winfilesys.h" />
     <ClInclude Include="include\winunistd.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -96,6 +96,9 @@
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</ExternalIncludePath>
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>false</VcpkgEnableManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -130,13 +133,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\extra;C:\Users\inter\OneDrive\Desktop\interp\include;C:\Users\inter\OneDrive\Desktop\interp\windows\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\inter\OneDrive\Desktop\interp\include;C:\Users\inter\OneDrive\Desktop\interp\windows\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4113;28251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);..\extra\libconfig.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

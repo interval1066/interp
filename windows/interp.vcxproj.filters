@@ -30,7 +30,7 @@
     <ClCompile Include="src\winfoo1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\winfilesys.c">
+    <ClCompile Include="..\src\utils\filesys.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,7 +53,7 @@
     <ClInclude Include="..\include\help.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\winfilesys.h">
+    <ClInclude Include="..\include\utils\filesys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

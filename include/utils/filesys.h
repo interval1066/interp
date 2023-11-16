@@ -2,14 +2,20 @@
 
 #include <sys/types.h>
 #include <stdlib.h>
+#include <utils/filesys.h>
+#include <sys/stat.h>
+#include <libconfig.h>
+#include <stdbool.h>
+#include <stdio.h>
 #ifndef _MSC_VER
 #include <pwd.h>
 #include <unistd.h>
+#else
+#include <io.h>
+#include <Shlobj.h>
 #endif
-#include <support.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <simple_strlib.h>
+#include "support.h"
+#include "simple_strlib.h"
 
 
 #define MAXSIZE 256
@@ -39,7 +45,7 @@ int read_motd(const char*);
 const char* get_keyvalue(const char*, const char*);
 
 int set_keyvalue(const char*, const char*);
-bool file_exists(char*);
+bool file_exists(const char*);
 //int write_config(config_t*, char*);
 
 #ifdef __cplusplus
