@@ -7,4 +7,4 @@
 - [ ] Port to ARM64.
 - [ ] Probably getting close to time to think about changing the recursive makefile to a canonical makefile chain, or use cmake.
 - [X] Same repo builds on Windows and Linux x64.
-- [ ] Fix stack corruption then windows version exits.
+- [X] Fix stack corruption when windows version exits.
