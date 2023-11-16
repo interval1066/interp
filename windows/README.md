@@ -5,15 +5,15 @@ over the last few years Microsoft has been pretty good about making visual studi
 compatible, if you have problems would love ot hear about them, send reports to
 interval1066@gmail.com.
 
-1) Build libconfig using one of the visual studio project files it comes with.
+1) Make sure your have vcpkg installed and configured for your visual studio environment.
 
-2) Copy the appropriate libconfig header and lib files for your project into
-	interp/extra; interp's default project configuration anticipates
-	libconfig.h/...++.h & .lib files existing in $(ProjectDir)..\extra,
-	modify the project macro "$(InterpExtra)" to point into any directory
-	on your build system that contains the header and lib files.
+2) Use vcpkg to install libconfig.
 
-3) Start developing your own shell.
+3) Start developing your shell.
+
+That's it. If you'd prefer not to use vcpkg you'll need to download libconfig from
+http://hyperrealm.github.io/libconfig/, build it, install it, and copy libconfig.lib & libconfig.h
+into the "extra" folder in the interp source tree.
 
 Refer to the libconfig license for how you can distribute with your interp-based
 Windows application, I don't think its very restrictive.
