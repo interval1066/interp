@@ -5,15 +5,16 @@ over the last few years Microsoft has been pretty good about making visual studi
 compatible, if you have problems would love ot hear about them, send reports to
 interval1066@gmail.com.
 
-1) Make sure your have vcpkg installed and configured for your visual studio environment.
+If you haven't done it yet configure vcpkg to work with vs2023 or the version of your choice, I
+understand versions after 2017 can do this with varying degrees of success.
 
-2) Use vcpkg to install libconfig.
+Follow the instructions here for installation and configuration of vcpckg:
+https://devblogs.microsoft.com/cppblog/vcpkg-is-now-included-with-visual-studio/
 
-3) Start developing your shell.
+After issuing "vcpkg integrate install" and restarting visual studio install libconfig:
 
-That's it. If you'd prefer not to use vcpkg you'll need to download libconfig from
-http://hyperrealm.github.io/libconfig/, build it, install it, and copy libconfig.lib & libconfig.h
-into the "extra" folder in the interp source tree.
+D:\blap\dorp\blop> vcpkg install libconfig:x64-windows
 
-Refer to the libconfig license for how you can distribute with your interp-based
-Windows application, I don't think its very restrictive.
+That should be all you need to do. In visual studio look at the include list in filesys.h; line
+7 should be the include for linconfig.h. If its not underlined then the project is proably
+ready to build.
