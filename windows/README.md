@@ -1,6 +1,6 @@
 # Building interp on Windows
 
-I configured this project with Visual Studio 2022, I hope you have few problems, I've been noticing
+I configured this project with Visual Studio 2023, I hope you have few problems, I've been noticing
 over the last few years Microsoft has been pretty good about making visual studio projects back rev
 compatible, if you have problems would love to hear about them, send reports to
 interval1066@gmail.com.
