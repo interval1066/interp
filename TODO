@@ -11,3 +11,4 @@
 - [ ] Report to the user that dependancies (like libconfig) aren't on the build host.
 - [ ] Manpage? Maybe?
 - [ ] Add some code that actually uses the threadpool.
+- [ ] Check to see if the code is truly thread-safe, I'm sure its not.
