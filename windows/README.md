@@ -5,7 +5,7 @@ over the last few years Microsoft has been pretty good about making visual studi
 compatible, if you have problems would love to hear about them, send reports to
 interval1066@gmail.com.
 
-If you haven't done it yet configure vcpkg to work with vs2023 or the version of your choice, I
+If you haven't done it yet configure vcpkg to work with vs2023 or your preferred version of VS, I
 understand versions after 2017 can do this with varying degrees of success.
 
 Follow the instructions here for installation and configuration of vcpckg:
@@ -16,5 +16,5 @@ After issuing "vcpkg integrate install" and restarting visual studio install lib
 D:\blap\dorp\blop> vcpkg install libconfig:x64-windows
 
 That should be all you need to do. In visual studio look at the include list in filesys.h; line
-7 should be the include for linconfig.h. If its not underlined then the project is proably
+7 should be the include for linconfig.h. If its not underlined then the project is probably
 ready to build.
