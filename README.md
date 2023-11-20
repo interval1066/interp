@@ -37,3 +37,5 @@ I'm just winging this thing as I go along. Adding stuff as it hits me. There's l
 Have a need for this on Windows, so started a port. On-going...
 
 Update; my latest build of the windows port compiles to a 12K binary... that's what I was going for.
+
+Completed port to windows and merged code, removed recursive development make file, completely autotools configured now.
