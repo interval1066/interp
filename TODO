@@ -8,3 +8,4 @@
 - [X] Probably getting close to time to think about changing the recursive makefile to a canonical makefile chain, or use cmake.
 - [X] Same repo builds on Windows and Linux x64.
 - [X] Fix stack corruption when windows version exits.
+- [ ] Report to the user that dependancies (like libconfig) aren't on the build host.
