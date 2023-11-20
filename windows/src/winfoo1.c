@@ -5,6 +5,8 @@ char dateout[16];
 char timeout[20];
 extern const char* commands;
 
+int find_help_section(char*);
+
 /**
  * Command objects. Normally these would go into separate translation units.
  * Quit is a special command that has its own return status, needed to signal
