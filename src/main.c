@@ -22,7 +22,6 @@ extern size_t getline(char**, size_t*, FILE*);
 #include <unistd.h>
 #include <libconfig.h>
 #define STRLWR strlwr
-//
 extern char* strlwr(char*);
 #endif
 extern const char* strstrip(char*);
