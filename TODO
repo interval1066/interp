@@ -10,3 +10,4 @@
 - [X] Fix stack corruption when windows version exits.
 - [ ] Report to the user that dependancies (like libconfig) aren't on the build host.
 - [ ] Manpage? Maybe?
+- [ ] Add some code that actually uses the threadpool.
