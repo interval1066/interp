@@ -1,6 +1,5 @@
 #include "utils/huff.h"
 #include "utils/filesys.h"
-#include "help.h"
 
 char dateout[16];
 char timeout[20];
@@ -223,6 +222,35 @@ list(char* opts)
 	} while(strlen(dev) > 1);
 
 	fclose(f);
+
+	return CMD_OK;
+}
+
+int
+find_help_section(char* section)
+{
+	if (!section)
+		return CMD_ARGS;
+
+	char cfg_path[MAXBUF], chunk[MAXBUF];
+	memset(cfg_path, 0, sizeof(cfg_path));
+	get_userdir(cfg_path);
+
+	strcat(cfg_path, "\\.interp.hlp");
+	FILE* fp = fopen(cfg_path, "r");
+
+	if (!fp) printf("Couldn't open help file\n");
+	return CMD_FILEEXST;
+
+	while (fgets(chunk, sizeof(chunk), fp) != NULL) {
+		int n = strncmp(section, chunk, strlen(section));
+		if (n == 0) {
+			replace_char(chunk, '|', '\n');
+			fputs(chunk, stdout);
+		}
+	}
+	printf("\n");
+	fclose(fp);
 
 	return CMD_OK;
 }

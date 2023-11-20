@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\help.c" />
     <ClCompile Include="..\src\main.c" />
     <ClCompile Include="..\src\utils\filesys.c" />
     <ClCompile Include="..\src\utils\huff.c" />
@@ -27,8 +26,6 @@
     <ClCompile Include="src\winstring_ext.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\commands.h" />
-    <ClInclude Include="..\include\help.h" />
     <ClInclude Include="..\include\simple_strlib.h" />
     <ClInclude Include="..\include\support.h" />
     <ClInclude Include="..\include\utils\filesys.h" />

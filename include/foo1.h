@@ -9,23 +9,32 @@
 #include "utils/filesys.h"
 #endif
 #include "utils/huff.h"
-#include "support.h"
+//#include "support.h"
 #include "simple_strlib.h"
-#include "help.h"
 
-const char* commands[] = {  "aaa",
-                            "access-lists",
-                            "amplifiers",
-                            "app",
-                            "arp",
-                            "badl",
-                            "batch",
-                            "bert",
-                            "help",
-                            "motd",
-                            "prompt",
-                            "quit",
-                            "date",
-                            "lists",
-                            "time",
-                            "?" };
+int find_help_section(char*);
+int aaa(char*);
+int alist(char*);
+
+int amp(char*);
+int app(char*);
+int arp(char*);
+
+int badl(char*);
+int batch(char*);
+int bert(char*);
+
+int help(char*);
+int motd(char*);
+int prompt(char*);
+
+int quit(char*);
+int date(char*);
+int list(char*);
+
+int time2(char*);
+
+/*int (*table[])() = {
+     aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2
+};*/
+

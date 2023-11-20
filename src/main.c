@@ -7,11 +7,12 @@
 #include <ctype.h>
 #include <errno.h>
 #include <signal.h>
-#include "commands.h"
+//#include "commands.h"
 #include "simple_strlib.h"
 #include "support.h"
 #include "utils/huff.h"
 #include "utils/filesys.h"
+#include "foo1.h"
 #ifdef _MSC_VER
 #include <io.h>
 #include "winunistd.h"
@@ -25,6 +26,28 @@ extern size_t getline(char**, size_t*, FILE*);
 extern char* strlwr(char*);
 #endif
 extern const char* strstrip(char*);
+
+const char* commands[] = {  "aaa",
+                            "access-lists",
+                            "amplifiers",
+                            "app",
+                            "arp",
+                            "badl",
+                            "batch",
+                            "bert",
+                            "help",
+                            "motd",
+                            "prompt",
+                            "quit",
+                            "date",
+                            "lists",
+                            "time2",
+                            "?" };
+
+
+int (*table[])() = {
+     aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2
+};
 
 /**
  * @file    main.c
@@ -144,7 +167,8 @@ main(int argc, char** argv)
 {
 	int size;
 	bool bDo = true;
-	size_t len, len2;
+	static size_t len = 0;
+	int len2;
 
 	char main_prompt[16], tmp[16];
 	memset(main_prompt, '\0', sizeof(main_prompt));
@@ -169,12 +193,14 @@ main(int argc, char** argv)
 	strcat(cfg_path, "/.interp.ini");
 #else
 	strcat(banner_path, "\\.motd");
+	strcat(cfg_path, "\\.interp.ini");
 #endif
 	strcpy(main_prompt, tmp);
 	if (access(banner_path, 0) == 0)
 		read_motd(banner_path);
 
 	do {
+		len = 0;
 		char* cmd_string = NULL;
 		printf("%s", main_prompt);
         //getline(&cmd_string, &(int)len, stdin);
