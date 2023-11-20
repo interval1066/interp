@@ -44,7 +44,6 @@ const char* commands[] = {  "aaa",
                             "time2",
                             "?" };
 
-
 int (*table[])() = {
      aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2
 };
