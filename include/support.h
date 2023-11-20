@@ -38,23 +38,6 @@ typedef enum
 	CMD_NOOP				= 2     // no operation
 } RET_CODE;
 
-/*const char* commands[] = {  "aaa",
-                            "access-lists",
-                            "amplifiers",
-                            "app",
-                            "arp",
-                            "badl",
-                            "batch",
-                            "bert",
-                            "help",
-                            "motd",
-                            "prompt",
-                            "quit",
-                            "date",
-                            "lists",
-                            "time2",
-                            "?" };*/
-
 typedef int (*command_object)(char*);
 
 struct uinfo {
