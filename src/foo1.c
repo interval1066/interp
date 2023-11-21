@@ -3,6 +3,7 @@
 char dateout[16];
 char timeout[20];
 extern const char* commands;
+extern int noCmds;
 
 /**
  * Command objects. Normally these would go into separate translation units.
@@ -105,7 +106,7 @@ help(char* opts)
 	remove_first(opts, "help ");
 	remove_first(opts, "? ");
 
-	for(int n = 0; n < MAXCMDS; n++) {
+    for(int n = 0; n < noCmds; n++) {
 		keywd = split(opts, ' ', &size);
         if(strcmp(keywd[0], &commands[n]) == 0) {
 

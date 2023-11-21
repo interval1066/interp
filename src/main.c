@@ -49,6 +49,8 @@ int (*table[])() = {
      aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2
 };
 
+int noCmds = *(&table + 1) - table;
+
 /**
  * @file    main.c
  * @author  Tim O'Neil
@@ -96,7 +98,7 @@ run_cmd(int nCmd, char* full_cmd)
 		return true;
 	}
 	// If help is invoked with '?'
-	if(nCmd == MAXCMDS) nCmd = 8;
+    if(nCmd == noCmds) nCmd = 8;
 	if((nCmd == 8) && (strlen(full_cmd) < 5)) {
 		printf("\n");
 
@@ -138,7 +140,7 @@ proc_cmds(char** inp, int size)
     memset(full_cmd, '\n', sizeof(full_cmd));
     memset(cmd, '\n', sizeof(cmd));
 
-    for(n = 0; n <= MAXCMDS; n++) {
+    for(n = 0; n <= noCmds; n++) {
         if(strncmp(inp[0],
             *(commands + n),
             strlen(strstrip(STRLWR(inp[0])))) == 0) {
