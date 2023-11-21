@@ -4,6 +4,7 @@
 char dateout[16];
 char timeout[20];
 extern const char* commands;
+extern int noCmds;
 
 int find_help_section(char*);
 
@@ -101,14 +102,14 @@ bert(char* opts)
 int
 help(char* opts)
 {
-	char** keywd;
+	char** keywd = NULL;
 	int size;
 	int retcode = CMD_ERR;
 
 	remove_first(opts, "help ");
 	remove_first(opts, "? ");
 
-	for(int n = 0; n < MAXCMDS; n++) {
+	for(int n = 0; n < noCmds; n++) {
 		keywd = split(opts, ' ', &size);
         if(strcmp(keywd[0], commands + n) == 0) {
 
