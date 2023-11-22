@@ -17,4 +17,4 @@ To initiate an autotools build just run autogen.sh and follow the instructions. 
 Depends on libconfig.
  
 ---
-* The code now counts the number of members in the table static gloal member. 
+* The code now counts the number of members in the table static global member. 
