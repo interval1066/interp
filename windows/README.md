@@ -16,5 +16,5 @@ After issuing "vcpkg integrate install" and restarting visual studio install lib
 D:\blap\dorp\blop> vcpkg install libconfig:x64-windows
 
 That should be all you need to do. In visual studio look at the include list in filesys.h; line
-7 should be the include for linconfig.h. If its not underlined then the project is probably
+7 should be the include for libconfig.h. If its not underlined then the project is probably
 ready to build.
