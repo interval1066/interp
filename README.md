@@ -14,6 +14,7 @@ If anyone manages to port this to ARM (32, 64, hf, lf, whatever) I'd love to hea
 
 To initiate an autotools build just run autogen.sh and follow the instructions. To build using the qtcreator project file load the project and select your build kit of choice. To build on Windows you'll need to reconfigure the project for your Win SDK, obviously. I'm on visual studio 2022, so you may need to create a project for your version and add the source modules manually. For visual studio code I have no idea, I rarely use that ide. For eclipse? Lift the voodoo curse off yourself and stop using it, you know that thing was originally written by IBM??,
 
-Oh, depends on libconfig, that's all. apt install libconfig-dev on debian-based systems, yum yum yum on rhel hell, and I don't know what on the other linux fork no one uses. 
+Depends on libconfig.
+ 
 ---
 * The code now counts the number of members in the table static gloal member. 
