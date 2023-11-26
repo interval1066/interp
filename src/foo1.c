@@ -99,22 +99,31 @@ bert(char* opts)
 int
 help(char* opts)
 {
-	char** keywd;
+    char** keywd = NULL;
 	int size;
 	int retcode = CMD_ERR;
 
 	remove_first(opts, "help ");
-	remove_first(opts, "? ");
+    remove_first(opts, "? ");
+    keywd = split(opts, ' ', &size);
 
-    for(int n = 0; n < noCmds; n++) {
-		keywd = split(opts, ' ', &size);
+    char full_cmd[200];
+    memset(full_cmd, '\n', sizeof(full_cmd));
+    strcpy(full_cmd, &commands[1]);
+    //printf("-----> %s\n", opts);
+    find_help_section(opts);
+    /*for(int n = 0; n < noCmds; n++) {
+        printf("---> %s\n", &commands[n]);
+        keywd = split(opts, ' ', &size);
         if(strcmp(keywd[0], &commands[n]) == 0) {
+            printf("---> %s\n", &commands[n]);
 
-			find_help_section(keywd[0]);
+            find_help_section(keywd[0]);
             memset(opts, '\0', 1);
             return CMD_OK;
         }
-    }
+    }*/
+    return 0;
     if((retcode == CMD_ERR) && (strcmp(keywd[0], "?") != 0))
         printf("Command not found\n");
 
@@ -233,10 +242,10 @@ list(char* opts)
 int
 find_help_section(char* section)
 {
-	if(!section)
-		return CMD_ARGS;
+    if(!section)
+        return CMD_ARGS;
 
-	char cfg_path[MAXBUF], chunk[MAXBUF];
+    char cfg_path[MAXBUF], chunk[MAXBUF];
 	memset(cfg_path, 0, sizeof(cfg_path));
 	get_userdir(cfg_path);
 
@@ -255,7 +264,7 @@ find_help_section(char* section)
 	}
 	printf("\n");
 	fclose(fp);
-
+    printf("End help\n");
 	return CMD_OK;
 }
 
