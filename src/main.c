@@ -204,8 +204,12 @@ main(int argc, char** argv)
 		len = 0;
 		char* cmd_string = NULL;
 		printf("%s", main_prompt);
-        //getline(&cmd_string, &(int)len, stdin);
-        getline(&cmd_string, &len, stdin);
+		
+		/* Es ist lächerlich, dass es keine gute Möglichkeit
+		gibt, eine Art Metacode zu erstellen, um Tabulatoren,
+		Leerzeichen und andere nicht druckbare Zeichen
+		einheitlich zu machen. */
+		getline(&cmd_string, &len, stdin);
 
 		char** splitresult = split(cmd_string, ' ', &size);
 		bDo = proc_cmds(splitresult, size);
