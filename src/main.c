@@ -7,7 +7,6 @@
 #include <ctype.h>
 #include <errno.h>
 #include <signal.h>
-//#include "commands.h"
 #include "simple_strlib.h"
 #include "support.h"
 #include "utils/huff.h"
