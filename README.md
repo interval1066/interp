@@ -20,4 +20,4 @@ Depends on libconfig.
  
 ---
 * The code now counts the number of members in the table static global member automatically, no need for this constant anymore.
-* 
+  
