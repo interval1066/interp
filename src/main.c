@@ -78,14 +78,14 @@ sig_handler(int sign)
  * @brief		command runner
  *
  * @details		Runs a command function by invoking
- *				it as an entry on a jump table along with any
- * 				parameters required. Both run_cmd and proc_cmds
- *				should be moved to a more common module.
+ *			it as an entry on a jump table along with any
+ * 			parameters required. Both run_cmd and proc_cmds
+ *			should be moved to a more common module.
  *
- * @param		n the command index
+ * @param		nCmd the command index
  * @param		full_cmd the command with params
  * @return		boolean success/failure flag, also signals when to
- *             bail.
+ *             		bail.
  */
 static bool
 run_cmd(int nCmd, char* full_cmd)
