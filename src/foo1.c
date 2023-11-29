@@ -110,8 +110,8 @@ help(char* opts)
     char full_cmd[200];
     memset(full_cmd, '\n', sizeof(full_cmd));
     strcpy(full_cmd, &commands[1]);
-    //printf("-----> %s\n", opts);
-    find_help_section(opts);
+    printf("-----> %s\n", full_cmd);
+
     /*for(int n = 0; n < noCmds; n++) {
         printf("---> %s\n", &commands[n]);
         keywd = split(opts, ' ', &size);
