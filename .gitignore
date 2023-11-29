@@ -46,6 +46,8 @@
 *.user
 *.debug
 .vs/
+.deps/
+,dirstamp
 x64/
 
 # Kernel Module Compile Results
