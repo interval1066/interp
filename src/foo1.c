@@ -99,35 +99,22 @@ bert(char* opts)
 int
 help(char* opts)
 {
-    char** keywd = NULL;
-	int size;
-	int retcode = CMD_ERR;
+    bool bFound = false;
+    //int nCmd = 0;
+    //char cmd[40] = { 0 };
 
-	remove_first(opts, "help ");
-    remove_first(opts, "? ");
-    keywd = split(opts, ' ', &size);
+    for(int n = 0; n <= noCmds; n++) {
+        if(strncmp(opts, commands + n,
+            strlen(strstrip(strlwr(opts)))) == 0)
+            bFound = true;
 
-    char full_cmd[200];
-    memset(full_cmd, '\n', sizeof(full_cmd));
-    strcpy(full_cmd, &commands[1]);
-    printf("-----> %s\n", full_cmd);
-
-    /*for(int n = 0; n < noCmds; n++) {
-        printf("---> %s\n", &commands[n]);
-        keywd = split(opts, ' ', &size);
-        if(strcmp(keywd[0], &commands[n]) == 0) {
-            printf("---> %s\n", &commands[n]);
-
-            find_help_section(keywd[0]);
-            memset(opts, '\0', 1);
+        if(bFound) {
+            printf("Found %s\n", opts);
             return CMD_OK;
         }
-    }*/
-    return 0;
-    if((retcode == CMD_ERR) && (strcmp(keywd[0], "?") != 0))
-        printf("Command not found\n");
-
-    return retcode;
+    }
+    printf("%s not found\n", opts);
+    return CMD_OK;
 }
 
 #ifndef _MSC_VER

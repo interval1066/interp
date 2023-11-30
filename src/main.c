@@ -78,14 +78,14 @@ sig_handler(int sign)
  * @brief		command runner
  *
  * @details		Runs a command function by invoking
- *			it as an entry on a jump table along with any
- * 			parameters required. Both run_cmd and proc_cmds
- *			should be moved to a more common module.
+ *              it as an entry on a jump table along with any
+ *              parameters required. Both run_cmd and proc_cmds
+ *              should be moved to a more common module.
  *
  * @param		nCmd the command index
  * @param		full_cmd the command with params
  * @return		boolean success/failure flag, also signals when to
- *             		bail.
+ *             	bail.
  */
 static bool
 run_cmd(int nCmd, char* full_cmd)
@@ -166,10 +166,9 @@ proc_cmds(char** inp, int size)
 int
 main(int argc, char** argv)
 {
-	int size;
+    int size, len2;
 	bool bDo = true;
 	static size_t len = 0;
-	int len2;
 
 	char main_prompt[16], tmp[16];
 	memset(main_prompt, '\0', sizeof(main_prompt));
@@ -210,9 +209,10 @@ main(int argc, char** argv)
 		Leerzeichen und andere nicht druckbare Zeichen
 		einheitlich zu machen. */
 		getline(&cmd_string, &len, stdin);
-
 		char** splitresult = split(cmd_string, ' ', &size);
+
 		bDo = proc_cmds(splitresult, size);
+        free(&splitresult[0]);
 	} while (bDo);
 
 	return EXIT_SUCCESS;

@@ -51,7 +51,7 @@ strlwr(char* s)
 /**
  * @brief		countc
  *
- *	@details	Count the number of occurrences of c in s
+ * @details     Count the number of occurrences of c in s
  *
  * @param		s The target string
  * @param		c The character to count
