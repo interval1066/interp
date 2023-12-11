@@ -45,6 +45,7 @@
 # Misc meta fles
 *.user
 *.debug
+*.dirstamp
 .vs/
 .deps/
 ,dirstamp
