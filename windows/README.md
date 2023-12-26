@@ -5,7 +5,7 @@ over the last few years Microsoft has been pretty good about making visual studi
 compatible, if you have problems would love to hear about them, send reports to
 interval1066@gmail.com.
 
-If you haven't done it yet configure vcpkg to work with vs2023 or your preferred version of VS, I
+If you haven't done it yet configure vcpkg to work with vs2022 or your preferred version of VS, I
 understand versions after 2017 can do this with varying degrees of success.
 
 Follow the instructions here for installation and configuration of vcpckg:
