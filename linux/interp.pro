@@ -22,6 +22,7 @@ SOURCES += \
 HEADERS += \
     ../include/commands.h \
     ../include/foo1.h \
+    ../include/parser.h \
     ../include/simple_strlib.h \
     ../include/support.h \
     ../include/threadpool.h \

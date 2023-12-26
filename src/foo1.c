@@ -99,21 +99,7 @@ bert(char* opts)
 int
 help(char* opts)
 {
-    bool bFound = false;
-    //int nCmd = 0;
-    //char cmd[40] = { 0 };
-
-    for(int n = 0; n <= noCmds; n++) {
-        if(strncmp(opts, commands + n,
-            strlen(strstrip(strlwr(opts)))) == 0)
-            bFound = true;
-
-        if(bFound) {
-            printf("Found %s\n", opts);
-            return CMD_OK;
-        }
-    }
-    printf("%s not found\n", opts);
+    printf("max commands ----> %i\n", noCmds);
     return CMD_OK;
 }
 
@@ -140,7 +126,6 @@ motd(char* string)
 
 	return CMD_OK;
 }
-
 #endif
 
 int
