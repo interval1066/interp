@@ -21,6 +21,6 @@ autoclean.sh should reset the top directory to the "ground state."
 Depends on libconfig.
  
 ---
-* The code now counts the number of members in the table static global member automatically, no need for this constant anymore.
+*  The code now counts the number of members in the table static global member automatically, no need for this constant anymore.<br>
 ** This has since been moved to the "parser.h" include file.
   
