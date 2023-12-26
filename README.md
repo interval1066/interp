@@ -1,9 +1,9 @@
 # interp
 Simple command interpeter for embedded projects in C. I needed to re-write a very badly written command shell for an internet appliance once. Too bad the company elected not to use it; "would cost to much to replace." Bad idea and I hope you're not using that product, it was a security nightmare. Also, for various technical reasons, this had to be written in linear C, not C++. Which is not really a bad way to go with some embedded platforms.
 
-Although by no means useful as is, the design is really quite modular and loosely coupled; adding new commands to this is a simple matter of adding them to "commands" and "table" static members of the main module**, then adding their definitions to either the "foo1" translation unit or a completely new one, just add the new files with your functionality defined in them.
+Although by no means useful as is, the design is really quite modular and loosely coupled; adding new commands to this is a simple matter of adding them to "commands" and "table" static members of the main module<sup>1</sup>, then adding their definitions to either the "foo1" translation unit or a completely new one, just add the new files with your functionality defined in them.
 
-Also update MAXCMDS in support.h.* In the near future I'm going to see if I can do away with this magic little number (its actually is just a constant representing the total number of commands but let's do away with it anyway.)
+Also update MAXCMDS in support.h.<sup>2</sup> In the near future I'm going to see if I can do away with this magic little number (its actually is just a constant representing the total number of commands but let's do away with it anyway.)
 
 Action is a first match, arbitrary length thing; q, qu, and qui will all "quit" the interpreter, but quib will not. The logic that implements this is tiny and all contained in the main module ** (but not in the main function, there's like two or three static functions in the main module that handle all this. It shouldn't be a huge climb to follow.)
 
@@ -21,6 +21,6 @@ autoclean.sh should reset the entire source directory to the "ground state."
 Depends on libconfig.
  
 ---
-*   The code now counts the number of members in the table static global member automatically, no need for this constant anymore.<br>
-**  This has since been moved to the "parser.h" include file.
+1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore.<br>
+2. This has since been moved to the "parser.h" include file.
   
