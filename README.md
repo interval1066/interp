@@ -5,7 +5,7 @@ Although by no means useful as is, the design is really quite modular and loosel
 
 Also update MAXCMDS in support.h.<sup>2</sup> In the near future I'm going to see if I can do away with this magic little number (its actually is just a constant representing the total number of commands but let's do away with it anyway.)
 
-Action is a first match, arbitrary length thing; q, qu, and qui will all "quit" the interpreter, but quib will not. The logic that implements this is tiny and all contained in the main module ** (but not in the main function, there's like two or three static functions in the main module that handle all this. It shouldn't be a huge climb to follow.)
+Action is a first match, arbitrary length thing; q, qu, and qui will all "quit" the interpreter, but quib will not. The logic that implements this is tiny and all contained in the main module <sub>2</sub> (but not in the main function, there's like two or three static functions in the main module that handle all this. It shouldn't be a huge climb to follow.)
 
 As is the code compiles down to under 35K bytes, filled out with some actually useful commands, stripped release, and an embedded clib, I figure you can have a board that can do things via this interpreter for well under 100KB or possibly less if you really watch your memory usage.
 
