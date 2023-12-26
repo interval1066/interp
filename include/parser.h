@@ -32,12 +32,15 @@ const char* commands[] = {  "aaa",
                           "time2",
                           "?" };
 
-
 int (*table[])() = {
     aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2
 };
 
+#ifdef _MSC_VER
+int noCmds = _countof(table);
+#else
 int noCmds = *(&table + 1) - table;
+#endif
 
 bool
 run_cmd(int nCmd, char* full_cmd)

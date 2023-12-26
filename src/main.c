@@ -22,7 +22,7 @@ extern bool proc_cmds(char**, int);
  * @author  Tim O'Neil
  * @date    3/9/2018
  *
- * @brief	Probably pretty portable CLI interperter
+ * @brief	Probably pretty portable CLI interpreter
  *
  * @section	DESCRIPTION
  *

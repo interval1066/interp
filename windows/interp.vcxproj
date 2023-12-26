@@ -26,6 +26,7 @@
     <ClCompile Include="src\winstring_ext.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\parser.h" />
     <ClInclude Include="..\include\simple_strlib.h" />
     <ClInclude Include="..\include\support.h" />
     <ClInclude Include="..\include\utils\filesys.h" />
