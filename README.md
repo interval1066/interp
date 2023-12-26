@@ -1,7 +1,7 @@
 # interp
 Simple command interpeter for embedded projects in C. I needed to re-write a very badly written command shell for an internet appliance once. Too bad the company elected not to use it; "would cost to much to replace." Bad idea and I hope you're not using that product, it was a security nightmare. Also, for various technical reasons, this had to be written in linear C, not C++. Which is not really a bad way to go with some embedded platforms.
 
-Although by no means useful as is, the design is really quite modular and loosely coupled; adding new commands to this is a simple matter of adding them to "commands" and "table" static members of the main module, then adding their definitions to either the "foo1" translation unit or a completely new one, just add the new files with your functionality defined in them.
+Although by no means useful as is, the design is really quite modular and loosely coupled; adding new commands to this is a simple matter of adding them to "commands" and "table" static members of the main module**, then adding their definitions to either the "foo1" translation unit or a completely new one, just add the new files with your functionality defined in them.
 
 Also update MAXCMDS in support.h.* In the near future I'm going to see if I can do away with this magic little number (its actually is just a constant representing the total number of commands but let's do away with it anyway.)
 
@@ -22,4 +22,5 @@ Depends on libconfig.
  
 ---
 * The code now counts the number of members in the table static global member automatically, no need for this constant anymore.
+** This has since been moved to the "parser.h" include file.
   
