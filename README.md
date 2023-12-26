@@ -22,5 +22,4 @@ Depends on libconfig.
  
 ---
 1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore.<br>
-2. This has since been moved to the "parser.h" include file.
-  
+2. This has been eliminated in subsequent versions.
