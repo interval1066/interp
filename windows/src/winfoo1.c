@@ -104,7 +104,11 @@ help(char* opts)
 {
 	int size;
 	char** splitresult = split(opts, ' ', &size);
-	find_help_section(splitresult[1]);
+
+	if(size == 1)
+		find_help_section(opts);
+	else
+		find_help_section(splitresult[1]);
 
 	free(&splitresult[0]);
 
