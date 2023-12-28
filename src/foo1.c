@@ -95,11 +95,15 @@ bert(char* opts)
 	printf("bert called with %s\n", opts);
 	return CMD_OK;
 }
-
 int
 help(char* opts)
 {
-    printf("max commands ----> %i\n", noCmds);
+    int size;
+    char** splitresult = split(opts, ' ', &size);
+    find_help_section(splitresult[1]);
+
+    free(&splitresult[0]);
+
     return CMD_OK;
 }
 
@@ -180,6 +184,7 @@ time2(char* opts)
     printf("%s\n", timeout);
     return CMD_OK;
 }
+
 int
 list(char* opts)
 {
@@ -214,29 +219,35 @@ list(char* opts)
 int
 find_help_section(char* section)
 {
-    if(!section)
-        return CMD_ARGS;
+	if(!section)
+		return CMD_ARGS;
 
-    char cfg_path[MAXBUF], chunk[MAXBUF];
+	bool found = true;
+	FILE* fp = NULL;
+	char cfg_path[MAXBUF], chunk[MAXBUF];
+
 	memset(cfg_path, 0, sizeof(cfg_path));
 	get_userdir(cfg_path);
-
 	strcat(cfg_path, "/.interp.hlp");
-	FILE *fp = fopen(cfg_path, "r");
 
-    if(!fp) printf("Couldn't open help file\n");
+	fp = fopen(cfg_path, "r");
+	if(!fp)
 		return CMD_FILEEXST;
-	
+
 	while(fgets(chunk, sizeof(chunk), fp) != NULL) {
 		int n = strncmp(section, chunk, strlen(section));
+
 		if(n == 0) {
 			replace_char(chunk, '|', '\n');
 			fputs(chunk, stdout);
+				found = true;
 		}
 	}
-	printf("\n");
+	if(!found)
+		printf("Keyword not found\n");
+
 	fclose(fp);
-    printf("End help\n");
+
 	return CMD_OK;
 }
 
