@@ -1,5 +1,5 @@
 - [X] Fix help file reader
-- [ ] Improved install "thing", whetver that is
+- [ ] Implement make install for help, ini files.
 - [ ] Debug interpreter, seems to be some issues
 - [X] Setting the prommpt to the time or date output doesn't work, will need to surround command with escape characters I'm sure.
 - [X] Need to check for the existence of motd, hlp, and so on or the app falls over when it assume they are availalbe and they aren't.
