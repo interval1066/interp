@@ -13,3 +13,4 @@
 - [ ] Add some code that actually uses the threadpool.
 - [ ] Check to see if the code is truly thread-safe, I'm sure its not.
 - [X] Fix help system.
+- [ ] Implement and USE uinfo struct in support.h.
