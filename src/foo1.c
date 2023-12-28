@@ -95,16 +95,21 @@ bert(char* opts)
 	printf("bert called with %s\n", opts);
 	return CMD_OK;
 }
+
 int
 help(char* opts)
 {
-    int size;
-    char** splitresult = split(opts, ' ', &size);
-    find_help_section(splitresult[1]);
+	int size;
+	char** splitresult = split(opts, ' ', &size);
 
-    free(&splitresult[0]);
+	if(size == 1)
+		find_help_section(opts);
+	else
+		find_help_section(splitresult[1]);
 
-    return CMD_OK;
+	free(&splitresult[0]);
+
+	return CMD_OK;
 }
 
 #ifndef _MSC_VER
@@ -228,8 +233,11 @@ find_help_section(char* section)
 
 	memset(cfg_path, 0, sizeof(cfg_path));
 	get_userdir(cfg_path);
+#ifndef _MSC_VER
 	strcat(cfg_path, "/.interp.hlp");
-
+#else
+	strcat(cfg_path, "\\.interp.hlp");
+#endif
 	fp = fopen(cfg_path, "r");
 	if(!fp)
 		return CMD_FILEEXST;
