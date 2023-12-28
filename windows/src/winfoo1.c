@@ -102,26 +102,13 @@ bert(char* opts)
 int
 help(char* opts)
 {
-	char** keywd = NULL;
 	int size;
-	int retcode = CMD_ERR;
+	char** splitresult = split(opts, ' ', &size);
+	find_help_section(splitresult[1]);
 
-	remove_first(opts, "help ");
-	remove_first(opts, "? ");
+	free(&splitresult[0]);
 
-	for(int n = 0; n < noCmds; n++) {
-		keywd = split(opts, ' ', &size);
-        if(strcmp(keywd[0], commands + n) == 0) {
-
-			find_help_section(keywd[0]);
-            memset(opts, '\0', 1);
-            return CMD_OK;
-        }
-    }
-    if((retcode == CMD_ERR) && (strcmp(keywd[0], "?") != 0))
-        printf("Command not found\n");
-
-    return retcode;
+	return CMD_OK;
 }
 
 int
@@ -213,7 +200,7 @@ list(char* opts)
 	}
 
 	printf("Adding new device %s to list.\n", buf);
-	FILE* f = fopen("./list.dev", "w");
+	FILE* f = fopen(".\\list.dev", "w");
 	if(f == NULL)
 		return CMD_IOERR;
 
@@ -235,24 +222,30 @@ find_help_section(char* section)
 	if (!section)
 		return CMD_ARGS;
 
+	bool found = true;
+	FILE* fp = NULL;
 	char cfg_path[MAXBUF], chunk[MAXBUF];
+
 	memset(cfg_path, 0, sizeof(cfg_path));
 	get_userdir(cfg_path);
-
 	strcat(cfg_path, "\\.interp.hlp");
-	FILE* fp = fopen(cfg_path, "r");
 
-	if (!fp) printf("Couldn't open help file\n");
-	return CMD_FILEEXST;
+	fp = fopen(cfg_path, "r");
+	if (!fp)
+		return CMD_FILEEXST;
 
 	while (fgets(chunk, sizeof(chunk), fp) != NULL) {
 		int n = strncmp(section, chunk, strlen(section));
+
 		if (n == 0) {
 			replace_char(chunk, '|', '\n');
 			fputs(chunk, stdout);
+			found = true;
 		}
 	}
-	printf("\n");
+	if (!found)
+		printf("Keyword not found\n");
+
 	fclose(fp);
 
 	return CMD_OK;
