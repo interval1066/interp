@@ -1,4 +1,4 @@
-//#include "foo1.h"
+#include "foo1.h"
 #include "utils/huff.h"
 #include "utils/filesys.h"
 
