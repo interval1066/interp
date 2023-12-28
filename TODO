@@ -12,4 +12,4 @@
 - [ ] Manpage? Maybe?
 - [ ] Add some code that actually uses the threadpool.
 - [ ] Check to see if the code is truly thread-safe, I'm sure its not.
-- [ ] Fix help system.
+- [X] Fix help system.
