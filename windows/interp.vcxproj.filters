@@ -24,10 +24,10 @@
     <ClCompile Include="src\winstring_ext.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\winfoo1.c">
+    <ClCompile Include="..\src\utils\filesys.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\utils\filesys.c">
+    <ClCompile Include="..\src\foo1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,4 +1,6 @@
-#include "foo1.h"
+//#include "foo1.h"
+#include "utils/huff.h"
+#include "utils/filesys.h"
 
 char dateout[16];
 char timeout[20];
@@ -112,7 +114,6 @@ help(char* opts)
 	return CMD_OK;
 }
 
-#ifndef _MSC_VER
 int
 motd(char* string)
 {
@@ -129,13 +130,15 @@ motd(char* string)
  
     strcpy(mot_path, cfg_path);
 	remove_first(mot_path, ".interp.ini");
-
+#ifndef _MSC_VER
 	strcat(mot_path, "/.motd");
+#else
+	strcat(mot_path, "\\.motd");
+#endif
 	write_motd(mot_path, string);
 
 	return CMD_OK;
 }
-#endif
 
 int
 prompt(char* opts)
@@ -146,7 +149,9 @@ prompt(char* opts)
 		right(opts, (int)strlen(opts) - 9),
 		strlen(opts) - 2);
 
+#ifndef _MSC_VER
     set_keyvalue("prompt", buf);
+#endif
 
     return CMD_OK;
 }
@@ -232,10 +237,11 @@ find_help_section(char* section)
 	char cfg_path[MAXBUF], chunk[MAXBUF];
 
 	memset(cfg_path, 0, sizeof(cfg_path));
-	get_userdir(cfg_path);
 #ifndef _MSC_VER
+	get_userdir(cfg_path);
 	strcat(cfg_path, "/.interp.hlp");
 #else
+	get_userdir(cfg_path);
 	strcat(cfg_path, "\\.interp.hlp");
 #endif
 	fp = fopen(cfg_path, "r");

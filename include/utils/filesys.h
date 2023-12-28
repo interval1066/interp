@@ -17,7 +17,6 @@
 #include "support.h"
 #include "simple_strlib.h"
 
-
 #define MAXSIZE 256
 
 #ifdef __cplusplus
