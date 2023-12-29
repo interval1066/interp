@@ -1,3 +1,4 @@
+#include <string.h>
 #include "foo1.h"
 #include "utils/huff.h"
 #include "utils/filesys.h"
@@ -227,6 +228,18 @@ list(char* opts)
 }
 
 int
+loglevel(char* opts)
+{
+    int size;
+    char** splitresult = split(opts, ' ', &size);
+    printf("======> %s\n", splitresult[1]);
+
+    free(splitresult);
+
+    return CMD_OK;
+}
+
+int
 find_help_section(char* section)
 {
 	if(!section)
@@ -236,7 +249,7 @@ find_help_section(char* section)
 	FILE* fp = NULL;
 	char cfg_path[MAXBUF], chunk[MAXBUF];
 
-	memset(cfg_path, 0, sizeof(cfg_path));
+    memset(cfg_path, 0, sizeof(cfg_path));
 #ifndef _MSC_VER
 	get_userdir(cfg_path);
 	strcat(cfg_path, "/.interp.hlp");

@@ -33,8 +33,4 @@ int date(char*);
 int list(char*);
 
 int time2(char*);
-
-/*int (*table[])() = {
-     aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2
-};*/
-
+int loglevel(char*);

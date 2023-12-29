@@ -30,10 +30,11 @@ const char* commands[] = {  "aaa",
                           "date",
                           "lists",
                           "time2",
+                          "loglevel",
                           "?" };
 
 int (*table[])() = {
-    aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2
+    aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2, loglevel
 };
 
 #ifdef _MSC_VER

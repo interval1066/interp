@@ -41,6 +41,18 @@ sig_handler(int sign)
 
 }
 
+static int
+readconfig(void)
+{
+    return CMD_OK;
+}
+
+static int
+writeconfig(void)
+{
+    return CMD_OK;
+}
+
 /**
  * main.c, pretty self explanitory I hope.
  * Will be changed to take command line options eventually.
@@ -48,6 +60,7 @@ sig_handler(int sign)
 int
 main(int argc, char** argv)
 {
+    readconfig();
     int size, len2;
 	bool bDo = true;
 	static size_t len = 0;
@@ -96,6 +109,8 @@ main(int argc, char** argv)
 		bDo = proc_cmds(splitresult, size);
         free(&splitresult[0]);
 	} while (bDo);
+
+    writeconfig();
 
 	return EXIT_SUCCESS;
 }
