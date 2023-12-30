@@ -25,7 +25,7 @@
 #ifndef _WIN32
 #include <sys/param.h>
 #endif
-#include "support.h"
+//#include "support.h"
 
 /**
  * @brief		strlwr

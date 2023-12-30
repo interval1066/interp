@@ -16,6 +16,8 @@
 extern int noCmds;
 extern bool run_cmd(int, char*);
 extern bool proc_cmds(char**, int);
+struct user_ctx user;
+static char main_prompt[16], tmp[16];
 
 /**
  * @file    main.c
@@ -42,8 +44,46 @@ sig_handler(int sign)
 }
 
 static int
+init(void)
+{
+    int len2;
+    memset(main_prompt, '\0', sizeof(main_prompt));
+    memset(tmp, '\0', sizeof(tmp));
+
+    strcpy(tmp, get_keyvalue("prompt", "> "));
+    len2 = (int)strlen(tmp);
+#ifndef _MSC_VER
+    tmp[len2 - 1] = '\0';
+#endif
+    char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
+    signal(SIGINT, sig_handler);
+
+    memset(cfg_path, 0, sizeof(cfg_path));
+    memset(banner_path, 0, sizeof(banner_path));
+    memset(prompt_buf, 0, sizeof(prompt_buf));
+
+    get_userdir(cfg_path);
+    strcpy(banner_path, cfg_path);
+#ifndef _MSC_VER
+    strcat(banner_path, "/.motd");
+    strcat(cfg_path, "/.interp.ini");
+#else
+    strcat(banner_path, "\\.motd");
+    strcat(cfg_path, "\\.interp.ini");
+#endif
+    strcpy(main_prompt, tmp);
+    if (access(banner_path, 0) == 0)
+        read_motd(banner_path);
+
+    return CMD_OK;
+}
+
+static int
 readconfig(void)
 {
+    user.loglevel = 0;
+    user.admin = false;
+
     return CMD_OK;
 }
 
@@ -60,39 +100,12 @@ writeconfig(void)
 int
 main(int argc, char** argv)
 {
+    int size;
+    bool bDo = true;
+    static size_t len = 0;
+
+    init();
     readconfig();
-    int size, len2;
-	bool bDo = true;
-	static size_t len = 0;
-
-	char main_prompt[16], tmp[16];
-	memset(main_prompt, '\0', sizeof(main_prompt));
-	memset(tmp, '\0', sizeof(tmp));
-
-	strcpy(tmp, get_keyvalue("prompt", "> "));
-	len2 = (int)strlen(tmp);
-#ifndef _MSC_VER
-	tmp[len2 - 1] = '\0';
-#endif
-	char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
-	signal(SIGINT, sig_handler);
-
-	memset(cfg_path, 0, sizeof(cfg_path));
-	memset(banner_path, 0, sizeof(banner_path));
-	memset(prompt_buf, 0, sizeof(prompt_buf));
-
-	get_userdir(cfg_path);
-	strcpy(banner_path, cfg_path);
-#ifndef _MSC_VER
-	strcat(banner_path, "/.motd");
-	strcat(cfg_path, "/.interp.ini");
-#else
-	strcat(banner_path, "\\.motd");
-	strcat(cfg_path, "\\.interp.ini");
-#endif
-	strcpy(main_prompt, tmp);
-	if (access(banner_path, 0) == 0)
-		read_motd(banner_path);
 
 	do {
 		len = 0;
