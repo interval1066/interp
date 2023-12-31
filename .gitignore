@@ -48,8 +48,9 @@
 *.dirstamp
 .vs/
 .deps/
-,dirstamp
+.dirstamp
 x64/
+build-interp-*/
 
 # Kernel Module Compile Results
 *.mod*

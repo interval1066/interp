@@ -40,7 +40,7 @@ static char main_prompt[16], tmp[16];
 void
 sig_handler(int sign)
 {
-
+    signal(SIGINT, sig_handler);
 }
 
 static int
