@@ -242,10 +242,7 @@ loglevel(char* opts)
 int
 find_help_section(char* section)
 {
-	if(!section)
-		return CMD_ARGS;
-
-	bool found = true;
+    //bool found = false;
 	FILE* fp = NULL;
 	char cfg_path[MAXBUF], chunk[MAXBUF];
 
@@ -267,13 +264,17 @@ find_help_section(char* section)
 		if(n == 0) {
 			replace_char(chunk, '|', '\n');
 			fputs(chunk, stdout);
-				found = true;
+            //found = true;
 		}
-	}
-	if(!found)
-		printf("Keyword not found\n");
-
-	fclose(fp);
+        //else
+            //found = false;
+    }
+    //if(found)
+        //printf("Keyword not found\n");
+    //}
+    if(fp) {
+        fclose(fp);
+    }
 
 	return CMD_OK;
 }

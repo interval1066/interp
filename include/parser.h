@@ -113,5 +113,7 @@ proc_cmds(char** inp, int size)
             return run_cmd(nCmd, full_cmd);
         }
     }
+    if(!bFound)
+        printf("command not found\n");
     return run_cmd(CMD_ERR, NULL);
 }
