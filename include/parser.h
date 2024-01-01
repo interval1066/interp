@@ -16,22 +16,22 @@ extern char* strlwr(char*);
 extern const char* strstrip(char*);
 
 const char* commands[] = {  "aaa",
-                          "access-lists",
-                          "amplifiers",
-                          "app",
-                          "arp",
-                          "badl",
-                          "batch",
-                          "bert",
-                          "help",
-                          "motd",
-                          "prompt",
-                          "quit",
-                          "date",
-                          "lists",
-                          "time2",
-                          "loglevel",
-                          "?" };
+                            "access-lists",
+                            "amplifiers",
+                            "app",
+                            "arp",
+                            "badl",
+                            "batch",
+                            "bert",
+                            "help",
+                            "motd",
+                            "prompt",
+                            "quit",
+                            "date",
+                            "lists",
+                            "time2",
+                            "loglevel",
+                            "?" };
 
 int (*table[])() = {
     aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2, loglevel
@@ -49,7 +49,8 @@ run_cmd(int nCmd, char* full_cmd)
     int n = 0;
 
     if(nCmd == CMD_ERR) {
-        printf("Command error.\n");
+        printf("Unknown command.\n");
+
         return true;
     }
     // If help is invoked with '?'
@@ -113,7 +114,6 @@ proc_cmds(char** inp, int size)
             return run_cmd(nCmd, full_cmd);
         }
     }
-    if(!bFound)
-        printf("command not found\n");
+
     return run_cmd(CMD_ERR, NULL);
 }
