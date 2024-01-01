@@ -17,7 +17,7 @@ extern int noCmds;
 extern bool run_cmd(int, char*);
 extern bool proc_cmds(char**, int);
 struct user_ctx user;
-static char main_prompt[16], tmp[16];
+static char main_prompt[16];
 
 /**
  * @file    main.c
@@ -47,9 +47,9 @@ static int
 init(void)
 {
     int len2;
-    memset(main_prompt, '\0', sizeof(main_prompt));
-    memset(tmp, '\0', sizeof(tmp));
+    char tmp[16] = { 0 };
 
+    memset(main_prompt, '\0', sizeof(main_prompt));
     strcpy(tmp, get_keyvalue("prompt", "> "));
     len2 = (int)strlen(tmp);
 #ifndef _MSC_VER
