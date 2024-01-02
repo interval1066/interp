@@ -99,7 +99,7 @@ bert(char* opts)
 	return CMD_OK;
 }
 
-int
+/*int
 help(char* opts)
 {
 	int size;
@@ -113,7 +113,7 @@ help(char* opts)
 	free(&splitresult[0]);
 
 	return CMD_OK;
-}
+}*/
 
 int
 motd(char* string)
@@ -199,8 +199,10 @@ time2(char* opts)
 int
 list(char* opts)
 {
+    FILE* f = NULL;
 	char buf[16] = { 0 }, dev[16] = { 0 };
 	strncpy(buf, right(opts, (int)strlen(opts) - 6), strlen(opts) - 2);
+
 	if(strlen(buf) == 2)
 		return CMD_ARGS;
 
@@ -211,7 +213,7 @@ list(char* opts)
 	}
 
 	printf("Adding new device %s to list.\n", buf);
-	FILE* f = fopen("./list.dev", "w");
+    f = fopen("./list.dev", "w");
 	if(f == NULL)
 		return CMD_IOERR;
 
@@ -222,7 +224,7 @@ list(char* opts)
 		fprintf(f, "\n");
 	} while(strlen(dev) > 1);
 
-	fclose(f);
+    if(f) fclose(f);
 
 	return CMD_OK;
 }
@@ -239,7 +241,7 @@ loglevel(char* opts)
     return CMD_OK;
 }
 
-int
+/*int
 find_help_section(char* section)
 {
     bool found = false;
@@ -266,16 +268,12 @@ find_help_section(char* section)
 			fputs(chunk, stdout);
             found = true;
 		}
-        //else
-            //found = false;
     }
     if((!found) && strncmp(section, "?", (size_t)1) != 0)
         printf("Keyword not found\n");
-    //}
-    if(fp) {
-        fclose(fp);
-    }
+
+    if(fp) fclose(fp);
 
 	return CMD_OK;
-}
+}*/
 

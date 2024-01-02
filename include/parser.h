@@ -1,5 +1,6 @@
 #pragma once
 
+#include "intrinsic.h"
 #include "foo1.h"
 #ifdef _MSC_VER
 #include <io.h>

@@ -12,7 +12,10 @@
 //#include "support.h"
 #include "simple_strlib.h"
 
-int find_help_section(char*);
+//char dateout[16];
+//char timeout[20];
+
+//int find_help_section(char*);
 int aaa(char*);
 int alist(char*);
 
@@ -24,7 +27,7 @@ int badl(char*);
 int batch(char*);
 int bert(char*);
 
-int help(char*);
+//int help(char*);
 int motd(char*);
 int prompt(char*);
 

@@ -14,6 +14,7 @@ LIBS += -lconfig
 
 SOURCES += \
     ../src/foo1.c \
+    ../src/intrinsic.c \
     ../src/main.c \
     ../src/threadpool.c \
     ../src/utils/filesys.c \
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     ../include/commands.h \
     ../include/foo1.h \
+    ../include/intrinsic.h \
     ../include/parser.h \
     ../include/simple_strlib.h \
     ../include/support.h \

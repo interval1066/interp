@@ -32,7 +32,7 @@ static char main_prompt[16];
  */
 
 /**
- * Anticipate all signals
+ * Anticipate ctrl + c
  *
  * no signals we need to handle as far as we
  * know right now. May change in the future.
