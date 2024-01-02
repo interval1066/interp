@@ -30,6 +30,9 @@
     <ClCompile Include="..\src\foo1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\intrinsic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\simple_strlib.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\intrinsic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
