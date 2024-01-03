@@ -14,4 +14,4 @@ quit|====||quit||Exit the application.
 date|====||date||Output the current date.
 list|====||list <new list/(all)>||Create a new batch list, or list all existing lists.
 time|====||time||Output the current time.
-
+loglevel|====||loglevel <level>||Set logging on/off and verbosity.
