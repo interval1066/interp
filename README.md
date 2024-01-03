@@ -23,7 +23,7 @@ Depends on libconfig.
 Stand by for my port to Raspberry PI, working on it now.
  
 ---
-1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore.<br>
+1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore. Also, the "commands" & "table" structs have been moved to include/parser.h.<br>
 2. This has been eliminated in subsequent versions.
 3. Under 20K on windows.
 
