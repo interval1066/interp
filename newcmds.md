@@ -36,6 +36,6 @@ int (*table[])() = {
 ```
 3. For statically linked commands define the function(s) for your new command in either foo1.c or add a new source file to the project. Add the new function prototypes to the appropriate header files. Use a pointer to the command invocation for access to parameters; look to the command examples in foo1.c for examples.
 
-1. 4. Add a useful description of the new command the help file.
+4. Add a useful description of the new command the help file.
 
 No modification of the parser code should be required.
