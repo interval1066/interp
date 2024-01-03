@@ -7,7 +7,7 @@ the commands.</p>
 those existing sources, added to an entirely new translation unit, to a static library or a shared lib, whatever
 makes the most sense for your application. You're also welcome to remove all of those commands and add your own, of course.</p>
 
-#### Adding a Log Level command
+#### Adding a Log Level Command
 
 <p>In this example, we'll add a new command called `loglevel` that will set the logging level of the of the
 interpreter. There are lots of descisions to make in developing a loggng facility to an application; mostly
