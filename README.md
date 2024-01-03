@@ -19,6 +19,8 @@ To initiate an autotools build just run autogen.sh and follow the instructions, 
 autoclean.sh should reset the entire source directory to the "ground state." See "newcmds.md" for instruction on adding commands to the interpreter. There is a user context struct but its not in use in this version.
 
 Depends on libconfig.
+
+Stand by for my port to Raspberry PI, working on it now.
  
 ---
 1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore.<br>
