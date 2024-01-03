@@ -38,4 +38,4 @@ int (*table[])() = {
 
 4. Add a useful description of the new command the help file.
 
-No modification of the parser code should be required.
+No modification of the parser code should be required for the UTF-8 charcterset. If you do see a problem a report would be appreciated. interval1066@gmail.com.
