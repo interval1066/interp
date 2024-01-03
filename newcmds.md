@@ -34,4 +34,6 @@ int (*table[])() = {
     aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2, loglevel
 };
 ```
-3. 
+3. For statically linked commands define the function(s) for your new command in either foo1.c or add a new source file to the project. Add the new function prototypes to the appropriate header files.
+
+No modification of the parser code should be required.
