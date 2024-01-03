@@ -17,7 +17,7 @@ facility we'll just worry about adding the command to the interpreter.</p>
 <p>Let's add the command "loglevel" with an integer parameter 0-4. 0 will mean logging off, and 4 is the highest
 level of verbosity:</p>
 
-1. Add our new command "loglevel" to the "commands" double array in the "foo1" (or a new source) file. The question mark must be the last command in the array:
+1. Add our new command "loglevel" to the "commands" double array in the "parser.h" file. The question mark must be the last command in the array:
  ``` c
  const char* commands[] = {  "aaa",
                              "access-lists",
