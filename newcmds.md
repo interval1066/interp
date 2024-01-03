@@ -5,7 +5,7 @@ or expanded. As of now there's really only one intrinsic command, `help` that pr
 the commands.</p>
 <p>Add-on commands are all the other commands you can see in the "foo1" source file. Add-ons can be added to
 those existing sources, added to an entirely new translation unit, to a static library or a shared lib, whatever
-makes the most sense for your application.</p>
+makes the most sense for your application. You're also welcome to remove all of those commands and add your own, of course.</p>
 
 #### Adding a Log Level command
 
