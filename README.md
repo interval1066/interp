@@ -16,9 +16,11 @@ If anyone manages to port this to ARM (32, 64, hf, lf, whatever) I'd love to hea
 
 To initiate an autotools build just run autogen.sh and follow the instructions, make sure that the execute bit is set on the automake and clean scripts. To build using the qtcreator project file load the project and select your build kit of choice. To build on Windows you'll need to reconfigure the project for your Win SDK, obviously. I'm on visual studio 2022, so you may need to create a project for your version and add the source modules manually. For visual studio code I have no idea, I rarely use that ide. For eclipse? Lift the voodoo curse off yourself and stop using it, you know that thing was originally written by IBM??
 
-autoclean.sh should reset the entire source directory to the "ground state."
+autoclean.sh should reset the entire source directory to the "ground state." See "newcmds.md" for instruction on adding commands to the interpreter. There is a user context struct but its not in use in this version.
 
 Depends on libconfig.
+
+Stand by for my port to Raspberry PI, working on it now.
  
 ---
 1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore.<br>
