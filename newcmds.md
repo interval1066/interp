@@ -27,7 +27,7 @@ level of verbosity:</p>
                              "loglevel",
                              "?" };
 ```
-2. Add a "loglevel" token to the "table" double array. Note, this is just a numeric token, not a string.
+2. Add a "loglevel" token to the "table" double array. Note, this is just an index token, not a string.
 Importance is its place in the table, not its value:
 ``` c
 int (*table[])() = {
