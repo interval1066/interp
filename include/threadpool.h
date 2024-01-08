@@ -27,6 +27,10 @@ struct ThreadPool {
     bool shutdown;
 };
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 // Function to initialize a thread pool
 ThreadPool* thread_pool_init(size_t num_threads);
 
@@ -39,3 +43,6 @@ bool thread_pool_enqueue(ThreadPool* pool, void (*function)(void*), void* arg);
 // Function executed by each thread in the pool
 int thread_function(void* arg);
 
+#ifdef __cplusplus
+}
+#endif

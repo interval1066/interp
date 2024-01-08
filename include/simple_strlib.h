@@ -25,7 +25,10 @@
 #ifndef _WIN32
 #include <sys/param.h>
 #endif
-//#include "support.h"
+
+#ifdef __cplusplus
+extern "C"{
+#endif
 
 /**
  * @brief		strlwr
@@ -213,3 +216,6 @@ replace_char(char* str, char find, char replace){
     return str;
 }
 
+#ifdef __cplusplus
+}
+#endif

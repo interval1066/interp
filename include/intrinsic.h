@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string.h>
-//#include "foo1.h"
 #include "utils/huff.h"
 #include "utils/filesys.h"
 
@@ -21,5 +20,14 @@ extern int noCmds;
 #include "utils/huff.h"
 #include "simple_strlib.h"
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 int help(char*);
 int find_help_section(char*);
+
+#ifdef __cplusplus
+}
+#endif
+

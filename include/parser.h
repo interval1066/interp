@@ -11,9 +11,13 @@ extern size_t getline(char**, size_t*, FILE*);
 #include <unistd.h>
 #include <libconfig.h>
 #define STRLWR strlwr
-//
 extern char* strlwr(char*);
 #endif
+
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 extern const char* strstrip(char*);
 
 const char* commands[] = {  "aaa",
@@ -118,3 +122,7 @@ proc_cmds(char** inp, int size)
 
     return run_cmd(CMD_ERR, NULL);
 }
+
+#ifdef __cplusplus
+}
+#endif

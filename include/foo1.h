@@ -9,13 +9,12 @@
 #include "utils/filesys.h"
 #endif
 #include "utils/huff.h"
-//#include "support.h"
 #include "simple_strlib.h"
 
-//char dateout[16];
-//char timeout[20];
+#ifdef __cplusplus
+extern "C"{
+#endif
 
-//int find_help_section(char*);
 int aaa(char*);
 int alist(char*);
 
@@ -27,13 +26,15 @@ int badl(char*);
 int batch(char*);
 int bert(char*);
 
-//int help(char*);
 int motd(char*);
 int prompt(char*);
-
 int quit(char*);
 int date(char*);
-int list(char*);
 
+int list(char*);
 int time2(char*);
 int loglevel(char*);
+
+#ifdef __cplusplus
+}
+#endif
