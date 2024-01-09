@@ -11,9 +11,9 @@
 #include "utils/huff.h"
 #include "simple_strlib.h"
 
-#ifdef __cplusplus
+/*#ifdef __cplusplus
 extern "C"{
-#endif
+#endif*/
 
 int aaa(char*);
 int alist(char*);
@@ -35,6 +35,6 @@ int list(char*);
 int time2(char*);
 int loglevel(char*);
 
-#ifdef __cplusplus
+/*#ifdef __cplusplus
 }
-#endif
+#endif*/

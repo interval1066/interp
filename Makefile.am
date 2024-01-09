@@ -6,6 +6,7 @@ LDFLAGS =
 # the previous manual Makefile
 sbin_PROGRAMS = interp
 interp_SOURCES =	src/main.c \
+						src/intrinsic.c \
 						src/foo1.c \
 						src/threadpool.c \
 						src/utils/filesys.c \
@@ -14,6 +15,7 @@ interp_SOURCES =	src/main.c \
 AM_CPPFLAGS = -Wall -std=c11 -Wno-unused-result -Wno-unused-function -I$(top_srcdir)/include
 man_MANS = 
 EXTRA_DIST = include/foo1.h \
+	include/intrinsic.h \
 	include/simple_strlib.h \
 	include/support.h \
 	include/threadpool.h \

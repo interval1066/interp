@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <errno.h>
 #include <signal.h>
+#include "intrinsic.h"
 #include "simple_strlib.h"
 #include "support.h"
 #include "parser.h"
@@ -14,6 +15,7 @@
 #include "utils/filesys.h"
 
 extern int noCmds;
+extern int help(char*);
 extern bool run_cmd(int, char*);
 extern bool proc_cmds(char**, int);
 struct user_ctx user;

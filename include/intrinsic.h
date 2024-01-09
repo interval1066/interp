@@ -21,7 +21,7 @@ extern int noCmds;
 #include "simple_strlib.h"
 
 #ifdef __cplusplus
-extern "C"{
+extern "C" {
 #endif
 
 int help(char*);
