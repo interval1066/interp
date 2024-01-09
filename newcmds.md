@@ -38,4 +38,6 @@ int (*table[])() = {
 
 4. Add a useful description of the new command the ./extra/help file.
 
-No modification of the parser code should be required for the UTF-8 charcter set-based projects. If you do see a problem a report would be appreciated. interval1066@gmail.com.
+No modification of the parser code should be required for the UTF-8 charcter set-based projects. A list of all the commands printed out when the user enters "help" or "?" is generated automtically from the available data. Command descriptions must be entered into the text file in the extra directory.
+
+If you do see a problem a report would be appreciated. interval1066@gmail.com.
