@@ -9,6 +9,8 @@ Action is a first match, arbitrary length thing; q, qu, and qui will all "quit" 
 
 As is the code compiles down to under 35K bytes<sup>3</sup>, filled out with some actually useful commands, stripped release, and an embedded clib, I figure you can have a board that can do things via this interpreter for well under 100KB or possibly less if you really watch your memory usage.
 
+Builds its own command menu automgically, no need to update that. Detailed descriptions will need updating in extra/interp.hlp however. 
+
 As well as typical scripts for autotools there's a qtcreator project file and a visual studio 2022 project configuration just for fun.
 Coming is a file to explain how to add new commands and a few other things when I can get to them.
 
