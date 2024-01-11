@@ -20,7 +20,7 @@ autoclean.sh should reset the entire source directory to the "ground state." See
 
 Depends on libconfig.
 
-Stand by for my port to Raspberry PI, working on it now.
+Successfully built the code as is on Raspberry Pi using the older but more compatible ARMv6 32 bit insructions.
  
 ---
 1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore. Also, the "commands" & "table" structs have been moved to include/parser.h.<br>
