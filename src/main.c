@@ -13,6 +13,7 @@
 #include "parser.h"
 #include "utils/huff.h"
 #include "utils/filesys.h"
+#include "utils/getopt.h"
 
 extern int noCmds;
 extern int help(char*);
