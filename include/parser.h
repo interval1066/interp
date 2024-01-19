@@ -83,14 +83,14 @@ run_cmd(int nCmd, char* full_cmd)
 }
 
 /**
- * @brief		Process the commands rejecting those that aren't on the list
- *              This needs to be moved to another translation unit.
+ * @brief		  Process the commands rejecting those that aren't on the list
+ *            This needs to be moved to another translation unit (completed 11/2023)
  *
- * @param		char**	inp The string to process
- * @param		int		size The number of command elements
+ * @param		  char**	inp The string to process
+ * @param		  int		size The number of command elements
  * @return		boolean	returns the status of the run_cmd
- *				function, which is only false if we
- *				process a quit command.
+ *				    function, which is only false if we
+ *				    process a quit command.
  */
 bool
 proc_cmds(char** inp, int size)
