@@ -13,6 +13,8 @@ As is the code compiles down to under 35K bytes<sup>3</sup>, filled out with som
 
 Builds its own command menu automgically, no need to update that. Detailed descriptions will need updating in extra/interp.hlp however. 
 
+Autoconf automatically provides an "install" command but there's no point in installing this. I'm going to remove the autoconf directive. You are welcome to use the autoconf install command if you want but its really kind of pointless. I would add that in your own finished package that uses this code.
+
 As well as typical scripts for autotools there's a qtcreator project file and a visual studio 2022 project configuration just for fun.
 Coming is a file to explain how to add new commands and a few other things when I can get to them.
 
