@@ -26,7 +26,9 @@ aaa(char* opts)
 
 	for(int n = 1; n < size; n++)
 		printf("%s called with option %s.\n", splitresult[0], splitresult[n]);
-
+    
+	free(splitresult);
+	
 	return CMD_OK;
 }
 
