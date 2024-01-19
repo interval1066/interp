@@ -8,7 +8,6 @@
 #include "utils/filesys.h"
 #endif
 #include "utils/huff.h"
-//#include "support.h"
 #include "simple_strlib.h"
 
 int
