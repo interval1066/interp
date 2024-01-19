@@ -14,3 +14,4 @@
 - [ ] Check to see if the code is truly thread-safe, I'm sure its not.
 - [X] Fix help system.
 - [ ] Implement and USE uinfo struct in support.h.
+- [ ] Add posix style command line options.
