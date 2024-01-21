@@ -20,6 +20,7 @@ extern "C"{
 
 extern const char* strstrip(char*);
 
+// Just a simple jump table 
 const char* commands[] = {  "aaa",
                             "access-lists",
                             "amplifiers",
