@@ -8,12 +8,9 @@
 #include <errno.h>
 #include <signal.h>
 #include "intrinsic.h"
-#include "simple_strlib.h"
 #include "support.h"
 #include "parser.h"
-#include "utils/huff.h"
-#include "utils/filesys.h"
-#include "utils/getopt.h"
+#include "threadpool.h"
 
 extern int noCmds;
 extern int help(char*);

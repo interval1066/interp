@@ -1,7 +1,5 @@
 #pragma once
 
-#include "intrinsic.h"
-#include "foo1.h"
 #ifdef _MSC_VER
 #include <io.h>
 #include "winunistd.h"
@@ -10,9 +8,10 @@ extern size_t getline(char**, size_t*, FILE*);
 #else
 #include <unistd.h>
 #include <libconfig.h>
-#define STRLWR strlwr
+#include "foo1.h"
 extern char* strlwr(char*);
 #endif
+#define STRLWR strlwr
 
 #ifdef __cplusplus
 extern "C"{

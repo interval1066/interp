@@ -1,14 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "intrinsic.h"
-#ifndef _WIN32
-#include "utils/filesys.h"
-#endif
-#include "utils/huff.h"
-#include "simple_strlib.h"
 
 int
 help(char* opts)
