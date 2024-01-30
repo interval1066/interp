@@ -102,54 +102,6 @@ bert(char* opts)
 }
 
 int
-motd(char* string)
-{
-	char cfg_path[MAXBUF], mot_path[MAXBUF];
-
-	if(strlen(string) < 3)
-		return CMD_ARGS;
-
-	if(strchr(string, '"') == NULL)
-		return CMD_QUOTES;
-
-	memset(cfg_path, 0, sizeof(cfg_path));
-	get_userdir(cfg_path);
- 
-    strcpy(mot_path, cfg_path);
-	remove_first(mot_path, ".interp.ini");
-#ifndef _MSC_VER
-	strcat(mot_path, "/.motd");
-#else
-	strcat(mot_path, "\\.motd");
-#endif
-	write_motd(mot_path, string);
-
-	return CMD_OK;
-}
-
-int
-prompt(char* opts)
-{
-    if(strlen(opts) > 24) return CMD_ARGS;
-    char buf[16] = { 0 };
-    strncpy(buf,
-		right(opts, (int)strlen(opts) - 9),
-		strlen(opts) - 2);
-
-#ifndef _MSC_VER
-    set_keyvalue("prompt", buf);
-#endif
-
-    return CMD_OK;
-}
-
-int
-quit(char* opts)
-{
-	return CMD_QUIT;
-}
-
-int
 get_date(char* opts)
 {
     sprintf(opts, "%s\n", __DATE__);

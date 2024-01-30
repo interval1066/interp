@@ -18,6 +18,10 @@ extern "C" {
 
 int help(char*);
 int find_help_section(char*);
+int motd(char*);
+
+int prompt(char*);
+int quit(char*);
 
 #ifdef __cplusplus
 }

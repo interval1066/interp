@@ -25,10 +25,6 @@ int badl(char*);
 
 int batch(char*);
 int bert(char*);
-int motd(char*);
-
-int prompt(char*);
-int quit(char*);
 int date(char*);
 
 int list(char*);
