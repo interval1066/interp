@@ -11,7 +11,7 @@ Action is a first match, arbitrary length thing; q, qu, and qui will all "quit" 
 
 As is the code compiles down to under 35K bytes<sup>3</sup>, filled out with some actually useful commands, stripped release, and an embedded clib, I figure you can have a board that can do things via this interpreter for well under 100KB or possibly less if you really watch your memory usage.
 
-Builds its own command menu automgically, no need to update that. Detailed descriptions will need updating in extra/interp.hlp however. 
+Builds its own command menu automgically, no need to update that. Detailed descriptions will need updating in extra/interp.hlp however. Reename to ".interp.hlp" and place in the $USER home directory.
 
 Autoconf automatically provides an "install" command but there's no point in installing this. I'm going to remove the autoconf directive. You are welcome to use the autoconf install command if you want but its really kind of pointless. I would add that in your own finished package that uses this code.
 
