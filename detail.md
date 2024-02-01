@@ -18,16 +18,14 @@ Autoconf automatically provides an "install" command but there's no point in ins
 As well as typical scripts for autotools there's a qtcreator project file and a visual studio 2022 project configuration just for fun.
 Coming is a file to explain how to add new commands and a few other things when I can get to them.
 
-If anyone manages to port this to ARM (32, 64, hf, lf, whatever) I'd love to hear from you.
+Builds an ARMhf 32 bit target using the generic makefile in the linux subdirectory, can probab;y target other platforms uising GCC.
 
 To initiate an autotools build just run autogen.sh and follow the instructions, make sure that the execute bit is set on the automake and clean scripts. To build using the qtcreator project file load the project and select your build kit of choice. To build on Windows you'll need to reconfigure the project for your Win SDK, obviously. I'm on visual studio 2022, so you may need to create a project for your version and add the source modules manually. For visual studio code I have no idea, I rarely use that ide. For eclipse? Lift the voodoo curse off yourself and stop using it, you know that thing was originally written by IBM??
 
 autoclean.sh should reset the entire source directory to the "ground state." See "newcmds.md" for instruction on adding commands to the interpreter. There is a user context struct but its not in use in this version.
 
-Depends on libconfig.
+Depends on libconfig, barely. Can be easily removed if needed.
 
-Successfully built the code as is on Raspberry Pi using the older but more compatible ARMv6 32 bit insructions.
- 
 ---
 1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore. Also, the "commands" & "table" structs have been moved to include/parser.h.<br>
 2. This has been eliminated in subsequent versions.
