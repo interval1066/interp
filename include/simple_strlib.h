@@ -2,8 +2,8 @@
 
 #ifdef _MSVC_VER
 #include <winunistd.h>
-#include "support.h"
 #endif
+#include "support.h"
 
 /**
  * @file			simple_strlib.h
