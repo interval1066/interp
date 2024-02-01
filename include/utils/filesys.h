@@ -16,6 +16,9 @@
 #endif
 #include "support.h"
 #include "simple_strlib.h"
+//#include "errors.h"
+
+//extern const char* error_strings[];
 
 #define MAXSIZE 256
 

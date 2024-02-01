@@ -8,8 +8,10 @@
 #ifndef _WIN32
 #include "utils/filesys.h"
 #endif
-#include "utils/huff.h"
 #include "simple_strlib.h"
+
+
+//extern const char* error_strings[];
 
 #ifdef __cplusplus
 extern "C"{
@@ -25,10 +27,6 @@ int badl(char*);
 
 int batch(char*);
 int bert(char*);
-int motd(char*);
-
-int prompt(char*);
-int quit(char*);
 int date(char*);
 
 int list(char*);

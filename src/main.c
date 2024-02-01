@@ -7,11 +7,11 @@
 #include <ctype.h>
 #include <errno.h>
 #include <signal.h>
+#include "errors.h"
 #include "intrinsic.h"
 #include "simple_strlib.h"
 #include "support.h"
 #include "parser.h"
-#include "utils/huff.h"
 #include "utils/filesys.h"
 #include "utils/getopt.h"
 

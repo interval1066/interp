@@ -56,5 +56,8 @@
     <ClInclude Include="..\include\intrinsic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\foo1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

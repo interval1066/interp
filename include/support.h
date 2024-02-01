@@ -20,10 +20,6 @@
 #define MAX(a,b) (((a)>(b))?(a):(b))
 #endif
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-
 typedef enum
 {
 	CMD_MEMERR			= -10,
@@ -51,7 +47,3 @@ struct user_ctx {
     int loglevel;
     bool admin;
 };
-
-#ifdef __cplusplus
-}
-#endif

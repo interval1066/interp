@@ -1,12 +1,12 @@
-#include <string.h>
 #include "foo1.h"
-#include "utils/huff.h"
-#include "utils/filesys.h"
+//#include "utils/huff.h"
+//#include "utils/filesys.h"
 
 char dateout[16];
 char timeout[20];
 extern const char* commands;
 extern int noCmds;
+//extern const char* error_strings[];
 
 /**
  * Command objects. Normally these would go into separate translation units.
@@ -101,7 +101,7 @@ bert(char* opts)
 	return CMD_OK;
 }
 
-int
+/*int
 motd(char* string)
 {
 	char cfg_path[MAXBUF], mot_path[MAXBUF];
@@ -147,7 +147,7 @@ int
 quit(char* opts)
 {
 	return CMD_QUIT;
-}
+}*/
 
 int
 get_date(char* opts)
