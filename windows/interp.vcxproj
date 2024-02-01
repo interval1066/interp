@@ -23,7 +23,6 @@
     <ClCompile Include="..\src\intrinsic.c" />
     <ClCompile Include="..\src\main.c" />
     <ClCompile Include="..\src\utils\filesys.c" />
-    <ClCompile Include="..\src\utils\huff.c" />
     <ClCompile Include="src\winstring_ext.c" />
   </ItemGroup>
   <ItemGroup>
