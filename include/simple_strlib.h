@@ -1,6 +1,8 @@
 #pragma once
+
 #ifdef _MSVC_VER
 #include <winunistd.h>
+#include "support.h"
 #endif
 
 /**

@@ -8,10 +8,7 @@ sbin_PROGRAMS = interp
 interp_SOURCES =	src/main.c \
 						src/intrinsic.c \
 						src/foo1.c \
-						src/threadpool.c \
-						src/utils/filesys.c \
-						src/utils/huff.c
-
+						src/utils/filesys.c
 
 AM_CPPFLAGS = -Wall -std=c11 -Wno-unused-result -Wno-unused-function \
                         -I$(top_srcdir)/include
@@ -20,9 +17,7 @@ EXTRA_DIST = include/foo1.h \
 	                    include/intrinsic.h \
 	                    include/simple_strlib.h \
 	                    include/support.h \
-	                    include/threadpool.h \
 	                    include/utils/filesys.h \
-	                    include/utils/huff.h \
 	                    include/utils/getopt.h \
 	                    include/utils/xgetopt.h
 

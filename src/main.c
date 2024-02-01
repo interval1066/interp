@@ -10,7 +10,6 @@
 #include "intrinsic.h"
 #include "support.h"
 #include "parser.h"
-#include "threadpool.h"
 
 extern int noCmds;
 extern int help(char*);

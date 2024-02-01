@@ -16,9 +16,7 @@ SOURCES += \
     ../src/foo1.c \
     ../src/intrinsic.c \
     ../src/main.c \
-    ../src/threadpool.c \
-    ../src/utils/filesys.c \
-    ../src/utils/huff.c
+    ../src/utils/filesys.c
 
 HEADERS += \
     ../include/commands.h \
@@ -27,9 +25,7 @@ HEADERS += \
     ../include/parser.h \
     ../include/simple_strlib.h \
     ../include/support.h \
-    ../include/threadpool.h \
-    ../include/utils/filesys.h \
-    ../include/utils/huff.h
+    ../include/utils/filesys.h
 
 CONFIG(release, debug|release) {
     QMAKE_POST_LINK=$(STRIP) $(TARGET)

@@ -1,6 +1,5 @@
 #include <string.h>
 #include "foo1.h"
-#include "utils/huff.h"
 #include "utils/filesys.h"
 
 char dateout[16];

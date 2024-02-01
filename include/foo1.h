@@ -8,7 +8,6 @@
 #ifndef _WIN32
 #include "utils/filesys.h"
 #endif
-#include "utils/huff.h"
 #include "simple_strlib.h"
 
 #ifdef __cplusplus
