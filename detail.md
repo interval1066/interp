@@ -18,7 +18,7 @@ Autoconf automatically provides an "install" command but there's no point in ins
 As well as typical scripts for autotools there's a qtcreator project file and a visual studio 2022 project configuration just for fun.
 Coming is a file to explain how to add new commands and a few other things when I can get to them.
 
-Builds an ARMhf 32 bit target using the generic makefile in the linux subdirectory, can probab;y target other platforms uising GCC.
+Builds an ARMhf 32 bit target using the generic makefile in the linux subdirectory, can probably target other platforms uising GCC.
 
 To initiate an autotools build just run autogen.sh and follow the instructions, make sure that the execute bit is set on the automake and clean scripts. To build using the qtcreator project file load the project and select your build kit of choice. To build on Windows you'll need to reconfigure the project for your Win SDK, obviously. I'm on visual studio 2022, so you may need to create a project for your version and add the source modules manually. For visual studio code I have no idea, I rarely use that ide. For eclipse? Lift the voodoo curse off yourself and stop using it, you know that thing was originally written by IBM??
 
