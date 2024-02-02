@@ -4,7 +4,7 @@ LDFLAGS =
 
 # this lists the binaries to produce, the (non-PHONY, binary) targets in
 # the previous manual Makefile
-sbin_PROGRAMS = interp
+sbin_PROGRAMS = interp help
 interp_SOURCES =	src/main.c \
 						src/intrinsic.c \
 						src/foo1.c \
@@ -13,6 +13,7 @@ interp_SOURCES =	src/main.c \
 AM_CPPFLAGS = -Wall -std=c11 -Wno-unused-result -Wno-unused-function \
                         -I$(top_srcdir)/include
 man_MANS = 
+
 EXTRA_DIST = include/foo1.h \
 	                    include/intrinsic.h \
 	                    include/simple_strlib.h \
@@ -21,3 +22,6 @@ EXTRA_DIST = include/foo1.h \
 	                    include/utils/getopt.h \
 	                    include/utils/xgetopt.h
 
+help:
+	@echo "Installing interp help file"
+	cp ./extra/interp.hlp ~/.interp.hlp
