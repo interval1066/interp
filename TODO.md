@@ -16,3 +16,4 @@
 - [ ] Implement and USE uinfo struct in support.h.
 - [ ] Add posix style command line options.
 - [ ] Add case senitivity as an option.
+- [X] Make use of encryption module.
