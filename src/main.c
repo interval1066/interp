@@ -43,6 +43,23 @@ sig_handler(int sign)
 }
 
 static int
+sanitize_buf()
+{
+    static char ok_chars[] = "abcdefghijklmnopqrstuvwxyz"
+                             "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                             "1234567890_-.@";
+
+    char user_data[] = "Bad char 1:} Bad char 2:{";
+    char *cp = user_data; // Cursor into string
+    const char *end = user_data + strlen(user_data);
+
+    for (cp += strspn(cp, ok_chars); cp != end; cp += strspn(cp, ok_chars))
+        *cp = '_';
+
+    return CMD_OK;
+}
+
+static int
 init(void)
 {
     int len2;
