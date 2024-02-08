@@ -18,3 +18,4 @@
 - [ ] Add case senitivity as an option.
 - [X] Make use of encryption module.
 - [ ] Add a string member to the user context struct that holds the user's prompt so when user changes it it can be reflected immedaitely.
+- [ ] Rename any "motd" references to "intrpmotd" or anything else, to easy to confuse with the actual linux motd file.
