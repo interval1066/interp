@@ -17,3 +17,4 @@
 - [ ] Add posix style command line options.
 - [ ] Add case senitivity as an option.
 - [X] Make use of encryption module.
+- [ ] Add a string member to the user context struct that holds the user's prompt so when user changes it it can be reflected immedaitely.
