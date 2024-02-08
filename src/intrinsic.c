@@ -24,13 +24,13 @@ find_help_section(char* section)
 	char cfg_path[MAXBUF], chunk[MAXBUF];
 
 	memset(cfg_path, 0, sizeof(cfg_path));
+    get_userdir(cfg_path);
 #ifndef _MSC_VER
-	get_userdir(cfg_path);
 	strcat(cfg_path, "/.interp.hlp");
 #else
-	get_userdir(cfg_path);
-	strcat(cfg_path, "\\.interp.hlp");
+    strcat(cfg_path, "\\.interp.hlp");
 #endif
+
 	fp = fopen(cfg_path, "r");
     if(!fp) return CMD_FILEEXST;
 
@@ -73,8 +73,14 @@ motd(char* string)
 #else
     strcat(mot_path, "\\.motd");
 #endif
-    write_motd(mot_path, string);
+    //write_motd(mot_path, string);
+    //printf("----> %s\n", string);
+    char newm[MAXMOTD];
+    memset(newm, '\0', MAXMOTD);
+    mid(string, 6, find_ch_index(string, '"'), newm, strlen(string));
 
+    remove_first(newm, "\"");
+    encode(mot_path, newm);
     return CMD_OK;
 }
 
@@ -97,5 +103,6 @@ prompt(char* opts)
 int
 quit(char* opts)
 {
+    // nothing special to do here yet
     return CMD_QUIT;
 }

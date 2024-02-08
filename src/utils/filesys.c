@@ -158,15 +158,13 @@ write_motd(char* path, const char* motd)
 {
 	char newm[MAXMOTD];
 	memset(newm, '\0', MAXMOTD);
+    mid(motd, 6, find_ch_index(motd, '"'), newm, strlen(motd));
 
-	FILE* fp = fopen(path, "w");
-	if (fp == NULL)
-		return CMD_ERR;
+    remove_first(newm, "\"");
+    FILE* fp = fopen(path, "w");
+    if (fp == NULL) return CMD_ERR;
 
-	mid(motd, 6, find_ch_index(motd, '"'), newm, strlen(motd));
-	remove_first(newm, "\"");
 	fprintf(fp, "%s", newm);
-
 	fclose(fp);
 
 	return CMD_OK;
@@ -258,9 +256,3 @@ file_exists(const char* filename)
   struct stat buffer;
   return (stat (filename, &buffer) == 0);
 }
-
-/*int
-write_config(config_t* cfg, char* cfg_file)
-{
-
-}*/

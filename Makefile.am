@@ -8,7 +8,8 @@ sbin_PROGRAMS = interp help
 interp_SOURCES =	src/main.c \
 						src/intrinsic.c \
 						src/foo1.c \
-						src/utils/filesys.c
+						src/utils/filesys.c \
+						src/utils/huff.c
 
 AM_CPPFLAGS = -Wall -std=c11 -Wno-unused-result -Wno-unused-function \
                         -I$(top_srcdir)/include
@@ -20,7 +21,8 @@ EXTRA_DIST = include/foo1.h \
 	                    include/support.h \
 	                    include/utils/filesys.h \
 	                    include/utils/getopt.h \
-	                    include/utils/xgetopt.h
+	                    include/utils/xgetopt.h \
+	                    include/utils/huff.h
 
 help:
 	@echo "Installing interp help file"

@@ -71,8 +71,11 @@ init(void)
     strcat(cfg_path, "\\.interp.ini");
 #endif
     strcpy(main_prompt, tmp);
-    if (access(banner_path, 0) == 0)
-        read_motd(banner_path);
+    if (access(banner_path, 0) == 0) {
+        //read_motd(banner_path);
+        decode(banner_path);
+        printf("\n");
+    }
 
     return CMD_OK;
 }
