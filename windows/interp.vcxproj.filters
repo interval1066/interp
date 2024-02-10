@@ -30,6 +30,9 @@
     <ClCompile Include="..\src\intrinsic.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\utils\huff.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\simple_strlib.h">
