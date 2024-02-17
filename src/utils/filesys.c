@@ -247,6 +247,7 @@ set_keyvalue(const char* key, const char* value)
     }
 
     config_destroy(&cfg);
+
     return CMD_OK;
 }
 

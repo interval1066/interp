@@ -1,5 +1,7 @@
 #include "intrinsic.h"
 
+extern struct user_ctx user;
+
 int
 help(char* opts)
 {
@@ -56,7 +58,6 @@ int
 motd(char* string)
 {
     char cfg_path[MAXBUF], mot_path[MAXBUF];
-
     if(strlen(string) < 3)
         return CMD_ARGS;
 
@@ -65,37 +66,32 @@ motd(char* string)
 
     memset(cfg_path, 0, sizeof(cfg_path));
     get_userdir(cfg_path);
-
     strcpy(mot_path, cfg_path);
+
     remove_first(mot_path, ".interp.ini");
 #ifndef _MSC_VER
     strcat(mot_path, "/.motd");
 #else
     strcat(mot_path, "\\.motd");
 #endif
-    //write_motd(mot_path, string);
-    //printf("----> %s\n", string);
     char newm[MAXMOTD];
     memset(newm, '\0', MAXMOTD);
     mid(string, 6, find_ch_index(string, '"'), newm, strlen(string));
 
     remove_first(newm, "\"");
     encode(mot_path, newm);
+
     return CMD_OK;
 }
 
 int
 prompt(char* opts)
 {
-    if(strlen(opts) > 24) return CMD_ARGS;
-    char buf[16] = { 0 };
-    strncpy(buf,
-            right(opts, (int)strlen(opts) - 9),
-            strlen(opts) - 2);
+    char *buf;
+    substr((const char*)opts, '\"', &buf);
+    memset(user.prompt, 0, strlen(user.prompt));
 
-#ifndef _MSC_VER
-    set_keyvalue("prompt", buf);
-#endif
+    strcpy(user.prompt, buf);
 
     return CMD_OK;
 }

@@ -34,11 +34,11 @@ typedef enum
 	CMD_BANNERPTH		= -5,   //
 	CMD_FILEEXST		= -4,   // file exists
 	CMD_FILENF			= -3,   // file not found
-	CMD_ARGS				= -2,   // error with command arguments
+	CMD_ARGS			= -2,   // error with command arguments
 	CMD_ERR				= -1,   // non-specific error
 	CMD_OK				= 0,    // command completed successfully
-	CMD_QUIT				= 1,    // exit application
-	CMD_NOOP				= 2     // no operation
+	CMD_QUIT			= 1,    // exit application
+	CMD_NOOP			= 2     // no operation
 } RET_CODE;
 
 typedef int (*command_object)(char*);
@@ -50,6 +50,7 @@ struct uinfo {
 struct user_ctx {
     int loglevel;
     bool admin;
+	char prompt[16];
 };
 
 #ifdef __cplusplus

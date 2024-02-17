@@ -16,7 +16,6 @@ extern int help(char*);
 extern bool run_cmd(int, char*);
 extern bool proc_cmds(char**, int);
 struct user_ctx user;
-static char main_prompt[16];
 
 /**
  * @file    main.c
@@ -62,21 +61,22 @@ sanitize_buf()
 static int
 init(void)
 {
-    int len2;
     char tmp[16] = { 0 };
+    memset(user.prompt, 0, sizeof(user.prompt));
+    strcpy(tmp, get_keyvalue("prompt", ""));
 
-    memset(main_prompt, '\0', sizeof(main_prompt));
-    strcpy(tmp, get_keyvalue("prompt", "> "));
-    len2 = (int)strlen(tmp);
+    if(strlen(tmp) == 0)
+        strcpy(tmp, get_keyvalue("prompt", "> "));
+
 #ifndef _MSC_VER
+    int len2 = (int)strlen(tmp);
     tmp[len2 - 1] = '\0';
 #endif
-    char banner_path[MAXBUF], cfg_path[MAXBUF], prompt_buf[32];
+    char banner_path[MAXBUF], cfg_path[MAXBUF];
     signal(SIGINT, sig_handler);
 
     memset(cfg_path, 0, sizeof(cfg_path));
     memset(banner_path, 0, sizeof(banner_path));
-    memset(prompt_buf, 0, sizeof(prompt_buf));
 
     get_userdir(cfg_path);
     strcpy(banner_path, cfg_path);
@@ -87,9 +87,8 @@ init(void)
     strcat(banner_path, "\\.motd");
     strcat(cfg_path, "\\.interp.ini");
 #endif
-    strcpy(main_prompt, tmp);
+
     if (access(banner_path, 0) == 0) {
-        //read_motd(banner_path);
         decode(banner_path);
         printf("\n");
     }
@@ -100,8 +99,30 @@ init(void)
 static int
 readconfig(void)
 {
+    config_setting_t* setting;
+    char cfg_path[MAXBUF];
+    memset(cfg_path, 0, sizeof(cfg_path));
+
+    get_userdir(cfg_path);
+#ifndef _MSC_VER
+    strcat(cfg_path, "/.interp.ini");
+#else
+    strcat(cfg_path, "\\.interp.ini");
+#endif
+    config_t cfg;
+
+    config_init(&cfg);
+    config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
+        | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
+        | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
+
+    config_read_file(&cfg, cfg_path);
+    setting = config_lookup(&cfg, "prompt");
     user.loglevel = 0;
+
     user.admin = false;
+    strcpy(user.prompt, config_setting_get_string(setting));
+    config_destroy(&cfg);
 
     return CMD_OK;
 }
@@ -109,6 +130,34 @@ readconfig(void)
 static int
 writeconfig(void)
 {
+    config_setting_t* setting;
+    char cfg_path[MAXBUF];
+    memset(cfg_path, 0, sizeof(cfg_path));
+
+    get_userdir(cfg_path);
+#ifndef _MSC_VER
+    strcat(cfg_path, "/.interp.ini");
+#else
+    strcat(cfg_path, "\\.interp.ini");
+#endif
+    config_t cfg;
+
+    config_init(&cfg);
+    config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
+        | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
+        | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
+
+    config_read_file(&cfg, cfg_path);
+    setting = config_lookup(&cfg, "prompt");
+    config_setting_set_string(setting, user.prompt);
+
+    if (!config_write_file(&cfg, cfg_path)) {
+        config_destroy(&cfg);
+        return CMD_IOERR;
+    }
+
+    config_destroy(&cfg);
+
     return CMD_OK;
 }
 
@@ -129,7 +178,7 @@ main(int argc, char** argv)
 	do {
 		len = 0;
 		char* cmd_string = NULL;
-		printf("%s", main_prompt);
+		printf("%s", user.prompt);
 		
 		/* Es ist lächerlich, dass es keine gute Möglichkeit
 		gibt, eine Art Metacode zu erstellen, um Tabulatoren,

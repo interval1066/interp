@@ -218,6 +218,43 @@ replace_char(char* str, char find, char replace){
     return str;
 }
 
+static void
+substr(const char* inputString, char delimiter, char** resultBuffer) {
+    // Find the first occurrence of the delimiter
+    const char* firstOccurrence = strchr(inputString, delimiter);
+
+    if (firstOccurrence == NULL) {
+        // Delimiter not found
+        *resultBuffer = NULL;
+        return;
+    }
+
+    // Find the second occurrence of the delimiter
+    const char* secondOccurrence = strchr(firstOccurrence + 1, delimiter);
+
+    if (secondOccurrence == NULL) {
+        // Second occurrence not found
+        *resultBuffer = NULL;
+        return;
+    }
+
+    // Calculate the length of the substring
+    size_t substringLength = secondOccurrence - (firstOccurrence + 1);
+
+    // Allocate memory for the result buffer
+    *resultBuffer = (char*)malloc(substringLength + 1);
+
+    if (*resultBuffer == NULL) {
+        // Memory allocation failed
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Copy the substring into the result buffer
+    strncpy(*resultBuffer, firstOccurrence + 1, substringLength);
+    (*resultBuffer)[substringLength] = '\0'; // Null-terminate the string
+}
+
 #ifdef __cplusplus
 }
 #endif

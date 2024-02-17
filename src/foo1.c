@@ -6,6 +6,7 @@ char dateout[16];
 char timeout[20];
 extern const char* commands;
 extern int noCmds;
+extern struct user_ctx user;
 
 /**
  * Command objects. Normally these would go into separate translation units.
@@ -171,8 +172,17 @@ loglevel(char* opts)
 {
     int size;
     char** splitresult = split(opts, ' ', &size);
-    printf("======> %s\n", splitresult[1]);
 
+	if(size == 1) {
+        printf("Current log level: %i\n", user.loglevel);
+        return CMD_OK;
+    }
+
+    int m = atoi(splitresult[1]);
+    if((m < 0) && m > 4)
+        return CMD_ARGS;
+
+    user.loglevel = m;
     free(splitresult);
 
     return CMD_OK;
