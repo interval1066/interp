@@ -27,7 +27,8 @@ HEADERS += \
     ../include/simple_strlib.h \
     ../include/support.h \
     ../include/utils/filesys.h \
-    ../include/utils/huff.h
+    ../include/utils/huff.h \
+    ../include/utils/xgetopt.h
 
 CONFIG(release, debug|release) {
     QMAKE_POST_LINK=$(STRIP) $(TARGET)
