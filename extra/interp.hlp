@@ -9,9 +9,9 @@ batch|=====||batch <list>||Execute a batch list.
 bert|====||bert <no> (on/off)||Check the status or activate/deactivate the specified BERT device.
 help|====||help <topic>||Get command list or detail on the specified topic.
 motd|====||motd <message>||Set the message of the day for the interpreter. The message must be quote surrounded.
-prompt|=====||prompt <new prompt>||Set a new prompt for the interpreter. The prompt will be avilable when the interpreter is re-started. The new prompt must be quote surrounded.
+prompt|=====||prompt <new prompt>||Set a new prompt for the interpreter. The new prompt must be double quote surrounded.
 quit|====||quit||Exit the application.
 date|====||date||Output the current date.
 list|====||list <new list/(all)>||Create a new batch list, or list all existing lists.
 time|====||time||Output the current time.
-loglevel|====||loglevel <level>||Set logging on/off and verbosity.
+loglevel|====||loglevel (level)||Set logging on/off and verbosity. Setting the log level to 0 will turn it off. Entering "loglevel" with no arguments will return the current log level.

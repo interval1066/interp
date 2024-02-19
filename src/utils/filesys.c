@@ -123,12 +123,25 @@ create_cfgfile(const char* file_path)
         setting = config_setting_add(root, "prompt", CONFIG_TYPE_STRING);
     config_setting_set_string(setting, "> ");
 
-    if(! config_write_file(&cfg, cfg_path)) {
+    setting = config_setting_get_member(root, "loglevel");
+    if (!setting)
+        setting = config_setting_add(root, "loglevel", CONFIG_TYPE_INT);
+
+    config_setting_set_int(setting, 0);
+
+    setting = config_setting_get_member(root, "admin");
+    if (!setting)
+        setting = config_setting_add(root, "admin", CONFIG_TYPE_BOOL);
+
+    config_setting_set_int(setting, false);
+
+    if(!config_write_file(&cfg, cfg_path)) {
         config_destroy(&cfg);
         return CMD_IOERR;
     }
 
     config_destroy(&cfg);
+
     return CMD_OK;
 }
 

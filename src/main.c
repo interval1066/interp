@@ -10,7 +10,7 @@
 #include "intrinsic.h"
 #include "support.h"
 #include "parser.h"
-#include "xgetopt.h"
+#include "error_info.h"
 
 extern int noCmds;
 extern int help(char*);
@@ -42,6 +42,9 @@ sig_handler(int sign)
     signal(SIGINT, sig_handler);
 }
 
+/**
+* buffer sanitizer, on hold for now
+*/
 static int
 sanitize_buf()
 {
@@ -59,6 +62,12 @@ sanitize_buf()
     return CMD_OK;
 }
 
+/**
+ * initial state
+ * 
+ * set defaults includeing prompt which is a "> " (greater than + space), can be changed
+ * via the 'prompt' intrinsic command.
+ */
 static int
 init(void)
 {
@@ -88,6 +97,10 @@ init(void)
     strcat(banner_path, "\\.motd");
     strcat(cfg_path, "\\.interp.ini");
 #endif
+    if (!file_exists(cfg_path)) {
+        printf("Corrupt init file\n");
+        exit(1);
+    }
 
     if (access(banner_path, 0) == 0) {
         decode(banner_path);
@@ -96,7 +109,10 @@ init(void)
 
     return CMD_OK;
 }
-
+/**
+ * restore user configuration. If the user explicately set the prompt
+ * to "no character", even that choice is maintained.
+ */
 static int
 readconfig(void)
 {
@@ -119,22 +135,39 @@ readconfig(void)
 
     config_read_file(&cfg, cfg_path);
     setting = config_lookup(&cfg, "prompt");
-    user.loglevel = 0;
+    if (!setting)
+        strcpy(user.prompt, "> ");
 
-    user.admin = false;
     strcpy(user.prompt, config_setting_get_string(setting));
+
+    setting = config_lookup(&cfg, "loglevel");
+    if (!setting)
+        user.loglevel = 0;
+    else
+        user.loglevel = config_setting_get_int(setting);
+    
+    setting = config_lookup(&cfg, "admin");
+    if (!setting)
+        user.admin = false;
+    else
+        user.admin = config_setting_get_bool(setting);
+
     config_destroy(&cfg);
 
     return CMD_OK;
 }
 
-static int
+/**
+ * write user configuration
+ */
+int
 writeconfig(void)
 {
+    int nErr = CMD_OK;
     config_setting_t* setting;
     char cfg_path[MAXBUF];
-    memset(cfg_path, 0, sizeof(cfg_path));
 
+    memset(cfg_path, 0, sizeof(cfg_path));
     get_userdir(cfg_path);
 #ifndef _MSC_VER
     strcat(cfg_path, "/.interp.ini");
@@ -150,7 +183,22 @@ writeconfig(void)
 
     config_read_file(&cfg, cfg_path);
     setting = config_lookup(&cfg, "prompt");
-    config_setting_set_string(setting, user.prompt);
+    if (setting)
+        config_setting_set_string(setting, user.prompt);
+    else
+        nErr = CMD_MISPARAM; 
+
+    setting = config_lookup(&cfg, "loglevel");
+    if (setting)
+        config_setting_set_int(setting, user.loglevel);
+    else
+        nErr = CMD_MISPARAM; 
+
+    setting = config_lookup(&cfg, "admin");
+    if (setting)
+        config_setting_set_bool(setting, user.admin);
+    else
+        nErr = CMD_MISPARAM; 
 
     if (!config_write_file(&cfg, cfg_path)) {
         config_destroy(&cfg);
@@ -159,7 +207,7 @@ writeconfig(void)
 
     config_destroy(&cfg);
 
-    return CMD_OK;
+    return nErr;
 }
 
 /**

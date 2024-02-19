@@ -9,6 +9,7 @@
 #include "utils/filesys.h"
 #endif
 #include "simple_strlib.h"
+#include "error_info.h"
 
 #ifdef __cplusplus
 extern "C"{

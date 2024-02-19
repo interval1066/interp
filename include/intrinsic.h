@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include "utils/filesys.h"
 #include "utils/huff.h"
+#include "error_info.h"
 
 extern char dateout[16];
 extern char timeout[20];

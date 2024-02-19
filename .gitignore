@@ -48,7 +48,6 @@
 *.dirstamp
 .vs/
 .deps/
-.dirstamp
 x64/
 build-interp-*/
 

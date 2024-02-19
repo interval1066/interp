@@ -16,6 +16,7 @@
 #endif
 #include "support.h"
 #include "simple_strlib.h"
+#include "error_info.h"
 
 #define MAXSIZE 256
 
@@ -45,7 +46,7 @@ const char* get_keyvalue(const char*, const char*);
 
 int set_keyvalue(const char*, const char*);
 bool file_exists(const char*);
-//int write_config(config_t*, char*);
+int write_config(config_t*, char*);
 
 #ifdef __cplusplus
 }

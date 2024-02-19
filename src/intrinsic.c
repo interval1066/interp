@@ -2,6 +2,8 @@
 
 extern struct user_ctx user;
 
+extern int writeconfig();
+
 int
 help(char* opts)
 {
@@ -88,9 +90,13 @@ int
 prompt(char* opts)
 {
     char *buf;
+
+    int n = countc(opts, '\"');
+    if (n < 2)
+        return CMD_ARGS;
+
     substr((const char*)opts, '\"', &buf);
     memset(user.prompt, 0, strlen(user.prompt));
-
     strcpy(user.prompt, buf);
 
     return CMD_OK;
@@ -99,6 +105,6 @@ prompt(char* opts)
 int
 quit(char* opts)
 {
-    // nothing special to do here yet
+    writeconfig();
     return CMD_QUIT;
 }
