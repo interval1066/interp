@@ -84,12 +84,12 @@ init(void)
 #endif
     char banner_path[MAXBUF], cfg_path[MAXBUF];
     signal(SIGINT, sig_handler);
-
     memset(cfg_path, 0, sizeof(cfg_path));
+	
     memset(banner_path, 0, sizeof(banner_path));
-
     get_userdir(cfg_path);
     strcpy(banner_path, cfg_path);
+	
 #ifndef _MSC_VER
     strcat(banner_path, "/.motd");
     strcat(cfg_path, "/.interp.ini");
@@ -97,6 +97,7 @@ init(void)
     strcat(banner_path, "\\.motd");
     strcat(cfg_path, "\\.interp.ini");
 #endif
+	
     if (!file_exists(cfg_path)) {
         printf("Corrupt init file\n");
         exit(1);
