@@ -237,7 +237,7 @@ main(int argc, char** argv)
 		char** splitresult = split(cmd_string, ' ', &size);
 
 		bDo = proc_cmds(splitresult, size);
-        free(&splitresult[0]);
+        	free(&splitresult[0]);
 	} while (bDo);
 
     writeconfig();
