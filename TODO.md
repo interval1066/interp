@@ -1,5 +1,5 @@
 - [X] Fix help file reader
-- [ ] Implement make install for help, ini files.
+- [X] Implement make install for help, ini files.
 - [ ] Debug interpreter, seems to be some issues
 - [X] Setting the prompt to the time or date output doesn't work, will need to surround command with escape characters I'm sure.
 - [X] Need to check for the existence of motd, hlp, and so on or the app falls over when it assume they are availalbe and they aren't.
@@ -11,11 +11,11 @@
 - [X] Report to the user that dependancies (like libconfig) aren't on the build host.
 - [ ] Manpage? Maybe?
 - [ ] Add some code that actually uses the threadpool.
-- [ ] Check to see if the code is truly thread-safe, I'm sure its not.
+- [ ] Check to see if the code is truly thread-safe, I'm sure its not (hello printf...)
 - [X] Fix help system.
 - [ ] Implement and USE uinfo struct in support.h.
 - [ ] Add posix style command line options.
-- [ ] Add case senitivity as an option.
+- [ ] Add case senitivity as an option (?).
 - [X] Make use of encryption module.
-- [ ] Add a string member to the user context struct that holds the user's prompt so when user changes it it can be reflected immedaitely.
+- [X] Add a string member to the user context struct that holds the user's prompt so when user changes it it can be reflected immedaitely.
 - [ ] Rename any "motd" references to "intrpmotd" or anything else, too easy to confuse with the actual linux motd file.
