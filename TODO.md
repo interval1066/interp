@@ -4,7 +4,7 @@
 - [X] Setting the prompt to the time or date output doesn't work, will need to surround command with escape characters I'm sure.
 - [X] Need to check for the existence of motd, hlp, and so on or the app falls over when it assume they are availalbe and they aren't.
 - [ ] At the point where I need to add that error reporting module.
-- [ ] Port to ARM64.
+- [X] Port to ARM64.
 - [X] Probably getting close to time to think about changing the recursive makefile to a canonical makefile chain, or use cmake.
 - [X] Same repo builds on Windows and Linux x64.
 - [X] Fix stack corruption when windows version exits.
