@@ -30,6 +30,7 @@
     <ClInclude Include="..\include\error_info.h" />
     <ClInclude Include="..\include\foo1.h" />
     <ClInclude Include="..\include\intrinsic.h" />
+    <ClInclude Include="..\include\logger.h" />
     <ClInclude Include="..\include\parser.h" />
     <ClInclude Include="..\include\simple_strlib.h" />
     <ClInclude Include="..\include\support.h" />

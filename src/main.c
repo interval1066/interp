@@ -11,6 +11,7 @@
 #include "support.h"
 #include "parser.h"
 #include "error_info.h"
+#include "logger.h"
 
 extern int noCmds;
 extern int help(char*);
@@ -147,6 +148,9 @@ readconfig(void)
     else
         user.loglevel = config_setting_get_int(setting);
     
+    if (user.loglevel > 0)
+        StartLogger(user.loglevel);
+
     setting = config_lookup(&cfg, "admin");
     if (!setting)
         user.admin = false;
