@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdio.h>
-
 /**
  * Internal objects ONLY
  */
@@ -20,10 +18,6 @@
 #define MAX(a,b) (((a)>(b))?(a):(b))
 #endif
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-
 typedef int (*command_object)(char*);
 
 struct uinfo {
@@ -36,6 +30,3 @@ struct user_ctx {
 	char prompt[16];
 };
 
-#ifdef __cplusplus
-}
-#endif
