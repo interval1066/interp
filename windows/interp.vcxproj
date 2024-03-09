@@ -25,6 +25,7 @@
     <ClCompile Include="..\src\utils\filesys.c" />
     <ClCompile Include="..\src\utils\huff.c" />
     <ClCompile Include="src\winstring_ext.c" />
+    <ClCompile Include="src\winthread.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\error_info.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="..\include\support.h" />
     <ClInclude Include="..\include\utils\filesys.h" />
     <ClInclude Include="..\include\utils\huff.h" />
+    <ClInclude Include="include\winthread.h" />
     <ClInclude Include="include\winunistd.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
