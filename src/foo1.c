@@ -16,6 +16,12 @@ extern struct user_ctx user;
  * for any nessessary arguments.
  */
 int
+dummy(char* opts)
+{
+	return CMD_OK;
+}
+
+int
 aaa(char* opts)
 {
 	int size;
@@ -188,4 +194,8 @@ loglevel(char* opts)
     return CMD_OK;
 }
 
-
+int
+filet(char* opts)
+{
+	return CMD_OK;
+}

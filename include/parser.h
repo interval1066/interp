@@ -20,7 +20,10 @@ extern "C"{
 extern const char* strstrip(char*);
 
 // Just a simple jump table 
-const char* commands[] = {  "aaa",
+const char* commands[] = {  
+                            "dummy",
+                            "help",
+                            "aaa",
                             "access-lists",
                             "amplifiers",
                             "app",
@@ -28,7 +31,6 @@ const char* commands[] = {  "aaa",
                             "badl",
                             "batch",
                             "bert",
-                            "help",
                             "motd",
                             "prompt",
                             "quit",
@@ -36,10 +38,12 @@ const char* commands[] = {  "aaa",
                             "lists",
                             "time2",
                             "loglevel",
+                            "filet",
                             "?" };
 
 int (*table[])() = {
-    aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2, loglevel
+    dummy, help, aaa, alist, amp, app, arp, badl, batch, bert,
+    motd, prompt, quit, date, list, time2, loglevel, filet,
 };
 
 #ifdef _MSC_VER
@@ -55,26 +59,24 @@ run_cmd(int nCmd, char* full_cmd)
 
     if(nCmd == CMD_ERR) {
         printf("Unknown command.\n");
-
         return true;
     }
+
     // If help is invoked with '?'
-    if(nCmd == noCmds) nCmd = 8;
-    if((nCmd == 8) && (strlen(full_cmd) < 5)) {
+    if(nCmd == noCmds) nCmd = 0;
+    if((nCmd == 0) && (strlen(full_cmd) < 5)) {
         printf("\n");
 
-        while(strchr(*(commands + n++), '?') == NULL)
+        while(strchr(*(commands + ++n), '?') == NULL)
             printf("- %s\n", *(commands + n));
-
         printf("\n");
     }
 
     int nStatus = CMD_ERR, (**p)(char*);
     p = table;
-
     // command found, execute it.
     nStatus = (*p[nCmd])((char*)strstrip(full_cmd));
-    // if its the 'special' quit command bail.
+    // if its the 'special' quit command; bail.
 
     if (nStatus == CMD_QUIT)
         return false;
@@ -83,14 +85,14 @@ run_cmd(int nCmd, char* full_cmd)
 }
 
 /**
- * @brief		  Process the commands rejecting those that aren't on the list
- *            This needs to be moved to another translation unit (completed 11/2023)
+ * @brief       Process the commands rejecting those that aren't on the list
+ *              This needs to be moved to another translation unit (completed 11/2023)
  *
- * @param		  char**	inp The string to process
- * @param		  int		size The number of command elements
+ * @param       char**	inp The string to process
+ * @param		int		size The number of command elements
  * @return		boolean	returns the status of the run_cmd
- *				    function, which is only false if we
- *				    process a quit command.
+ *				        function, which is only false if we
+ *				        process a quit command.
  */
 bool
 proc_cmds(char** inp, int size)
@@ -119,7 +121,6 @@ proc_cmds(char** inp, int size)
             return run_cmd(nCmd, full_cmd);
         }
     }
-
     return run_cmd(CMD_ERR, NULL);
 }
 

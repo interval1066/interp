@@ -15,6 +15,8 @@
 extern "C"{
 #endif
 
+int dummy(char*);
+
 int aaa(char*);
 int alist(char*);
 int amp(char*);
@@ -30,6 +32,8 @@ int date(char*);
 int list(char*);
 int time2(char*);
 int loglevel(char*);
+
+int filet(char*);
 
 #ifdef __cplusplus
 }

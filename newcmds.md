@@ -16,9 +16,11 @@ facility we'll just worry about adding the command to the interpreter.</p>
 <p>Let's add the command "loglevel" with an integer parameter 0-4. 0 will mean logging off, and 4 is the highest
 level of verbosity:</p>
 
-1. Add our new command "loglevel" to the "commands" double array in the "parser.h" file. The question mark must be the last command in the array:
+1. Add our new command "loglevel" to the "commands" double array in the "parser.h" file. The question mark must be the last command in the array, and help must always be first:
  ``` c
- const char* commands[] = {  "aaa",
+ const char* commands[] = {  "dummy",
+			     "help",
+			     "aaa",
                              "access-lists",
                              "amplifiers",
                              "app",
@@ -30,7 +32,8 @@ level of verbosity:</p>
 Importance is its place in the table, not its value:
 ``` c
 int (*table[])() = {
-    aaa, alist, amp, app, arp, badl, batch, bert, help, motd, prompt, quit, date, list, time2, loglevel
+    	dummy, help, aaa, alist, amp, app, arp, badl, batch, bert,
+	help, motd, prompt, quit, date, list, time2, loglevel
 };
 ```
 3. For statically linked commands define the function(s) for your new command in either foo1.c or add a new source file to the project. Add the new function prototypes to the appropriate header files. Use a pointer to the command invocation for access to parameters and delimeter processing; for example; if you want to use posix-style parameter marking ('-' & '--', and etc) define that in your new translation unit and pass all paramters through it before routing to the actual command definition. Look to the command examples in foo1.c for examples.
@@ -39,4 +42,5 @@ int (*table[])() = {
 
 No modification of the parser code should be required for the UTF-8 charcter set-based projects. A list of all the commands printed out when the user enters "help" or "?" is generated automtically from the available data. Command descriptions must be entered into the text file in the extra directory.
 
+The "dummy" command is nessessary for now, obviously an index is off, I'll be getting rid of that when I find the error.
 If you do see a problem a report would be appreciated. interval1066@gmail.com.
