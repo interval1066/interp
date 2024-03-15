@@ -17,3 +17,5 @@ typedef enum
 	CMD_QUIT = 1,    // exit application
 	CMD_NOOP = 2     // no operation
 } RET_CODE;
+
+// Hashmap of pointers to error text and codes whatever else.
