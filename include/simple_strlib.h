@@ -44,10 +44,10 @@ extern "C"{
 inline char*
 strlwr(char* s)
 {
-    char* p = (char*)s;
+    char* p = s;
 
     while(*p) {
-        *p = tolower((uint8_t)*p);
+        *p = tolower((uint32_t)*p);
         p++;
     }
     return s;
@@ -100,28 +100,34 @@ strstrip(char* s)
 }
 
 /**
- * @brief		Split the string at delimiters using a zero-copy in-place algorithm
+ * @brief       Split the string at delimiters using a zero-copy in-place algorithm
  *
- * @param		s The string to split (every delimiter will be replaced by NULL)
- * @param		delimiter The delimiter character to split at
- * @param		size The size of the return array w
- * @return		A list of char* (size stored in *size), pointing to all split results in order
- *				don't forget to free the returned array in the caller
+ * @param       s The string to split (every delimiter will be replaced by NULL)
+ * @param       delimiter The delimiter character to split at
+ * @param       size The size of the return array w
+ * @return      A list of char* (size stored in *size), pointing to all split results in order
+ *              Don't forget to free the returned array in the caller
  */
 static inline char**
 split(char* s, char delimiter, int* size)
 {
-    int numdelimiters = countc((const char*)s, delimiter);
-    char** splitresult = (char**)malloc((numdelimiters + 1) * sizeof(char*));
+    int numdelimiters = countc(s, delimiter);
+    char** splitresult = malloc((numdelimiters + 2) * sizeof(char*)); // +2 for the last substring and NULL terminator
+
+    if (splitresult == NULL) {
+        *size = 0;
+        return NULL;  // Memory allocation failed
+    }
 
     splitresult[0] = s;
     int i = 1;
     char* hit = s;
 
-    while((hit = strchr(hit, delimiter)) != NULL) {
+    while ((hit = strchr(hit, delimiter)) != NULL) {
         *hit++ = '\0';
         splitresult[i++] = hit;
     }
+    splitresult[i] = NULL; // Mark the end of the splitresult array with NULL
     *size = numdelimiters + 1;
 
     return splitresult;
@@ -137,13 +143,15 @@ split(char* s, char delimiter, int* size)
 static inline void
 remove_first(char* str, const char* str_remove)
 {
-    size_t i, j, len, remove_len;
+    size_t j;
+    size_t len;
+    size_t remove_len;
     int found = 0;
 
     len = strlen(str);
     remove_len = strlen(str_remove);
 
-    for(i = 0; i < len; i++) {
+    for(size_t i = 0; i < len; i++) {
         found = 1;
         for(j = 0; j < remove_len; j++) {
             if(*(str + i + j) != *(str_remove + j)) {
@@ -191,9 +199,7 @@ find_ch_index(const char* string, char ch)
 static inline void
 mid(const char* src, size_t start, size_t length, char* dst, size_t dstlen)
 {
-    //size_t len = MIN(dstlen - 1, length);
-	size_t len = MIN(dstlen, length);
-
+    size_t len = MIN(dstlen, length);
     strncpy(dst, src + start, len);
     // zero terminate because strncpy() didn't ?
     if(len < length)

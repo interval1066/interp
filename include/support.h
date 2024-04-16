@@ -1,4 +1,6 @@
 #pragma once
+#pragma warning( push )
+#pragma warning( disable : 5945 )
 
 /**
  * Internal objects ONLY
@@ -24,9 +26,11 @@ struct uinfo {
     struct passwd* info;
 };
 
-struct user_ctx {
+struct user_ctx
+{
     int loglevel;
     bool admin;
 	char prompt[16];
 };
 
+#pragma warning( pop )

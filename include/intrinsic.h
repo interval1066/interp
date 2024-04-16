@@ -9,21 +9,28 @@
 #include "utils/huff.h"
 #include "error_info.h"
 
-extern char dateout[16];
-extern char timeout[20];
+#pragma warning( push )
+#pragma warning( disable : 4090 )
+#pragma warning( disable : 594 )
+#pragma warning( disable : 542 )
+
+extern const char dateout[16];
+extern const char timeout[20];
 extern const char* commands[];
-extern int noCmds;
+extern const int noCmds;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int help(char*);
-int find_help_section(char*);
-int motd(char*);
+int help(const char*);
+int find_help_section(const char*);
+int motd(const char*);
 
-int prompt(char*);
-int quit(char*);
+int prompt(const char*);
+int quit(const char*);
+
+#pragma warning ( pop )
 
 #ifdef __cplusplus
 }

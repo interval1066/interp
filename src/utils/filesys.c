@@ -1,4 +1,10 @@
-#include "utils/filesys.h"
+#include "filesys.h"
+
+#pragma warning( push )
+#pragma warning( disable : 594 )
+#pragma warning( disable : 4047 )
+#pragma warning( disable : 4024 )
+
 
 /**
  * @brief			find_cfgfile search for ini in a few predefined locations
@@ -107,7 +113,8 @@ create_cfgfile(const char* file_path)
 #endif
 
     config_t cfg;
-    config_setting_t *root, *setting;
+    config_setting_t* root;
+    config_setting_t* setting;
     config_init(&cfg);
 
     config_set_options(&cfg,
@@ -187,23 +194,22 @@ int
 read_motd(const char* path)
 {
     FILE* stream;
-    char line[MAXMOTD], * result;
+    char line[MAXMOTD];
+    int errno;
 
-    stream = fopen(path, "r");
-
-    if ((result = fgets(line, MAXMOTD, stream)) != NULL)
-        printf("%s\n", result);
-    else
-        return CMD_FILEEXST;
-    fclose(stream);
-
-    return CMD_OK;
+    errno = CMD_OK;
+    if(stream = fopen(path, "r") != NULL) {
+        if (NULL != fgets(&line, MAXMOTD, stream))
+            errno = CMD_FILEEXST;
+        fclose(stream);
+    }
+    return errno;
 }
 
 const char*
 get_keyvalue(const char* key, const char* def)
 {
-    config_setting_t *setting;
+    struct config_setting_t const *setting;
     char cfg_path[MAXBUF];
     memset(cfg_path, 0, sizeof(cfg_path));
 
@@ -270,3 +276,5 @@ file_exists(const char* filename)
   struct stat buffer;
   return (stat (filename, &buffer) == 0);
 }
+
+#pragma warning( pop )

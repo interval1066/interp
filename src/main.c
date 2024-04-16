@@ -13,8 +13,8 @@
 #include "error_info.h"
 #include "logger.h"
 
-extern int noCmds;
-extern int help(char*);
+extern const int noCmds;
+extern int help(const char*);
 extern int StartLogger(int);
 extern bool run_cmd(int, char*);
 extern bool proc_cmds(char**, int);
@@ -84,7 +84,8 @@ init(void)
     int len2 = (int)strlen(tmp);
     tmp[len2 - 1] = '\0';
 #endif
-    char banner_path[MAXBUF], cfg_path[MAXBUF];
+    char banner_path[MAXBUF];
+    char cfg_path[MAXBUF];
     signal(SIGINT, sig_handler);
     memset(cfg_path, 0, sizeof(cfg_path));
 	
@@ -243,7 +244,7 @@ main(int argc, char** argv)
 		char** splitresult = split(cmd_string, ' ', &size);
 
 		bDo = proc_cmds(splitresult, size);
-        	free(&splitresult[0]);
+        free(&splitresult[0]);
 	} while (bDo);
 
     writeconfig();

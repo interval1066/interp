@@ -17,6 +17,10 @@ extern char* strlwr(char*);
 extern "C"{
 #endif
 
+#pragma warning( push )
+#pragma warning( disable : 4090 )
+#pragma warning( disable : 542 )
+
 extern const char* strstrip(char*);
 
 // Just a simple jump table 
@@ -47,7 +51,7 @@ int (*table[])() = {
 };
 
 #ifdef _MSC_VER
-int noCmds = _countof(table);
+int const noCmds = _countof(table);
 #else
 int noCmds = *(&table + 1) - table;
 #endif
@@ -63,7 +67,7 @@ run_cmd(int nCmd, char* full_cmd)
     }
 
     // If help is invoked with '?'
-    if(nCmd == noCmds) nCmd = 0;
+    if (nCmd == noCmds) nCmd = 0;
     if((nCmd == 0) && (strlen(full_cmd) < 5)) {
         printf("\n");
 
@@ -72,10 +76,11 @@ run_cmd(int nCmd, char* full_cmd)
         printf("\n");
     }
 
-    int nStatus = CMD_ERR, (**p)(char*);
+    int nStatus = CMD_ERR;
+    int (**p)(char*);
     p = table;
     // command found, execute it.
-    nStatus = (*p[nCmd])((char*)strstrip(full_cmd));
+    nStatus = (*p[nCmd])(strstrip(full_cmd));
     // if its the 'special' quit command; bail.
 
     if (nStatus == CMD_QUIT)
@@ -123,6 +128,8 @@ proc_cmds(char** inp, int size)
     }
     return run_cmd(CMD_ERR, NULL);
 }
+
+#pragma warning ( pop )
 
 #ifdef __cplusplus
 }

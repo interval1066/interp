@@ -15,25 +15,25 @@
 extern "C"{
 #endif
 
-int dummy(char*);
+int dummy(const char*);
 
-int aaa(char*);
-int alist(char*);
-int amp(char*);
+int aaa(const char*);
+int alist(const char*);
+int amp(const char*);
 
-int app(char*);
-int arp(char*);
-int badl(char*);
+int app(const char*);
+int arp(const char*);
+int badl(const char*);
 
-int batch(char*);
-int bert(char*);
-int date(char*);
+int batch(const char*);
+int bert(const char*);
+int date(const char*);
 
-int list(char*);
-int time2(char*);
-int loglevel(char*);
+int list(const char*);
+int time2(const char*);
+int loglevel(const char*);
 
-int filet(char*);
+int filet(const char*);
 
 #ifdef __cplusplus
 }

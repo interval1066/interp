@@ -1,13 +1,17 @@
 #include "intrinsic.h"
 
 extern struct user_ctx user;
-
 extern int writeconfig();
 
+#pragma warning( push )
+#pragma warning( disable : 4090 )
+#pragma warning( disable : 594 )
+
 int
-help(char* opts)
+help(const char* opts)
 {
-    int size, retcode;
+    int size;
+    int retcode;
 	char** splitresult = split(opts, ' ', &size);
 	
 	if(size == 1)
@@ -21,11 +25,12 @@ help(char* opts)
 }
 
 int
-find_help_section(char* section)
+find_help_section(const char* section)
 {
 	bool found = false;
 	FILE* fp = NULL;
-	char cfg_path[MAXBUF], chunk[MAXBUF];
+    char cfg_path[MAXBUF];
+    char chunk[MAXBUF];
 
 	memset(cfg_path, 0, sizeof(cfg_path));
     get_userdir(cfg_path);
@@ -57,9 +62,11 @@ find_help_section(char* section)
 }
 
 int
-motd(char* string)
+motd(const char* string)
 {
-    char cfg_path[MAXBUF], mot_path[MAXBUF];
+    char cfg_path[MAXBUF];
+    char mot_path[MAXBUF];
+
     if(strlen(string) < 3)
         return CMD_ARGS;
 
@@ -87,7 +94,7 @@ motd(char* string)
 }
 
 int
-prompt(char* opts)
+prompt(const char* opts)
 {
     char *buf;
 
@@ -95,16 +102,20 @@ prompt(char* opts)
     if (n < 2)
         return CMD_ARGS;
 
-    substr((const char*)opts, '\"', &buf);
+    substr(opts, '\"', &buf);
     memset(user.prompt, 0, strlen(user.prompt));
     strcpy(user.prompt, buf);
+
+    free(buf);
 
     return CMD_OK;
 }
 
 int
-quit(char* opts)
+quit(const char* opts)
 {
     writeconfig();
     return CMD_QUIT;
 }
+
+#pragma warning( pop )

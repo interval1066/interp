@@ -1,28 +1,34 @@
 #include <string.h>
 #include "foo1.h"
-#include "utils/filesys.h"
+#include "filesys.h"
 
-char dateout[16];
-char timeout[20];
+const char dateout[16];
+const char timeout[20];
 extern const char* commands;
-extern int noCmds;
+extern const int noCmds;
 extern struct user_ctx user;
+
+#pragma warning( push )
+#pragma warning( disable : 836 )
+#pragma warning( disable : 594 )
+#pragma warning( disable : 4090 )
+#pragma warning( disable : 859 )
 
 /**
  * Command objects. Normally these would go into separate translation units.
  * Quit is a special command that has its own return status, needed to signal
  * to main that we are exiting.
  * Callee functions are responsible for parsing and converting the opts string
- * for any nessessary arguments.
+ * for any necessary arguments.
  */
 int
-dummy(char* opts)
+dummy(const char* opts)
 {
 	return CMD_OK;
 }
 
 int
-aaa(char* opts)
+aaa(const char* opts)
 {
 	int size;
 	char** splitresult = split(opts, ' ', &size);
@@ -39,7 +45,7 @@ aaa(char* opts)
 }
 
 int
-alist(char* opts)
+alist(const char* opts)
 {
 	int size;
 	char** splitresult = split(opts, ' ', &size);
@@ -53,7 +59,7 @@ alist(char* opts)
 }
 
 int
-amp(char* opts)
+amp(const char* opts)
 {
 	printf("amp called with %s\n", opts);
 
@@ -61,21 +67,21 @@ amp(char* opts)
 }
 
 int
-app(char* opts)
+app(const char* opts)
 {
 	printf("app called with %s\n", opts);
 	return CMD_OK;
 }
 
 int
-arp(char* opts)
+arp(const char* opts)
 {
 	printf("arp called with %s\n", opts);
 	return CMD_OK;
 }
 
 int
-badl(char* opts)
+badl(const char* opts)
 {
 	int n = 0;
 	char line[100];
@@ -94,30 +100,30 @@ badl(char* opts)
 }
 
 int
-batch(char* opts)
+batch(const char* opts)
 {
 	printf("batch called with %s\n", opts);
 	return CMD_OK;
 }
 
 int
-bert(char* opts)
+bert(const char* opts)
 {
 	printf("bert called with %s\n", opts);
 	return CMD_OK;
 }
 
 int
-get_date(char* opts)
+get_date(const char* opts)
 {
     sprintf(opts, "%s\n", __DATE__);
 	return CMD_OK;
 }
 
 int
-date(char* opts)
+date(const char* opts)
 {
-    memset(dateout, '\0', sizeof(dateout));
+    memset((const char*)dateout, '\0', sizeof(dateout));
     get_date(dateout);
     printf("%s\n", dateout);
 
@@ -125,28 +131,29 @@ date(char* opts)
 }
 
 int
-get_time(char* opts)
+get_time(const char* opts)
 {
     sprintf(opts, "%s\n", __TIME__);
     return CMD_OK;
 }
 
 int
-time2(char* opts)
+time2(const char* opts)
 {
-    memset(timeout, '\0', sizeof(timeout));
+    memset((const uint64_t*)timeout, '\0', sizeof(timeout));
     get_time(timeout);
     printf("%s\n", timeout);
     return CMD_OK;
 }
 
 int
-list(char* opts)
+list(const char* opts)
 {
     FILE* f = NULL;
-	char buf[16] = { 0 }, dev[16] = { 0 };
-	strncpy(buf, right(opts, (int)strlen(opts) - 6), strlen(opts) - 2);
+	char buf[16] = { 0 };
+	char dev[16] = { 0 };
 
+	strncpy(buf, right(opts, (int)strlen(opts) - 6), strlen(opts) - 2);
 	if(strlen(buf) == 2)
 		return CMD_ARGS;
 
@@ -162,7 +169,7 @@ list(char* opts)
 		return CMD_IOERR;
 
 	do {
-		scanf("%s", dev);
+		scanf("%15s", dev);
 		if(strcmp(dev, ".") != 0)
 			fwrite(&dev, strlen(dev), 1, f);
 		fprintf(f, "\n");
@@ -174,13 +181,14 @@ list(char* opts)
 }
 
 int
-loglevel(char* opts)
+loglevel(const char* opts)
 {
     int size;
-    char** splitresult = split(opts, ' ', &size);
+    char** splitresult = split((const char*)opts, ' ', &size);
 
 	if(size == 1) {
         printf("Current log level: %i\n", user.loglevel);
+		free(splitresult);
         return CMD_OK;
     }
 
@@ -195,7 +203,9 @@ loglevel(char* opts)
 }
 
 int
-filet(char* opts)
+filet(const char* opts)
 {
 	return CMD_OK;
 }
+
+#pragma warning( pop )
