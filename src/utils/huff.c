@@ -154,6 +154,7 @@ make_node(List_t* ptr, int n, char c)
 
 	temp->llink = 0;
 	insert_in_list(ptr, temp);
+	//free(temp);
 }
 
 void
