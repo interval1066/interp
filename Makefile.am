@@ -15,14 +15,14 @@ AM_CPPFLAGS = -Wall -std=c11 -Wno-unused-result -Wno-unused-function \
                         -I$(top_srcdir)/include
 man_MANS = 
 
-EXTRA_DIST = include/foo1.h \
-	                    include/intrinsic.h \
-	                    include/simple_strlib.h \
-	                    include/support.h \
-	                    include/utils/filesys.h \
-	                    include/utils/getopt.h \
-	                    include/utils/xgetopt.h \
-	                    include/utils/huff.h
+EXTRA_DIST = 	include/foo1.h \
+	          	include/intrinsic.h \
+	         	include/simple_strlib.h \
+	         	include/support.h \
+					include/utils/filesys.h \
+					include/utils/getopt.h \
+					include/utils/xgetopt.h \
+					include/utils/huff.h
 
 help:
 	@echo "Installing interp help file"

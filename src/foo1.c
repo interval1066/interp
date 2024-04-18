@@ -1,6 +1,6 @@
 #include <string.h>
 #include "foo1.h"
-#include "filesys.h"
+#include "utils/filesys.h"
 
 const char dateout[16];
 const char timeout[20];
@@ -8,11 +8,13 @@ extern const char* commands;
 extern const int noCmds;
 extern struct user_ctx user;
 
+#ifdef _MSC_VER
 #pragma warning( push )
 #pragma warning( disable : 836 )
 #pragma warning( disable : 594 )
 #pragma warning( disable : 4090 )
 #pragma warning( disable : 859 )
+#endif
 
 /**
  * Command objects. Normally these would go into separate translation units.
@@ -208,4 +210,7 @@ filet(const char* opts)
 	return CMD_OK;
 }
 
+#ifdef _MSC_VER
 #pragma warning( pop )
+#endif
+

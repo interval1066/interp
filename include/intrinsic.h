@@ -9,10 +9,12 @@
 #include "utils/huff.h"
 #include "error_info.h"
 
+#ifdef _MSC_VER
 #pragma warning( push )
 #pragma warning( disable : 4090 )
 #pragma warning( disable : 594 )
 #pragma warning( disable : 542 )
+#endif
 
 extern const char dateout[16];
 extern const char timeout[20];
@@ -30,7 +32,9 @@ int motd(const char*);
 int prompt(const char*);
 int quit(const char*);
 
+#ifdef _MSC_VER
 #pragma warning ( pop )
+#endif
 
 #ifdef __cplusplus
 }

@@ -1,6 +1,10 @@
 #pragma once
 
 #include "foo1.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
 #ifdef _MSC_VER
 #include <io.h>
 #include "winunistd.h"
@@ -14,75 +18,97 @@ extern char* strlwr(char*);
 #endif
 
 #ifdef __cplusplus
-extern "C"{
+extern "C" {
 #endif
 
-#pragma warning( push )
-#pragma warning( disable : 4090 )
-#pragma warning( disable : 542 )
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable : 4090)
+#pragma warning(disable : 542)
+#endif
 
 extern const char* strstrip(char*);
 
-// Just a simple jump table 
-const char* commands[] = {  
-                            "dummy",
-                            "help",
-                            "aaa",
-                            "access-lists",
-                            "amplifiers",
-                            "app",
-                            "arp",
-                            "badl",
-                            "batch",
-                            "bert",
-                            "motd",
-                            "prompt",
-                            "quit",
-                            "date",
-                            "lists",
-                            "time2",
-                            "loglevel",
-                            "filet",
-                            "?" };
+// Just a simple jump table
+const char* commands[] = {
+    "dummy",
+    "help",
+    "aaa",
+    "access-lists",
+    "amplifiers",
+    "app",
+    "arp",
+    "badl",
+    "batch",
+    "bert",
+    "motd",
+    "prompt",
+    "quit",
+    "date",
+    "lists",
+    "time2",
+    "loglevel",
+    "filet",
+    "?"
+};
+
+int dummy(const char*);
+int help(const char*);
+int aaa(const char*);
+int alist(const char*);
+int amp(const char*);
+int app(const char*);
+int arp(const char*);
+int badl(const char*);
+int batch(const char*);
+int bert(const char*);
+int motd(const char*);
+int prompt(const char*);
+int quit(const char*);
+int date(const char*);
+int list(const char*);
+int time2(const char*);
+int loglevel(const char*);
+int filet(const char*);
 
 int (*table[])() = {
     dummy, help, aaa, alist, amp, app, arp, badl, batch, bert,
-    motd, prompt, quit, date, list, time2, loglevel, filet,
+    motd, prompt, quit, date, list, time2, loglevel, filet
 };
 
 #ifdef _MSC_VER
-int const noCmds = _countof(table);
+const int noCmds = _countof(table);
 #else
-int noCmds = *(&table + 1) - table;
+const int noCmds = sizeof(table) / sizeof(table[0]);
 #endif
 
 bool
-run_cmd(int nCmd, char* full_cmd)
+run_cmd(int nCmd, const char* full_cmd)
 {
     int n = 0;
 
-    if(nCmd == CMD_ERR) {
+    if (nCmd == CMD_ERR) {
         printf("Unknown command.\n");
         return true;
     }
 
     // If help is invoked with '?'
     if (nCmd == noCmds) nCmd = 0;
-    if((nCmd == 0) && (strlen(full_cmd) < 5)) {
+    if ((nCmd == 0) && (strlen(full_cmd) < 5)) {
         printf("\n");
 
-        while(strchr(*(commands + ++n), '?') == NULL)
+        while (strchr(*(commands + ++n), '?') == NULL)
             printf("- %s\n", *(commands + n));
         printf("\n");
     }
 
     int nStatus = CMD_ERR;
-    int (**p)(char*);
+    int (**p)(const char*);
     p = table;
+
     // command found, execute it.
     nStatus = (*p[nCmd])(strstrip(full_cmd));
-    // if its the 'special' quit command; bail.
-
+    // if it's the 'special' quit command; bail.
     if (nStatus == CMD_QUIT)
         return false;
 
@@ -93,33 +119,31 @@ run_cmd(int nCmd, char* full_cmd)
  * @brief       Process the commands rejecting those that aren't on the list
  *              This needs to be moved to another translation unit (completed 11/2023)
  *
- * @param       char**	inp The string to process
- * @param		int		size The number of command elements
- * @return		boolean	returns the status of the run_cmd
- *				        function, which is only false if we
- *				        process a quit command.
+ * @param       char**  inp The string to process
+ * @param       int     size The number of command elements
+ * @return      boolean returns the status of the run_cmd
+ *                      function, which is only false if we
+ *                      process a quit command.
  */
-bool
-proc_cmds(char** inp, int size)
-{
+bool proc_cmds(char** inp, int size) {
     int n = 0, nCmd = 0;
     bool bFound = false;
     char full_cmd[200], cmd[40];
 
-    memset(full_cmd, '\n', sizeof(full_cmd));
-    memset(cmd, '\n', sizeof(cmd));
+    memset(full_cmd, '\0', sizeof(full_cmd));
+    memset(cmd, '\0', sizeof(cmd));
 
-    for(n = 0; n <= noCmds; n++) {
-        if(strncmp(inp[0],
+    for (n = 0; n < noCmds; n++) {
+        if (strncmp(inp[0],
                     *(commands + n),
                     strlen(strstrip(STRLWR(inp[0])))) == 0) {
             bFound = true;
         }
-        if(bFound) {
+        if (bFound) {
             nCmd = n;
             strcpy(full_cmd, *(commands + n));
 
-            for(int m = 1; m < size; m++) {
+            for (int m = 1; m < size; m++) {
                 strcat(full_cmd, " ");
                 strcat(full_cmd, inp[m]);
             }
@@ -129,8 +153,11 @@ proc_cmds(char** inp, int size)
     return run_cmd(CMD_ERR, NULL);
 }
 
-#pragma warning ( pop )
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 #ifdef __cplusplus
 }
 #endif
+

@@ -1,4 +1,4 @@
-﻿#!/bin/sh
+﻿#!/usr/bin/sh
 #                        a u t o g e n . s h
 #
 # Copyright (c) 2005-2009 United States Government as represented by

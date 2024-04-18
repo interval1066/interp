@@ -1,6 +1,10 @@
 #pragma once
+
+#ifdef _MSC_VER
+#pragma once
 #pragma warning( push )
 #pragma warning( disable : 5945 )
+#endif
 
 /**
  * Internal objects ONLY
@@ -33,4 +37,7 @@ struct user_ctx
 	char prompt[16];
 };
 
+#ifdef _MSC_VER
 #pragma warning( pop )
+#endif
+

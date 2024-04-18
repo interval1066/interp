@@ -1,9 +1,11 @@
-#include "filesys.h"
+#include "utils/filesys.h"
 
+#ifdef _MSC_VER
 #pragma warning( push )
 #pragma warning( disable : 594 )
 #pragma warning( disable : 4047 )
 #pragma warning( disable : 4024 )
+#endif
 
 
 /**
@@ -277,4 +279,7 @@ file_exists(const char* filename)
   return (stat (filename, &buffer) == 0);
 }
 
+#ifdef _MSC_VER
 #pragma warning( pop )
+#endif
+

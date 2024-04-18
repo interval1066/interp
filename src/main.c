@@ -16,7 +16,7 @@
 extern const int noCmds;
 extern int help(const char*);
 extern int StartLogger(int);
-extern bool run_cmd(int, char*);
+//extern bool run_cmd(int, char*);
 extern bool proc_cmds(char**, int);
 struct user_ctx user;
 

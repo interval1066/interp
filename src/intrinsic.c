@@ -3,9 +3,11 @@
 extern struct user_ctx user;
 extern int writeconfig();
 
+#ifdef _MSC_VER
 #pragma warning( push )
 #pragma warning( disable : 4090 )
 #pragma warning( disable : 594 )
+#endif
 
 int
 help(const char* opts)
@@ -118,4 +120,7 @@ quit(const char* opts)
     return CMD_QUIT;
 }
 
+#ifdef _MSC_VER
 #pragma warning( pop )
+#endif
+

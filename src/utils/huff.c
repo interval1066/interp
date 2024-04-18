@@ -1,6 +1,6 @@
 #define __STDC_WANT_LIB_EXT1__ 1
 
-#include "huff.h"
+#include "utils/huff.h"
 #include <string.h>
 
 /**
