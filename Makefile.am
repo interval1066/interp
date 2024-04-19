@@ -1,5 +1,6 @@
 AUTOMAKE_OPTIONS = foreign
-CFLAGS = -Wall -std=c11 -Wno-unused-result -Wno-unused-function -I../include
+CFLAGS = -Wall -std=c11 -Wno-unused-result -Wno-unused-function -Wno-incompatible-pointer-types \
+	-Wno-discarded-qualifiers -Wno-int-conversion -Wno-parentheses -I../include
 LDFLAGS =
 
 # this lists the binaries to produce, the (non-PHONY, binary) targets in
