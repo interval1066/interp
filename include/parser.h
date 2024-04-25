@@ -69,11 +69,11 @@ run_cmd(int nCmd, char* full_cmd)
     }
 
     // If help is invoked with '?'
-    if (nCmd == noCmds) nCmd = 0;
+    if (nCmd == noCmds) nCmd = 1;
     if((nCmd == 0) && (strlen(full_cmd) < 5)) {
         printf("\n");
 
-        while(strchr(*(commands + ++n), '?') == NULL)
+        while (strchr(*(commands + ++n), '?') == NULL)
             printf("- %s\n", *(commands + n));
         printf("\n");
     }
@@ -81,10 +81,10 @@ run_cmd(int nCmd, char* full_cmd)
     int nStatus = CMD_ERR;
     int (**p)(char*);
     p = table;
+
     // command found, execute it.
     nStatus = (*p[nCmd])(strstrip(full_cmd));
     // if its the 'special' quit command; bail.
-
     if (nStatus == CMD_QUIT)
         return false;
 
@@ -113,8 +113,8 @@ proc_cmds(char** inp, int size)
 
     for(n = 0; n <= noCmds; n++) {
         if(strncmp(inp[0],
-                    *(commands + n),
-                    strlen(strstrip(STRLWR(inp[0])))) == 0) {
+            *(commands + n),
+            strlen(strstrip(STRLWR(inp[0])))) == 0) {
             bFound = true;
         }
         if(bFound) {

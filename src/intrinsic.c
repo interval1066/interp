@@ -15,7 +15,7 @@ help(const char* opts)
     int size;
     int retcode;
 	char** splitresult = split(opts, ' ', &size);
-	
+
 	if(size == 1)
         retcode = find_help_section(opts);
 	else
@@ -34,7 +34,7 @@ find_help_section(const char* section)
     char cfg_path[MAXBUF];
     char chunk[MAXBUF];
 
-	memset(cfg_path, 0, sizeof(cfg_path));
+    memset(cfg_path, 0, sizeof(cfg_path));
     get_userdir(cfg_path);
 #ifndef _MSC_VER
 	strcat(cfg_path, "/.interp.hlp");
