@@ -25,6 +25,7 @@ Again, and probably can't be stressed enough; this project is a "starter" projec
 
 Depends on libconfig, barely. Can be easily removed if needed.
 
+Fixed flaw with the help code.
 ---
 1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore. Also, the "commands" & "table" structs have been moved to include/parser.h.<br>
 2. This has been eliminated in subsequent versions.
