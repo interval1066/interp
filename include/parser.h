@@ -70,7 +70,7 @@ run_cmd(int nCmd, char* full_cmd)
 
     // If help is invoked with '?'
     if (nCmd == noCmds) nCmd = 1;
-    if((nCmd == 0) && (strlen(full_cmd) < 5)) {
+    if((nCmd == 1) && (strlen(full_cmd) < 5)) {
         printf("\n");
 
         while (strchr(*(commands + ++n), '?') == NULL)
