@@ -40,7 +40,7 @@ int (*table[])() = {
 
 4. Add a useful description of the new command the ./extra/help file.
 
-No modification of the parser code should be required for the UTF-8 charcter set-based projects. A list of all the commands printed out when the user enters "help" or "?" is generated automtically from the available data. Command descriptions must be entered into the text file in the extra directory.
+No modification of the parser code should be required for the UTF-8 charcter set-based projects. A list of all the commands is printed out when the user enters "help" or "?" is generated automtically from the available data. Command descriptions must be entered into the text file in the extra directory.
 
 The "dummy" command is nessessary for now, obviously an index is off, I'll be getting rid of that when I find the error.
 If you do see a problem a report would be appreciated. interval1066@gmail.com.
