@@ -25,9 +25,12 @@ Again, and probably can't be stressed enough; this project is a "starter" projec
 
 Depends on libconfig, barely. Can be easily removed if needed.
 
-Fixed flaw with the help code.
+7/12/2024 Fixed flaw with the help code.
 ---
 1. The code now counts the number of members in the table static global member automatically, no need for this constant anymore. Also, the "commands" & "table" structs have been moved to include/parser.h.<br>
 2. This has been eliminated in subsequent versions.
 3. Under 25K on windows.
 
+9/11/2024 Uncovered some serious issues
+---
+Turns out libconfig sucks. You can't put arbitrary characters in the ini files, it either needs to have legitmate alphanumeric characters or no file. If it encounters, say stars or hashbangs it spews core. Unacceptable. So I'm going back to my original idea of writing my own ini parser. When I can. Really busy right now.
