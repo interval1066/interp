@@ -6,6 +6,8 @@ TARGET = interp
 
 QMAKE_CFLAGS += -Wall -std=c17 -Wno-unused-parameter
 QMAKE_CFLAGS += -Wno-unused-function -Wno-unused-result
+QMAKE_CFLAGS += -Wno-discarded-qualifiers -Wno-int-conversion
+QMAKE_CFLAGS += -Wno-incompatible-pointer-types
 
 INCLUDEPATH += $$PWD/../include
 
