@@ -26,7 +26,7 @@ struct user_ctx user;
  *
  * @brief	Probably pretty portable CLI interpreter
  *
- * @section	DESCRIPTION
+ * @section	DESCRIPTION test
  *
  * Alternate command line interpreter prototype.
  */
