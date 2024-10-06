@@ -1,7 +1,7 @@
 AUTOMAKE_OPTIONS = foreign
 CFLAGS = -Wall -std=c11 -Wno-unused-result -Wno-unused-function -Wno-incompatible-pointer-types \
-	-Wno-discarded-qualifiers -Wno-int-conversion -Wno-parentheses -I../include
-LDFLAGS =
+	-Wno-discarded-qualifiers -Wno-int-conversion -Wno-parentheses
+LDFLAGS +=-s
 
 # this lists the binaries to produce, the (non-PHONY, binary) targets in
 # the previous manual Makefile
@@ -13,8 +13,8 @@ interp_SOURCES =	src/main.c \
 					src/utils/huff.c \
                     src/utils/config.c
 
-AM_CPPFLAGS = -Wall -std=c11 -Wno-unused-result -Wno-unused-function \
-                        -I$(top_srcdir)/include
+AM_CPPFLAGS = -Wall -std=c11 -O2 -g0 -I$(top_srcdir)/include 
+                       
 man_MANS = 
 
 EXTRA_DIST = 	include/foo1.h \
@@ -26,6 +26,6 @@ EXTRA_DIST = 	include/foo1.h \
 				include/utils/huff.h
 	         	include/utils/config.h
 
-help:
+help$(EXEEXT):
 	@echo "Installing interp help file"
 	cp ./extra/interp.hlp ~/.interp.hlp
