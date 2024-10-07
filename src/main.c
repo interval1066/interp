@@ -66,7 +66,7 @@ sanitize_buf()
 /**
  * initial state
  * 
- * set defaults includeing prompt which is a "> " (greater than + space), can be changed
+ * set defaults including prompt which is a "> " (greater than + space), can be changed
  * via the 'prompt' intrinsic command.
  */
 static int
