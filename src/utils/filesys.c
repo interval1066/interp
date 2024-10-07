@@ -200,7 +200,7 @@ read_motd(const char* path)
     int errno;
 
     errno = CMD_OK;
-    if(stream = fopen(path, "r") != NULL) {
+    if((stream = fopen(path, "r")) != NULL) {
         if (NULL != fgets(&line, MAXMOTD, stream))
             errno = CMD_FILEEXST;
         fclose(stream);

@@ -1,4 +1,5 @@
 #!/bin/sh
+#
 # Clean autotools config, run in top directory
 #
 rm -rf autom4te.cache

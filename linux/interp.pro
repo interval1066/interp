@@ -15,22 +15,23 @@ LIBS += -lpthread
 LIBS += -lconfig
 
 SOURCES += \
-    ../src/foo1.c \
-    ../src/intrinsic.c \
-    ../src/main.c \
-    ../src/utils/filesys.c \
-    ../src/utils/huff.c
+	../src/foo1.c \
+	../src/intrinsic.c \
+	../src/main.c \
+	../src/utils/filesys.c \
+	../src/utils/huff.c \
+	../src/utils/config.c
 
 HEADERS += \
-    ../include/commands.h \
-    ../include/foo1.h \
-    ../include/intrinsic.h \
-    ../include/parser.h \
-    ../include/simple_strlib.h \
-    ../include/support.h \
-    ../include/utils/filesys.h \
-    ../include/utils/huff.h \
-    ../include/utils/xgetopt.h
+	../include/commands.h \
+	../include/foo1.h \
+	../include/intrinsic.h \
+	../include/parser.h \
+	../include/simple_strlib.h \
+	../include/support.h \
+	../include/utils/filesys.h \
+	../include/utils/huff.h \
+	../include/utils/config.h
 
 CONFIG(release, debug|release) {
     QMAKE_POST_LINK=$(STRIP) $(TARGET)
