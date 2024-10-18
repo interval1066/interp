@@ -1,9 +1,15 @@
 #pragma once
 
 #ifdef _MSC_VER
-#pragma once
 #pragma warning( push )
 #pragma warning( disable : 5945 )
+#endif
+
+#include <string.h>
+#include <stdbool.h>
+
+#ifdef __cplusplus
+extern "C"{
 #endif
 
 /**
@@ -25,6 +31,7 @@
 #endif
 
 typedef int (*command_object)(char*);
+//typedef enum {false, true} bool;
 
 struct uinfo {
     struct passwd* info;
@@ -34,8 +41,12 @@ struct user_ctx
 {
     int loglevel;
     bool admin;
-	char prompt[16];
+    char prompt[16];
 };
+
+#ifdef __cplusplus
+}
+#endif
 
 #ifdef _MSC_VER
 #pragma warning( pop )

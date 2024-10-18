@@ -12,12 +12,13 @@ QMAKE_CFLAGS += -Wno-incompatible-pointer-types
 INCLUDEPATH += $$PWD/../include
 
 LIBS += -lpthread
-LIBS += -lconfig
 
 SOURCES += \
 	../src/foo1.c \
 	../src/intrinsic.c \
+	../src/support.c \
 	../src/main.c \
+	../src/support.c \
 	../src/utils/filesys.c \
 	../src/utils/huff.c \
 	../src/utils/config.c
@@ -34,5 +35,5 @@ HEADERS += \
 	../include/utils/config.h
 
 CONFIG(release, debug|release) {
-    QMAKE_POST_LINK=$(STRIP) $(TARGET)
+QMAKE_POST_LINK=$(STRIP) $(TARGET)
 }

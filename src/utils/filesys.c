@@ -1,4 +1,5 @@
 #include "utils/filesys.h"
+#include "utils/config.h"
 
 #ifdef _MSC_VER
 #pragma warning( push )
@@ -28,66 +29,66 @@
 int
 find_cfgfile(const char* file_name, char* path_found, bool bUseDot)
 {
-	if(file_name == NULL && path_found == NULL)
-		return CMD_ARGS;
+    if(file_name == NULL && path_found == NULL)
+        return CMD_ARGS;
 
-	char search_this_path[MAXSIZE];
+    char search_this_path[MAXSIZE];
     char* sp = &search_this_path[0];
     strcpy(sp, "/etc");
-	// Search /etc first for a plain,
-	// un-decorated (no dot prefix)
+    // Search /etc first for a plain,
+    // un-decorated (no dot prefix)
     // file_name
     memset(sp, 0, strlen(search_this_path));
-	sp = strcpy(search_this_path, "/etc");
-	sp = strcat(search_this_path, "/");
+    sp = strcpy(search_this_path, "/etc");
+    sp = strcat(search_this_path, "/");
 
-	sp = strcat(sp, file_name);
+    sp = strcat(sp, file_name);
 
-	if(access(sp, F_OK) != -1 ) {
-		strcpy(path_found, sp);
-		return CMD_OK;
-	}
+    if(access(sp, F_OK) != -1 ) {
+        strcpy(path_found, sp);
+        return CMD_OK;
+    }
    // then try for whatever is in $HOME,
    // if bUseDot == true prefix the file
    // name with a dot.
-	char* homedir = getenv("HOME");
-	if(homedir != NULL) {
-		memset(sp, 0, strlen(search_this_path));
+    char* homedir = getenv("HOME");
+    if(homedir != NULL) {
+        memset(sp, 0, strlen(search_this_path));
 
-		strcpy(sp, homedir);
-		strcat(sp, "/");
-		if(bUseDot) strcat(sp, ".");
+        strcpy(sp, homedir);
+        strcat(sp, "/");
+        if(bUseDot) strcat(sp, ".");
 
-		strcat(sp, file_name);
-		if(access(sp, F_OK) != -1 ) {
-			strcpy(path_found, sp);
+        strcat(sp, file_name);
+        if(access(sp, F_OK) != -1 ) {
+            strcpy(path_found, sp);
 
-			return CMD_OK;
-		}
-	}
-	// Finally try the user's directory as
-	// specified in the passwd data base
-	uid_t uid = getuid();
-	struct passwd* pw = getpwuid(uid);
-	if(pw != NULL) {
+            return CMD_OK;
+        }
+    }
+    // Finally try the user's directory as
+    // specified in the passwd data base
+    uid_t uid = getuid();
+    struct passwd* pw = getpwuid(uid);
+    if(pw != NULL) {
 
-		memset(sp, 0, strlen(search_this_path));
-		strcpy(sp, pw->pw_dir);
-		strcat(sp, "/");
+        memset(sp, 0, strlen(search_this_path));
+        strcpy(sp, pw->pw_dir);
+        strcat(sp, "/");
 
-		if(bUseDot) strcat(sp, ".");
-		strcat(sp, file_name);
-		if(access(search_this_path, F_OK) != -1 ) {
+        if(bUseDot) strcat(sp, ".");
+        strcat(sp, file_name);
+        if(access(search_this_path, F_OK) != -1 ) {
 
-			strcpy(path_found, sp);
-			return CMD_OK;
-		}
-	}
-	// nothing worked, set the result string
-	// param to null and return an error code
+            strcpy(path_found, sp);
+            return CMD_OK;
+        }
+    }
+    // nothing worked, set the result string
+    // param to null and return an error code
     strcpy(path_found, "\0");
 
-	return CMD_FILENF;
+    return CMD_FILENF;
 }
 #endif
 
@@ -114,42 +115,17 @@ create_cfgfile(const char* file_path)
     strcat(cfg_path, "\\.interp.ini");
 #endif
 
-    config_t cfg;
-    config_setting_t* root;
-    config_setting_t* setting;
-    config_init(&cfg);
+    ini_table_s* config = ini_table_create();
+    if(!ini_table_read_from_file(config, cfg_path)) {
+        // create new table
 
-    config_set_options(&cfg,
-                       (CONFIG_OPTION_SEMICOLON_SEPARATORS
-                        | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
-                        | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
-
-    root = config_root_setting(&cfg);
-
-    setting = config_setting_get_member(root, "prompt");
-
-    if(!setting)
-        setting = config_setting_add(root, "prompt", CONFIG_TYPE_STRING);
-    config_setting_set_string(setting, "> ");
-
-    setting = config_setting_get_member(root, "loglevel");
-    if (!setting)
-        setting = config_setting_add(root, "loglevel", CONFIG_TYPE_INT);
-
-    config_setting_set_int(setting, 0);
-
-    setting = config_setting_get_member(root, "admin");
-    if (!setting)
-        setting = config_setting_add(root, "admin", CONFIG_TYPE_BOOL);
-
-    config_setting_set_int(setting, false);
-
-    if(!config_write_file(&cfg, cfg_path)) {
-        config_destroy(&cfg);
-        return CMD_IOERR;
+        ini_table_create_entry(config, "Main", "prompt", "> ");
+        ini_table_create_entry(config, "Main", "loglevel", "0");
+        ini_table_create_entry(config, "Main", "admin", "false");
+        ini_table_write_to_file(config, cfg_path);
     }
 
-    config_destroy(&cfg);
+    ini_table_destroy(config);
 
     return CMD_OK;
 }
@@ -158,9 +134,9 @@ create_cfgfile(const char* file_path)
 void
 get_userdir(char* path)
 {
-	uid_t uid = getuid();
-	struct passwd* pw = getpwuid(uid);
-	strcpy(path, pw->pw_dir);
+    uid_t uid = getuid();
+    struct passwd* pw = getpwuid(uid);
+    strcpy(path, pw->pw_dir);
 }
 #else
 void
@@ -178,18 +154,18 @@ get_userdir(char* path)
 int
 write_motd(char* path, const char* motd)
 {
-	char newm[MAXMOTD];
-	memset(newm, '\0', MAXMOTD);
+    char newm[MAXMOTD];
+    memset(newm, '\0', MAXMOTD);
     mid(motd, 6, find_ch_index(motd, '"'), newm, strlen(motd));
 
     remove_first(newm, "\"");
     FILE* fp = fopen(path, "w");
     if (fp == NULL) return CMD_ERR;
 
-	fprintf(fp, "%s", newm);
-	fclose(fp);
+    fprintf(fp, "%s", newm);
+    fclose(fp);
 
-	return CMD_OK;
+    return CMD_OK;
 }
 
 int
@@ -211,7 +187,7 @@ read_motd(const char* path)
 const char*
 get_keyvalue(const char* key, const char* def)
 {
-    struct config_setting_t const *setting;
+    //struct config_setting_t const *setting;
     char cfg_path[MAXBUF];
     memset(cfg_path, 0, sizeof(cfg_path));
 
@@ -225,49 +201,20 @@ get_keyvalue(const char* key, const char* def)
     if(!file_exists(cfg_path))
         create_cfgfile(cfg_path);
 
-    config_t cfg;
-    config_init(&cfg);
-    config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
-        | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
-        | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
-
-    config_read_file(&cfg, cfg_path);
-    setting = config_lookup(&cfg, key);
-    const char* value = config_setting_get_string(setting);
-
-    return value;
+    return "";
 }
 
 int
 set_keyvalue(const char* key, const char* value)
 {
-    config_setting_t *setting;
     char cfg_path[MAXBUF];
     memset(cfg_path, 0, sizeof(cfg_path));
-
     get_userdir(cfg_path);
 #ifndef _MSC_VER
     strcat(cfg_path, "/.interp.ini");
 #else
     strcat(cfg_path, "\\.interp.ini");
 #endif
-    config_t cfg;
-
-    config_init(&cfg);
-    config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
-        | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
-        | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
-
-    config_read_file(&cfg, cfg_path);
-    setting = config_lookup(&cfg, key);
-    config_setting_set_string (setting, value);
-
-    if(!config_write_file(&cfg, cfg_path)) {
-        config_destroy(&cfg);
-        return CMD_IOERR;
-    }
-
-    config_destroy(&cfg);
 
     return CMD_OK;
 }

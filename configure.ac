@@ -14,10 +14,6 @@ AC_LANG_PUSH([C])
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([],[])],[],[AC_MSG_ERROR([No C compiler found])])
 AC_LANG_POP([C])
 
-AC_SEARCH_LIBS([config_init], [config], [], [
-	AC_MSG_ERROR([required library libconfig not found])
-])
-
 # Checks for typedefs, structures, and compiler characteristics.
 AC_CHECK_HEADER_STDBOOL
 AC_C_INLINE

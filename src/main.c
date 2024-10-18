@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <errno.h>
 #include <signal.h>
+#include "utils/config.h"
 #include "intrinsic.h"
 #include "support.h"
 #include "parser.h"
@@ -63,9 +64,39 @@ sanitize_buf()
     return CMD_OK;
 }
 
+static void
+reverse(char s[])
+{
+    int i, j;
+    char c;
+
+    for (i = 0, j = strlen(s)-1; i<j; i++, j--) {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+    }
+}
+
+static void
+myitoa(int n, char s[])
+{
+    int i, sign;
+
+    if ((sign = n) < 0)  /* record sign */
+        n = -n;          /* make n positive */
+    i = 0;
+    do {       /* generate digits in reverse order */
+        s[i++] = n % 10 + '0';   /* get next digit */
+    } while ((n /= 10) > 0);     /* delete it */
+    if (sign < 0)
+        s[i++] = '-';
+    s[i] = '\0';
+    reverse(s);
+}
+
 /**
  * initial state
- * 
+ *
  * set defaults including prompt which is a "> " (greater than + space), can be changed
  * via the 'prompt' intrinsic command.
  */
@@ -87,11 +118,11 @@ init(void)
     char cfg_path[MAXBUF];
     signal(SIGINT, sig_handler);
     memset(cfg_path, 0, sizeof(cfg_path));
-	
+
     memset(banner_path, 0, sizeof(banner_path));
     get_userdir(cfg_path);
     strcpy(banner_path, cfg_path);
-	
+
 #ifndef _MSC_VER
     strcat(banner_path, "/.motd");
     strcat(cfg_path, "/.interp.ini");
@@ -99,29 +130,24 @@ init(void)
     strcat(banner_path, "\\.motd");
     strcat(cfg_path, "\\.interp.ini");
 #endif
-	
-    if (!file_exists(cfg_path)) {
+    /*if (!file_exists(cfg_path)) {
         printf("Corrupt init file\n");
         exit(1);
-    }
+    }*/
 
     if (access(banner_path, 0) == 0) {
         decode(banner_path);
         printf("\n");
     }
-
     return CMD_OK;
 }
-/**
- * restore user configuration. If the user explicately set the prompt
- * to "no character", even that choice is maintained.
- */
+
 static int
 readconfig(void)
 {
-    config_setting_t* setting;
-    char cfg_path[MAXBUF];
-    memset(cfg_path, 0, sizeof(cfg_path));
+    user.admin = 0;
+    char adminperm[10] = { 0 };
+    char cfg_path[MAXBUF] = { 0 };
 
     get_userdir(cfg_path);
 #ifndef _MSC_VER
@@ -129,91 +155,52 @@ readconfig(void)
 #else
     strcat(cfg_path, "\\.interp.ini");
 #endif
-    config_t cfg;
+    ini_table_s* config = ini_table_create();
+    if(ini_table_read_from_file(config, cfg_path)) {
 
-    config_init(&cfg);
-    config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
-        | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
-        | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
+        strcpy(user.prompt, ini_table_get_entry(config, "Main", "prompt"));
+        user.loglevel = atoi(ini_table_get_entry(config, "Main", "loglevel"));
+        strcpy(adminperm, ini_table_get_entry(config, "Main", "admin"));
 
-    config_read_file(&cfg, cfg_path);
-    setting = config_lookup(&cfg, "prompt");
-    if (!setting)
-        strcpy(user.prompt, "> ");
-
-    strcpy(user.prompt, config_setting_get_string(setting));
-
-    setting = config_lookup(&cfg, "loglevel");
-    if (!setting)
-        user.loglevel = 0;
-    else
-        user.loglevel = config_setting_get_int(setting);
-    
-    if (user.loglevel > 0)
-        StartLogger(user.loglevel);
-
-    setting = config_lookup(&cfg, "admin");
-    if (!setting)
-        user.admin = false;
-    else
-        user.admin = config_setting_get_bool(setting);
-
-    config_destroy(&cfg);
+        if(strcmp(adminperm, "true") == 0)
+            user.admin = 1;
+    }
+    ini_table_destroy(config);
 
     return CMD_OK;
 }
 
-/**
- * write user configuration
- */
-int
+static int
 writeconfig(void)
 {
-    int nErr = CMD_OK;
-    config_setting_t* setting;
-    char cfg_path[MAXBUF];
-
-    memset(cfg_path, 0, sizeof(cfg_path));
+    char cfg_path[MAXBUF] = { 0 };
+    char astr[10] = { 0 };
     get_userdir(cfg_path);
+
 #ifndef _MSC_VER
     strcat(cfg_path, "/.interp.ini");
 #else
     strcat(cfg_path, "\\.interp.ini");
 #endif
-    config_t cfg;
 
-    config_init(&cfg);
-    config_set_options(&cfg, (CONFIG_OPTION_SEMICOLON_SEPARATORS
-        | CONFIG_OPTION_COLON_ASSIGNMENT_FOR_GROUPS
-        | CONFIG_OPTION_OPEN_BRACE_ON_SEPARATE_LINE));
+    ini_table_s* config = ini_table_create();
+    if(ini_table_read_from_file(config, cfg_path)) {
 
-    config_read_file(&cfg, cfg_path);
-    setting = config_lookup(&cfg, "prompt");
-    if (setting)
-        config_setting_set_string(setting, user.prompt);
-    else
-        nErr = CMD_MISPARAM; 
+        ini_table_create_entry(config, "Main", "prompt", user.prompt);
+        myitoa(user.loglevel, astr);
+        ini_table_create_entry(config, "Main", "loglevel", astr);
 
-    setting = config_lookup(&cfg, "loglevel");
-    if (setting)
-        config_setting_set_int(setting, user.loglevel);
-    else
-        nErr = CMD_MISPARAM; 
+        if(user.admin == 1)
+            ini_table_create_entry(config, "Main", "admin", "true");
+        else
+            ini_table_create_entry(config, "Main", "admin", "false");
 
-    setting = config_lookup(&cfg, "admin");
-    if (setting)
-        config_setting_set_bool(setting, user.admin);
-    else
-        nErr = CMD_MISPARAM; 
-
-    if (!config_write_file(&cfg, cfg_path)) {
-        config_destroy(&cfg);
-        return CMD_IOERR;
+        ini_table_write_to_file(config, cfg_path);
     }
 
-    config_destroy(&cfg);
+    ini_table_destroy(config);
 
-    return nErr;
+    return CMD_OK;
 }
 
 /**
@@ -230,23 +217,23 @@ main(int argc, char** argv)
     init();
     readconfig();
 
-	do {
-		len = 0;
-		char* cmd_string = NULL;
-		printf("%s", user.prompt);
-		
-		/* Es ist lächerlich, dass es keine gute Möglichkeit
-		gibt, eine Art Metacode zu erstellen, um Tabulatoren,
-		Leerzeichen und andere nicht druckbare Zeichen
-		einheitlich zu machen. */
-		getline(&cmd_string, &len, stdin);
-		char** splitresult = split(cmd_string, ' ', &size);
+    do {
+        len = 0;
+        char* cmd_string = NULL;
+        printf("%s ", user.prompt);
 
-		bDo = proc_cmds(splitresult, size);
+        /* Es ist lächerlich, dass es keine gute Möglichkeit
+        gibt, eine Art Metacode zu erstellen, um Tabulatoren,
+        Leerzeichen und andere nicht druckbare Zeichen
+        einheitlich zu machen. */
+        getline(&cmd_string, &len, stdin);
+        char** splitresult = split(cmd_string, ' ', &size);
+
+        bDo = proc_cmds(splitresult, size);
         free(&splitresult[0]);
-	} while (bDo);
+    } while (bDo);
 
     writeconfig();
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
