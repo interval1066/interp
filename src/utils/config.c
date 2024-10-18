@@ -27,8 +27,10 @@ static ini_entry_s* _ini_entry_create(ini_section_s* section,
     ini_entry_s* entry = &section->entry[section->size++];
     entry->key = malloc((strlen(key)+1)*sizeof(char));
     entry->value = malloc((strlen(value)+1)*sizeof(char));
+
     strcpy(entry->key, key);
     strcpy(entry->value, value);
+
     return entry;
 }
 
@@ -42,8 +44,10 @@ static ini_section_s* _ini_section_create(ini_table_s* table,
     ini_section_s* section = &table->section[table->size++];
     section->size = 0;
     section->name = malloc((strlen(section_name)+1) * sizeof(char));
+
     strcpy(section->name, section_name);
     section->entry = malloc(10 * sizeof(ini_entry_s));
+
     return section;
 }
 
@@ -79,6 +83,7 @@ static ini_entry_s* _ini_entry_get(ini_table_s* table, const char* section_name,
     if (entry == NULL) {
         return NULL;
     }
+
     return entry;
 }
 
@@ -87,6 +92,7 @@ ini_table_s* ini_table_create()
     ini_table_s* table = malloc(sizeof(ini_table_s));
     table->size = 0;
     table->section = malloc(10 * sizeof(ini_section_s));
+
     return table;
 }
 
@@ -94,9 +100,11 @@ void ini_table_destroy(ini_table_s* table)
 {
     for (int i = 0; i < table->size; i++) {
         ini_section_s* section = &table->section[i];
+
         for (int q = 0; q < section->size; q++) {
             ini_entry_s* entry = &section->entry[q];
             free(entry->key);
+
             free(entry->value);
         }
         free(section->entry);
@@ -125,9 +133,11 @@ bool ini_table_read_from_file(ini_table_s* table, const char* file)
     memset(buf, '\0', buffer_size);
     while((c = getc(f)) != EOF) {
         if (position > buffer_size-2) {
+
             buffer_size += 128 * sizeof(char);
             size_t value_offset = value == NULL ? 0 : value - buf;
             buf = realloc(buf, buffer_size);
+
             memset(buf+position, '\0', buffer_size-position);
             if (value != NULL)
                 value = buf + value_offset;
@@ -143,9 +153,11 @@ bool ini_table_read_from_file(ini_table_s* table, const char* file)
                 if (state == Value) {
                     buf[position++] = c;
                     break;
-                } else {
+                }
+                else {
                     state = Comment;
                     buf[position++] = c;
+
                     while (c != EOF && c != '\n') {
                        c = getc(f);
                        if (c != EOF && c != '\n') buf[position++] = c;

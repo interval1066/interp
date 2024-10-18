@@ -108,7 +108,7 @@ init(void)
     strcpy(tmp, get_keyvalue("prompt", ""));
 
     if(strlen(tmp) == 0)
-        strcpy(tmp, get_keyvalue("prompt", "> "));
+        strcpy(tmp, get_keyvalue("prompt", ">"));
 
 #ifndef _MSC_VER
     int len2 = (int)strlen(tmp);
@@ -130,10 +130,6 @@ init(void)
     strcat(banner_path, "\\.motd");
     strcat(cfg_path, "\\.interp.ini");
 #endif
-    /*if (!file_exists(cfg_path)) {
-        printf("Corrupt init file\n");
-        exit(1);
-    }*/
 
     if (access(banner_path, 0) == 0) {
         decode(banner_path);
