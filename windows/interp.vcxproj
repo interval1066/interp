@@ -22,6 +22,7 @@
     <ClCompile Include="..\src\foo1.c" />
     <ClCompile Include="..\src\intrinsic.c" />
     <ClCompile Include="..\src\main.c" />
+    <ClCompile Include="..\src\utils\config.c" />
     <ClCompile Include="..\src\utils\filesys.c" />
     <ClCompile Include="..\src\utils\huff.c" />
     <ClCompile Include="src\winstring_ext.c" />
@@ -35,6 +36,7 @@
     <ClInclude Include="..\include\parser.h" />
     <ClInclude Include="..\include\simple_strlib.h" />
     <ClInclude Include="..\include\support.h" />
+    <ClInclude Include="..\include\utils\config.h" />
     <ClInclude Include="..\include\utils\filesys.h" />
     <ClInclude Include="..\include\utils\huff.h" />
     <ClInclude Include="include\winthread.h" />

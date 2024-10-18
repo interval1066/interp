@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <utils/filesys.h>
 #include <sys/stat.h>
-#include <libconfig.h>
 #include <stdbool.h>
 #include <stdio.h>
 #ifndef _MSC_VER
@@ -46,7 +45,6 @@ const char* get_keyvalue(const char*, const char*);
 
 int set_keyvalue(const char*, const char*);
 bool file_exists(const char*);
-int write_config(config_t*, char*);
 
 #ifdef __cplusplus
 }

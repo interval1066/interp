@@ -67,10 +67,10 @@ sanitize_buf()
 static void
 reverse(char s[])
 {
-    int i, j;
+    size_t i, j;
     char c;
 
-    for (i = 0, j = strlen(s)-1; i<j; i++, j--) {
+    for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
         c = s[i];
         s[i] = s[j];
         s[j] = c;
@@ -80,7 +80,7 @@ reverse(char s[])
 static void
 myitoa(int n, char s[])
 {
-    int i, sign;
+    size_t i, sign;
 
     if ((sign = n) < 0)  /* record sign */
         n = -n;          /* make n positive */

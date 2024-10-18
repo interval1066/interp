@@ -2,7 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#if defined(_WIN32) || defined(_WIN64) 
+#define strcasecmp _stricmp 
+#define strncasecmp _strnicmp 
+#else
 #include <strings.h>
+#endif
 #include "utils/config.h"
 
 static void print_log(int line, const char* msg, const char* extra)
