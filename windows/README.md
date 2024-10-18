@@ -19,3 +19,4 @@ That should be all you need to do. In visual studio look at the include list in 
 7 should be the include for libconfig.h. If its not underlined then the project is probably
 ready to build.
 
+(10/17/2024) All dependancies on libconfig have been removed.
