@@ -125,6 +125,7 @@ proc_cmds(char** inp, int size)
                 strcat(full_cmd, " ");
                 strcat(full_cmd, inp[m]);
             }
+            printf("\n");
             return run_cmd(nCmd, full_cmd);
         }
     }
