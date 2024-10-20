@@ -6,7 +6,7 @@
 #include <conio.h>
 #define GETCH _getch
 #else
-#include <terminate.h>
+#include <terminal.h>
 #define GETCH getch
 #endif
 
