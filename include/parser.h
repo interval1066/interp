@@ -64,7 +64,7 @@ run_cmd(int nCmd, char* full_cmd)
     int n = 0;
 
     if(nCmd == CMD_ERR) {
-        printf("Unknown command.\n");
+        printf("\nUnknown command.\n");
         return true;
     }
 
