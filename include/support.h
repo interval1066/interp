@@ -3,6 +3,11 @@
 #ifdef _MSC_VER
 #pragma warning( push )
 #pragma warning( disable : 5945 )
+#include <conio.h>
+#define GETCH _getch
+#else
+#include <terminate.h>
+#define GETCH getch
 #endif
 
 #include <string.h>

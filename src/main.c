@@ -209,7 +209,7 @@ get_cmdln(void)
     int i = 0, flag = 0;
 
     for (i = 0; i < MAX_LINE && flag == 0; ++i) {
-        ch = _getch();
+        ch = GETCH();
         switch (ch) {
         case 13:
             str[i] = '\0';
