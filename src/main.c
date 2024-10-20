@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <errno.h>
 #include <signal.h>
+#include <conio.h>
 #include "utils/config.h"
 #include "intrinsic.h"
 #include "support.h"
@@ -19,6 +20,9 @@ extern int help(const char*);
 extern int StartLogger(int);
 extern bool proc_cmds(char**, int);
 struct user_ctx user;
+char str[1024];
+
+#define MAX_LINE 1024
 
 /**
  * @file    main.c
@@ -70,7 +74,7 @@ reverse(char s[])
     size_t i, j;
     char c;
 
-    for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
+    for (i = 0, j = (int)strlen(s) - 1; i < j; i++, j--) {
         c = s[i];
         s[i] = s[j];
         s[j] = c;
@@ -199,6 +203,36 @@ writeconfig(void)
     return CMD_OK;
 }
 
+char*
+get_cmdln(void)
+{
+    char ch;
+    int i = 0, flag = 0;
+
+    for (i = 0; i < MAX_LINE && flag == 0; ++i) {
+        ch = _getch();
+        switch (ch) {
+        case 13:
+            str[i] = '\0';
+            flag = 1;
+            break;
+
+        case '\b':
+            if (i > 0) i--;
+            str[i--] = '\0';
+            printf("\b \b");
+            break;
+
+        default:
+            str[i] = ch;
+            printf("%c", ch);
+        }
+    }
+    str[strlen(str)] = '\0';
+
+    return &str[0];
+}
+
 /**
  * main.c, pretty self explanitory I hope.
  * Will be changed to take command line options eventually.
@@ -206,7 +240,7 @@ writeconfig(void)
 int
 main(int argc, char** argv)
 {
-    int size;
+    size_t size;
     bool bDo = true;
     static size_t len = 0;
 
@@ -217,15 +251,12 @@ main(int argc, char** argv)
         len = 0;
         char* cmd_string = NULL;
         printf("%s ", user.prompt);
+        cmd_string = get_cmdln();
 
-        /* Es ist lächerlich, dass es keine gute Möglichkeit
-        gibt, eine Art Metacode zu erstellen, um Tabulatoren,
-        Leerzeichen und andere nicht druckbare Zeichen
-        einheitlich zu machen. */
-        getline(&cmd_string, &len, stdin);
+        size = (size_t)strlen(cmd_string);
         char** splitresult = split(cmd_string, ' ', &size);
-
         bDo = proc_cmds(splitresult, size);
+
         free(&splitresult[0]);
     } while (bDo);
 
