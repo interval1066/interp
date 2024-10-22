@@ -4,10 +4,8 @@
 #pragma warning( push )
 #pragma warning( disable : 5945 )
 #include <conio.h>
-#define GETCH _getch
 #else
-#include <terminal.h>
-#define GETCH getch
+#include <termios.h>
 #endif
 
 #include <string.h>

@@ -202,6 +202,7 @@ writeconfig(void)
     return CMD_OK;
 }
 
+#ifdef _MSV_VER
 char*
 get_cmdln(void)
 {
@@ -209,7 +210,7 @@ get_cmdln(void)
     int i = 0, flag = 0;
 
     for (i = 0; i < MAX_LINE && flag == 0; ++i) {
-        ch = GETCH();
+        ch = _getch();
         switch (ch) {
         case 13:
             str[i] = '\0';
@@ -231,6 +232,7 @@ get_cmdln(void)
 
     return &str[0];
 }
+#endif
 
 /**
  * main.c, pretty self explanitory I hope.
@@ -239,27 +241,32 @@ get_cmdln(void)
 int
 main(int argc, char** argv)
 {
-    size_t size;
-    bool bDo = true;
-    static size_t len = 0;
+	size_t size;
+	bool bDo = true;
+	char* cmd_string = NULL;
 
-    init();
-    readconfig();
+	init();
+	readconfig();
 
-    do {
-        len = 0;
-        char* cmd_string = NULL;
-        printf("%s ", user.prompt);
-        cmd_string = get_cmdln();
+	do {
+		len = 0;
+		char* cmd_string = NULL;
+		printf("%s ", user.prompt);
 
-        size = (size_t)strlen(cmd_string);
-        char** splitresult = split(cmd_string, ' ', &size);
-        bDo = proc_cmds(splitresult, size);
+#ifdef _MSV_VER
+		cmd_string = get_cmdln();
+#else
+		getline(&cmd_string, &len, stdin);
+#endif
+		size = (size_t)strlen(cmd_string);
+		char** splitresult = split(cmd_string, ' ', &size);
+		bDo = proc_cmds(splitresult, size);
 
-        free(&splitresult[0]);
-    } while (bDo);
+		free(&splitresult[0]);
+	} while (bDo);
 
-    writeconfig();
+	writeconfig();
 
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
+
