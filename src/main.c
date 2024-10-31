@@ -241,9 +241,9 @@ get_cmdln(void)
 int
 main(int argc, char** argv)
 {
-	size_t size;
+	size_t size, len;
 	bool bDo = true;
-	char* cmd_string = NULL;
+	//char* cmd_string = NULL;
 
 	init();
 	readconfig();
