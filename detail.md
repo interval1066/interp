@@ -36,3 +36,7 @@ Depends on libconfig, barely. Can be easily removed if needed.
 9/11/2024 Uncovered some serious issues
 ---
 Turns out libconfig sucks. You can't put arbitrary characters in the ini files, it either needs to have legitmate alphanumeric characters or no file. If it encounters, say stars or hashbangs it spews core. Unacceptable. So I'm going back to my original idea of writing my own ini parser. When I can. Really busy right now.
+
+10/26/2024 Removed the libconfig dependancy
+---
+Got the above done.
