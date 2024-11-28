@@ -9,17 +9,19 @@ Action is a first match, arbitrary length thing; q, qu, and qui will all "quit" 
 
 As is the code compiles down to under 35K bytes<sup>3</sup>, filled out with some actually useful commands, stripped release, and an embedded clib, I figure you can have a board that can do things via this interpreter for well under 100KB or possibly less if you really watch your memory usage.
 
-Builds its own command menu automgically, no need to update that. Detailed descriptions will need updating in extra/interp.hlp however. Reename to your actual application name and place in the $USER home directory.
+Builds its own command menu automgically, no need to update that. Detailed descriptions will need updating in extra/interp.hlp however. Rename to your actual application name and place in the $USER home directory.
 
 Autoconf automatically provides an "install" command but there's no point in installing this. I'm going to remove the autoconf directive. You are welcome to use the autoconf install command if you want but its really kind of pointless. I would add that in your own finished package that uses this code.
 
 As well as typical scripts for autotools there's a qtcreator project file and a visual studio 2022 project configuration just for fun.
 
-Builds an ARMhf 32 bit target using the generic makefile in the linux subdirectory, can probably target other platforms using GCC or LLVM.
+Builds an ARMhf 32 bit target using the generic makefile in the linux subdirectory as long as you have the GCC ARMhf compiler installed on your system, 
+can probably target other platforms using GCC or LLVM.
 
 To initiate an autotools build just run autogen.sh and follow the instructions, make sure that the execute bit is set on the automake and clean scripts. To build using the qtcreator project file load the project and select your build kit of choice. To build on Windows you'll need to reconfigure the project for your Win SDK, obviously. I'm on visual studio 2022, so you may need to create a project for your version and add the source modules manually. For visual studio code I have no idea, I rarely use that ide. For eclipse? Lift the voodoo curse off yourself and stop using it, you know that thing was originally written by IBM??
 
-autoclean.sh should reset the entire source directory to the "ground state." See "newcmds.md" for instruction on adding commands to the interpreter. There is a user context struct but its not in use in this version.
+autoclean.sh should reset the entire source directory to the "ground state." See "newcmds.md" for instruction on adding commands to the interpreter. Take special note
+of the user context struct, its key for makeing changes to the shell's environment without needing to re-start it.
 
 Again, and probably can't be stressed enough; this project is a "starter" project for your own command line processor engine or shell utiity; the included commands in the foo1 source are just examples; all of them need to be replaced with your required functionality and the extra/interp.help updated with actual descriptions of your new commands. MAKE INSTALL will do NOTHING USEFUL, but you can use it if for some reason you must. Never the less this is fully functioning code (the foo commands don't do anything though, not really) I simply consider it bad form to provide broken example code. That said, there maybe be some "slightly" broken code here and there. Pleaase write me about it or submit your own patch if you like.
 
