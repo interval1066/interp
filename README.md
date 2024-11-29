@@ -5,4 +5,4 @@ Have been getting a lot of positive reviews; as I said its VERY flexible and par
 I'm seeing that the first match action on this is great; say you have a command "get door". If both get and door are registered as a command and a parameter "g d" works fine, as long as they appear first in the command/parameter list. If not then again, next match. If "gummy door" is next in the list it will pick that up. Try it!
 
 (10/17/2024) Finally removed the dependancy on libconfig.<br>
-(10/20/2024) Code now handles back spaces on Windows, still working the solution out on Linux.
+(10/20/2024) Code now handles back spaces on Windows.
