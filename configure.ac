@@ -19,5 +19,4 @@ AC_CHECK_HEADER_STDBOOL
 AC_C_INLINE
 
 # Checks for library functions.
-
 AC_OUTPUT
