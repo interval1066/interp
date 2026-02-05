@@ -4,8 +4,9 @@ Super simple arbitrary length, "first match", command interpeter for embedded pr
 Have been getting a lot of positive reviews; as I said its VERY flexible and parses a treat with very little code. Needs more testing, but so far
 I'm seeing that the first match action on this is great; say you have a command "get door". If both get and door are registered as a command and a parameter "g d" works fine, as long as they appear first in the command/parameter list. If not then again, next match. If "gummy door" is next in the list it will pick that up. Try it!
 
-Quick little update: I've successfully built this on Linux, Windows, and ARM based Linux.
+Quick little update: I've successfully built this on Linux, Windows, and ARM based Linux. ALso, and I can't believe I haven't added this before; this is written in C11 as it was originally written for a device that had no C++ compiler. I also thought it might be a little more portable if it was in linear C.
 
 (10/17/2024) Finally removed the dependancy on libconfig.<br>
 (10/20/2024) Code now handles back spaces on Windows.
+
 
