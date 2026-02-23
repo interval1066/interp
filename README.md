@@ -9,8 +9,5 @@ I'm seeing that the first match action on this is great; say you have a command 
 Quick little update: I've successfully built this on Linux, Windows, and ARM based Linux. Also, and I can't believe I haven't added this before; this is written in C11 as it was originally written for a device that had no C++ compiler. I also thought it might be a little more portable if it was in linear C.
 
 (10/17/2024) Finally removed the dependancy on libconfig.<br>
-(10/20/2024) Code now handles back spaces on Windows.
-
-
-
-
+(10/20/2024) Code now handles back spaces on Windows.<br>
+(02/22/2026) Fixed a flaw with the input buffer in main (specified an instance variable instead of a pointer.)
